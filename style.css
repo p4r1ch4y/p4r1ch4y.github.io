@@ -268,6 +268,47 @@ html {
 .cert-meta { color: var(--color-text-secondary); font-size: 0.9rem; }
 .cert-action .btn--verify { font-size: 0.85rem; padding: 0.32rem 0.6rem; }
 
+/* Card styles for visible featured certs */
+.cert-card { display:flex; justify-content:space-between; align-items:center; padding:0.6rem; border-radius:8px; border:1px solid var(--color-card-border); background: var(--color-surface); margin-bottom:0.6rem; }
+.cert-card-left { display:flex; gap:0.75rem; align-items:center; }
+.cert-icon { width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:6px; background: rgba(0,0,0,0.04); }
+.cert-card-title a { color: inherit; text-decoration:none; font-weight:600; }
+.cert-card-org { color: var(--color-text-secondary); font-size:0.95rem; }
+.cert-card-badge { color: var(--color-success); font-size:1.15rem; }
+
+/* Group toggle */
+.group-toggle { background: transparent; border: none; font-size:1rem; font-weight:600; cursor:pointer; display:inline-flex; align-items:center; gap:0.5rem; }
+.group-toggle:focus { outline:none; box-shadow: var(--focus-ring); }
+.group-count { color: var(--color-text-secondary); font-weight:400; }
+
+/* Layout for certifications section */
+.certifications-training {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+}
+.certifications-training .certifications-training-grid { display:grid; grid-template-columns: 1fr; gap:1.25rem; }
+.certifications-training .card-grid { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:0.75rem; }
+@media (max-width: 768px) {
+    .certifications-training .card-grid { grid-template-columns: 1fr; }
+}
+
+.cert-toggle-wrap { margin-top:1rem; display:flex; flex-direction:column; align-items:center; }
+.certifications-more { width:100%; max-width:900px; }
+.cert-group h3 { margin:0 0 0.5rem 0; }
+.cert-list { padding-left:0; }
+
+/* Make cert-list items visually match featured cards more closely */
+.cert-list .cert-item { display:block; padding:0; border:none; background:transparent; }
+.cert-list .cert-left { display:flex; gap:0.75rem; align-items:center; padding:0.6rem; border-radius:8px; border:1px solid var(--color-card-border); background: var(--color-surface); }
+.cert-list .cert-left .cert-icon { width:36px; height:36px; display:flex; align-items:center; justify-content:center; border-radius:6px; background: rgba(0,0,0,0.03); }
+.cert-list .cert-meta { margin-top:4px; }
+
+/* Muted text helper */
+.muted { color: var(--color-text-secondary); font-size:0.95rem; }
+
+/* Theme toggle button */
+/* theme toggle removed */
+
 /* Hero profiles */
 .hero-profiles { margin-top: 0.75rem; display: flex; gap: 0.5rem; flex-wrap:wrap; justify-content: center; }
 .profile-btn { font-size: 0.95rem; padding: 0.45rem 0.8rem; }
