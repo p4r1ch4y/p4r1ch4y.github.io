@@ -143,10 +143,14 @@
                     <a href="assets/Subrata_Choudhury_Resume.pdf" class="btn btn--outline" id="download-resume">Download Resume</a>
                 </div>
                 <div class="hero-socials">
-                    <a href="https://github.com/p4r1ch4y" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com/in/iamcsubrata" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://twitter.com/iamcsubrata" target="_blank" class="social-link"><i class="fab fa-twitter"></i></a>
-                    <!-- Removed broken Discord link. will add it back later. -->
+                    <a href="https://github.com/p4r1ch4y" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/iamcsubrata" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://twitter.com/iamcsubrata" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="https://youtube.com/@p4r1ch4y" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="hero-profiles" aria-hidden="false">
+                    <a href="https://profiles.cyfrin.io/u/p4r1ch4y" target="_blank" rel="noopener noreferrer" class="btn btn--outline profile-btn">Cyfrin Profile</a>
+                    <a href="https://cantina.xyz/u/p4r1ch4y" target="_blank" rel="noopener noreferrer" class="btn btn--outline profile-btn">Cantina Profile</a>
                 </div>
             </div>
         </section>
@@ -690,7 +694,8 @@
     </section>
     <!-- Certifications Section (Reordered for Impact) -->
 
-    <section id="certifications-training" class="certifications-training">
+    <a id="certifications"></a>
+    <section id="certifications-training" class="certifications-training" role="region" aria-labelledby="certifications-title">
             <div class="container">
                 <h2 class="section-title">Certifications & Training</h2>
                 <div class="certifications-training-grid">
@@ -800,6 +805,11 @@
                     </div>
                 </div>
             </div>
+            <!-- Show more toggle: lazy-load larger list when user requests it -->
+            <div class="cert-toggle-wrap">
+                <button id="cert-expand" class="expand-btn" aria-expanded="false" aria-controls="certifications-more">Show more</button>
+                <div id="certifications-more" class="certifications-more" role="region" aria-labelledby="certifications-more-title" hidden></div>
+            </div>
     </section>
     
     <!-- Contact Section -->
@@ -858,7 +868,7 @@
                         <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
                     </div>
                     <button type="submit" class="btn btn--primary btn--full-width">Send Message</button>
-                    <div id="form-message" class="form-message"></div>
+                    <div id="form-message" class="form-message" role="status" aria-live="polite"></div>
                 </form>
                  <div class="future-notice">
                         <i class="fas fa-info-circle"></i>
@@ -935,6 +945,86 @@
                 type();
             }
         });
+    </script>
+    <script>
+        // Certifications: lazy-load and render expanded list when user requests it.
+        (function() {
+            const btn = document.getElementById('cert-expand');
+            const more = document.getElementById('certifications-more');
+            let loaded = false;
+
+            function createItemNode(item) {
+                // If a verification URL is available, make the title a link to it (opens in new tab).
+                const titleHtml = item.verify
+                    ? `<a href="${item.verify}" target="_blank" rel="noopener noreferrer" class="cert-title-link">${item.title}</a>`
+                    : `<span class="cert-title-text">${item.title}</span>`;
+
+                return `
+                    <li class="cert-item">
+                        <div class="cert-left">
+                            <div class="cert-title">${titleHtml}</div>
+                            <div class="cert-meta">${item.org} — <small>${item.date || ''}</small></div>
+                        </div>
+                    </li>`;
+            }
+
+            function renderGroups(items) {
+                const groups = items.reduce((acc, it) => {
+                    const key = it.subgroup || (it.type === 'certificate' ? 'Certifications' : 'Other');
+                    if (!acc[key]) acc[key] = [];
+                    acc[key].push(it);
+                    return acc;
+                }, {});
+
+                const html = Object.keys(groups).map(groupName => {
+                    const list = groups[groupName].map(createItemNode).join('');
+                    return `<section class="cert-group" aria-labelledby="group-${groupName}">
+                        <h3 id="group-${groupName}">${groupName}</h3>
+                        <ul class="cert-list">${list}</ul>
+                    </section>`;
+                }).join('');
+
+                more.innerHTML = `<h3 id="certifications-more-title" class="visually-hidden">More Certifications and Training</h3>` + html;
+            }
+
+            async function loadAndShow() {
+                try {
+                    // Robust fetch: resolve relative to current document location
+                    const url = new URL('data/certifications.json', location.href).href;
+                    let res = await fetch(url);
+                    if (!res.ok) {
+                        // Try a fallback relative path
+                        res = await fetch('./data/certifications.json');
+                    }
+                    if (!res.ok) throw new Error('Failed to load certifications JSON');
+                    const items = await res.json();
+                    renderGroups(items);
+                    loaded = true;
+                } catch (e) {
+                    more.innerHTML = '<p>Unable to load more certifications at this time.</p>';
+                    console.error('Cert load error:', e);
+                }
+            }
+
+            if (btn && more) {
+                btn.addEventListener('click', async (e) => {
+                    const expanded = btn.getAttribute('aria-expanded') === 'true';
+                    if (!expanded && !loaded) {
+                        // lazy-load data
+                        await loadAndShow();
+                    }
+
+                    btn.setAttribute('aria-expanded', String(!expanded));
+                    if (expanded) {
+                        more.setAttribute('hidden', '');
+                        btn.textContent = 'Show more';
+                    } else {
+                        more.removeAttribute('hidden');
+                        btn.textContent = 'Show less';
+                    }
+                });
+            }
+        })();
     </script>
 </body>
 </html>

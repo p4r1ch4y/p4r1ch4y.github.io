@@ -234,14 +234,47 @@
 
 /* Base styles */
 html {
-  font-size: var(--font-size-base);
-  font-family: var(--font-family-base);
-  line-height: var(--line-height-normal);
-  color: var(--color-text);
-  background-color: var(--color-background);
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+    font-size: var(--font-size-base);
+    font-family: var(--font-family-base);
+    line-height: var(--line-height-normal);
+    color: var(--color-text);
+    background-color: var(--color-background);
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
 }
+
+/* Certifications small UI */
+.expand-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    cursor: pointer;
+}
+.expand-btn:focus {
+    outline: none;
+    box-shadow: var(--focus-ring);
+}
+.certifications-more[hidden] { display: none; }
+.certifications-more { margin-top: 1rem; }
+.cert-group { margin-bottom: 1.25rem; }
+.cert-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
+.cert-item { display:flex; justify-content:space-between; align-items:center; padding:0.5rem; border-radius:6px; border:1px solid var(--color-card-border); background: var(--color-surface); }
+.cert-title { font-weight:600; }
+.cert-meta { color: var(--color-text-secondary); font-size: 0.9rem; }
+.cert-action .btn--verify { font-size: 0.85rem; padding: 0.32rem 0.6rem; }
+
+/* Hero profiles */
+.hero-profiles { margin-top: 0.75rem; display: flex; gap: 0.5rem; flex-wrap:wrap; justify-content: center; }
+.profile-btn { font-size: 0.95rem; padding: 0.45rem 0.8rem; }
+.cert-title-link { color: inherit; text-decoration: none; font-weight: 600; }
+.cert-title-link:hover, .cert-title-link:focus { text-decoration: underline; }
+.cert-title-text { font-weight: 600; }
+.visually-hidden { position: absolute !important; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px); white-space: nowrap; }
 
 body {
   margin: 0;
