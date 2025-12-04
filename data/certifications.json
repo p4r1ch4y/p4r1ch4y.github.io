@@ -9,7 +9,7 @@
   },
   {
     "type": "certificate",
-    "title": "DevRel Uni Cohort 6 — Developer Relations Essentials",
+    "title": "DevRel Uni Cohort 6 : Developer Relations Essentials",
     "org": "DevRel Uni",
     "date": "Jan 2025",
     "verify": "https://x.com/iamcsubrata/status/1884928731468406806",
@@ -17,7 +17,7 @@
   },
   {
     "type": "certificate",
-    "title": "Qiskit Global Summer School 2025 — Quantum Excellence",
+    "title": "Qiskit Global Summer School 2025 : Quantum Excellence",
     "org": "IBM",
     "date": "Jul 2025",
     "verify": "https://www.credly.com/badges/1206fd6d-a31d-4b61-9952-08270988629e/",
@@ -33,7 +33,7 @@
   },
   {
     "type": "certificate",
-    "title": "Anveshan Hackathon Winner — Software Development Track",
+    "title": "Anveshan Hackathon Winner : Software Development Track",
     "org": "Anveshan",
     "date": "Jun 2025",
     "verify": "https://www.linkedin.com/in/iamcsubrata/overlay/certifications/1092294084/multiple-media-viewer/",
@@ -41,7 +41,7 @@
   },
   {
     "type": "certificate",
-    "title": "Deloitte Australia — Data Analytics (Forage)",
+    "title": "Deloitte Australia : Data Analytics (Forage)",
     "org": "Forage",
     "date": "Apr 2025",
     "verify": "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/9PBTqmSxAf6zZTseP/io9DzWKe3PTsiS6GG_9PBTqmSxAf6zZTseP_DMmtpsBZwYMM8N3ba_1744024206022_completion_certificate.pdf",
@@ -50,7 +50,7 @@
   {
     "type": "training",
     "subgroup": "Security Training",
-    "title": "School of Solana — Season 7 (Security Track)",
+    "title": "School of Solana : Season 7 (Rust Development & Security Track)",
     "org": "Ackee",
     "date": "Completed Sep 2025",
     "verify": "https://solscan.io/token/FecTcghLMF4Whx9d7fRDLyfUsMi243gmPqkMWiQ8aU6D",
@@ -63,21 +63,21 @@
     "org": "Rektoff",
     "date": "In progress (Oct-Dec 2025)",
     "verify": "https://x.com/iamcsubrata/status/1971735797142639039",
-    "featured": false
+    "featured": true
   },
   {
     "type": "training",
     "subgroup": "Security Training",
-    "title": "Ethical Hacking CS142 - NPTEL",
+    "title": "Ethical Hacking CS142 : NPTEL",
     "org": "IIT Kharagpur",
-    "date": "Expected Dec 2025",
+    "date": "Completed (Jun - Dec Semester 2025)",
     "verify": "",
     "featured": false
   },
   {
     "type": "training",
     "subgroup": "Bootcamps",
-    "title": "NODE.JS BEAST'S — RESTful API",
+    "title": "NODE.JS BEAST'S RESTful API",
     "org": "DevTown",
     "date": "17 Aug 2025",
     "verify": "https://devtown-uploads.s3.ap-south-1.amazonaws.com/certificates/ZuaxY/1rqgjn.pdf",
@@ -86,7 +86,7 @@
   {
     "type": "training",
     "subgroup": "Bootcamps",
-    "title": "SQL Injection Defense: Secure Apps Like a Pro",
+    "title": "SQL Injection Defense Secure Apps Like a Pro",
     "org": "DevTown",
     "date": "9 Aug 2025",
     "verify": "https://devtown-uploads.s3.ap-south-1.amazonaws.com/certificates/ZuaxY/1H9lbF.pdf",
@@ -94,7 +94,7 @@
   },
   {
     "type": "training",
-    "subgroup": "Other",
+    "subgroup": "Security Training",
     "title": "Windows Forensic Analysis Training",
     "org": "CDAC",
     "date": "Completed Oct 2025",

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Beginner's Guide to Use Arbitrum Stylus SDK - Subrata Choudhury</title>
+    <link rel="stylesheet" href="../style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Georgia&family=Courier+New&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Vintage Paper Theme for Blog Post */
+        body {
+            background-color: #fdfbf7;
+            /* Off-white background */
+            color: #2c2c2c;
+            /* Dark gray text for readability */
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .paper-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: #fdfbf7;
+            padding: 60px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e8e4d9;
+            position: relative;
+        }
+
+        /* Paper Texture Effect (Subtle) */
+        .paper-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: #5a5a5a;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #2c2c2c;
+        }
+
+        .back-link i {
+            margin-right: 8px;
+        }
+
+        .blog-post-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        .blog-post-meta {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #d4c5b0;
+            padding-bottom: 20px;
+        }
+
+        .blog-post-body {
+            font-size: 1.15rem;
+        }
+
+        .blog-post-body p {
+            margin-bottom: 1.5em;
+            text-align: justify;
+        }
+
+        .blog-post-body h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #1a1a1a;
+            margin-top: 2.5em;
+            margin-bottom: 1em;
+            border-bottom: 1px solid #e8e4d9;
+            padding-bottom: 10px;
+        }
+
+        .blog-post-body h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #2c2c2c;
+            margin-top: 2em;
+            margin-bottom: 0.8em;
+        }
+
+        .blog-post-body strong {
+            font-weight: 700;
+            color: #000;
+        }
+
+        .blog-post-body em {
+            font-style: italic;
+            color: #444;
+        }
+
+        .blog-post-body blockquote {
+            border-left: 4px solid #d4c5b0;
+            margin: 2em 0;
+            padding-left: 20px;
+            font-style: italic;
+            color: #555;
+            background: rgba(0, 0, 0, 0.02);
+            padding: 20px;
+        }
+
+        .blog-post-body ul,
+        .blog-post-body ol {
+            margin-bottom: 1.5em;
+            padding-left: 40px;
+        }
+
+        .blog-post-body li {
+            margin-bottom: 0.5em;
+        }
+
+        .blog-post-body code {
+            font-family: 'Courier New', monospace;
+            background-color: #dcc9c9;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+
+        .blog-post-body pre {
+            background-color: #272c35;
+            color: #e5e7eb;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 1.5em;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .blog-post-body img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin: 2em 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Google Translate Styling */
+        #google_translate_element {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .goog-te-gadget-simple {
+            background-color: transparent !important;
+            border: none !important;
+            font-family: 'Georgia', serif !important;
+            font-size: 14px !important;
+        }
+
+        @media (max-width: 768px) {
+            .paper-container {
+                padding: 30px;
+                margin: 20px;
+            }
+
+            .blog-post-title {
+                font-size: 2rem;
+            }
+
+            #google_translate_element {
+                position: static;
+                text-align: right;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="paper-container">
+        <div class="content-wrapper">
+            <div id="google_translate_element"></div>
+            <a href="../blog.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+
+            <article class="blog-post-body">
+                <h1 class="blog-post-title">A Beginner's Guide to Use Arbitrum Stylus SDK</h1>
+                <div class="blog-post-meta">
+                    <span>Date: Dec 10, 2024</span> • <span>Category: Web3 / Tutorial</span>
+                </div>
+                <p><em>Originally this Blog was posted on <a href="https://paragraph.xyz/@parichay/a-beginners-guide-to-arbitrum-stylus">Paragraph</a></em></p>
+                <!-- Content will be inserted here -->
+    <div>
+    <div>
+        <h2 id="h-what-is-arbitrum-stylus"><strong><span>What is Arbitrum Stylus?</span></strong></h2>
+    </div>
+    <p><span>Arbitrum Stylus is a new way to write smart contracts that run on the Arbitrum network. It allows
+            developers to use languages like Rust, C, and C++ instead of Solidity. This opens up new possibilities for
+            building decentralized applications (dApps) and makes it easier for developers who are already familiar with
+            these languages.</span><br><br><a target="_blank" rel="noopener noreferrer nofollow"
+            href="https://bento.me/stylus"><span>Stylus Links</span></a></p><iframe width="100%" height="400"
+        src="https://www.youtube.com/embed/RCR7OqEXynY" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    <div>
+        <h2 id="h-why-use-stylus"><strong><span>Why Use Stylus?</span></strong></h2>
+    </div>
+    <ul>
+        <li>
+            <p><strong><span>Performance</span></strong><span>: Contracts written in Stylus can be more efficient than
+                    those written in Solidity. This means </span><em><span>lower gas fees</span></em><span> and
+                </span><em><span>faster execution</span></em><span> times.</span></p>
+        </li>
+        <li>
+            <p><strong><span>Familiarity</span></strong><span>: </span><em><span>If you already know Rust or another
+                        supported language, you can start building without having to learn Solidity from
+                        scratch.</span></em></p>
+        </li>
+        <li>
+            <p><strong><span>Interoperability</span></strong><span>: Stylus contracts can work alongside existing
+                    Solidity contracts, allowing for a smooth transition and integration.</span></p>
+            <figure><img alt="post image" width="1" height="1" data-nimg="1"
+                    srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/d2cc41c85818f7b842fac1f08683d57a.webp 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/d2cc41c85818f7b842fac1f08683d57a.webp 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/d2cc41c85818f7b842fac1f08683d57a.webp 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/d2cc41c85818f7b842fac1f08683d57a.webp 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/d2cc41c85818f7b842fac1f08683d57a.webp 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/d2cc41c85818f7b842fac1f08683d57a.webp 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/d2cc41c85818f7b842fac1f08683d57a.webp 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/d2cc41c85818f7b842fac1f08683d57a.webp 3840w"
+                    src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/d2cc41c85818f7b842fac1f08683d57a.webp">
+                <figcaption></figcaption>
+            </figure>
+            <p><span>Stylus is an upgrade to Arbitrum Nitro, the tech stack powering Arbitrum One, Arbitrum Nova, and
+                    Arbitrum Orbit chains. This upgrade adds a second, coequal virtual machine to the EVM, where EVM
+                    contracts continue to behave exactly as they would in Ethereum. We call this
+                    paradigm&nbsp;</span><strong><span>MultiVM</span></strong><span>&nbsp;since&nbsp;</span><strong><span>everything
+                        is entirely additive.</span></strong><br><br><br><strong><span>let's take a look on how to set
+                        up and use Stylus SDK </span></strong><br><br><span>in this guide we will talk about two
+                    methods</span><br><br><span>one in ur local computer by using Command Line Interface ( CLI
+                    )</span><br><br><span>another is using an online IDE called Remix</span><br><br><a target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    href="https://remix.ethereum.org/"><span>https://remix.ethereum.org/</span></a><br><br><br><strong><span>let's
+                        use the easier and quicker method first</span></strong><br><br><span>&gt; go to </span><a
+                    target="_blank" rel="noopener noreferrer nofollow"
+                    href="https://remix.ethereum.org/"><span>https://remix.ethereum.org/</span></a><br><span> accept the
+                    term and conditions finish the site tour</span></p>
+            <figure><img alt="post image" width="1" height="1" data-nimg="1"
+                    srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/cad5c7ae7b2f4f6e0be082337f839b0a.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/cad5c7ae7b2f4f6e0be082337f839b0a.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/cad5c7ae7b2f4f6e0be082337f839b0a.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/cad5c7ae7b2f4f6e0be082337f839b0a.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/cad5c7ae7b2f4f6e0be082337f839b0a.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/cad5c7ae7b2f4f6e0be082337f839b0a.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/cad5c7ae7b2f4f6e0be082337f839b0a.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/cad5c7ae7b2f4f6e0be082337f839b0a.png 3840w"
+                    src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/cad5c7ae7b2f4f6e0be082337f839b0a.png">
+                <figcaption></figcaption>
+            </figure>
+            <p></p>
+            <p><span>&gt; next on the bottom left side click on "Plugin manager"</span></p>
+            <figure><img alt="post image" width="1" height="1" data-nimg="1"
+                    srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/90fd57c171f40b3a0f7ee809c9263317.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/90fd57c171f40b3a0f7ee809c9263317.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/90fd57c171f40b3a0f7ee809c9263317.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/90fd57c171f40b3a0f7ee809c9263317.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/90fd57c171f40b3a0f7ee809c9263317.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/90fd57c171f40b3a0f7ee809c9263317.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/90fd57c171f40b3a0f7ee809c9263317.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/90fd57c171f40b3a0f7ee809c9263317.png 3840w"
+                    src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/90fd57c171f40b3a0f7ee809c9263317.png">
+                <figcaption></figcaption>
+            </figure>
+            <p><span> on "Plugin Manager" page</span><br><br><span>&gt; Activate the "Arbitrum Stylus"
+                    plugin.</span><br><span>&gt; use the search bar to look for "Arbitrum Stylus" plugin if it's not in
+                    the home search page.</span></p>
+            <figure><img alt="post image" width="1" height="1" data-nimg="1"
+                    srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/246758d4268a9a889df106de2c0932e9.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/246758d4268a9a889df106de2c0932e9.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/246758d4268a9a889df106de2c0932e9.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/246758d4268a9a889df106de2c0932e9.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/246758d4268a9a889df106de2c0932e9.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/246758d4268a9a889df106de2c0932e9.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/246758d4268a9a889df106de2c0932e9.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/246758d4268a9a889df106de2c0932e9.png 3840w"
+                    src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/246758d4268a9a889df106de2c0932e9.png">
+                <figcaption></figcaption>
+            </figure>
+            <p><span>now after Activating "Arbitrum Stylus" you can see the Arbitrum Stylus tab</span></p>
+            <figure><img alt="post image" width="1" height="1" data-nimg="1"
+                    srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/805ff90f57f6894d9f29c98ac14d2cfa.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/805ff90f57f6894d9f29c98ac14d2cfa.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/805ff90f57f6894d9f29c98ac14d2cfa.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/805ff90f57f6894d9f29c98ac14d2cfa.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/805ff90f57f6894d9f29c98ac14d2cfa.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/805ff90f57f6894d9f29c98ac14d2cfa.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/805ff90f57f6894d9f29c98ac14d2cfa.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/805ff90f57f6894d9f29c98ac14d2cfa.png 3840w"
+                    src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/805ff90f57f6894d9f29c98ac14d2cfa.png">
+                <figcaption></figcaption>
+            </figure>
+            <p><span>here in the </span><strong><span>Arbitrum Stylus</span></strong><span> tab </span><br><span>&gt;
+                    sign in with your web3 wallet.</span><br><br><span>&gt; after that you can choose the network,
+                </span><br><span> in our case we are using </span><strong><span>Arbitrum Sepoila
+                        (Testnet)</span></strong><span> </span><br><br><span> there are different project templates, but
+                    in our case we are gonna use </span><br><span>&gt;
+                </span><strong><span>hello-world</span></strong><span> template</span><br><br><span>&gt; click on
+                    “</span><strong><span>Create</span></strong><span>” it will ask for Files permission, grant the
+                    permission.</span><br><span>and it will load all the require files for you </span><br></p>
+            <figure><img alt="post image" width="853" height="775" data-nimg="1"
+                    srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/aa42953e0437ddb588890d68d1005983.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/aa42953e0437ddb588890d68d1005983.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/aa42953e0437ddb588890d68d1005983.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/aa42953e0437ddb588890d68d1005983.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/aa42953e0437ddb588890d68d1005983.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/aa42953e0437ddb588890d68d1005983.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/aa42953e0437ddb588890d68d1005983.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/aa42953e0437ddb588890d68d1005983.png 3840w"
+                    src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/aa42953e0437ddb588890d68d1005983.png">
+                <figcaption></figcaption>
+            </figure>
+            <p><br><span>after choosing the template it will load all the required code files to our
+                    workspace</span><br><br><br><br><span> </span><strong><span>for chains and
+                        rpc</span></strong><br><br><span>you can use </span><a target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    href="https://chainlist.org/"><span>https://chainlist.org/</span></a><span> to add different
+                    networks to ur wallet (incl. testnetworks) </span><br><br><a target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    href="https://github.com/ethereum-lists"><span>https://github.com/ethereum-lists</span></a><span> is
+                    great source as well (thanks to collabpunk.eth for reccomendation)</span></p>
+            <figure><img alt="post image" width="1" height="1" data-nimg="1"
+                    srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/f1f5eb5690d4c23dc7535514e9c20bcb.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/f1f5eb5690d4c23dc7535514e9c20bcb.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/f1f5eb5690d4c23dc7535514e9c20bcb.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/f1f5eb5690d4c23dc7535514e9c20bcb.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/f1f5eb5690d4c23dc7535514e9c20bcb.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/f1f5eb5690d4c23dc7535514e9c20bcb.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/f1f5eb5690d4c23dc7535514e9c20bcb.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/f1f5eb5690d4c23dc7535514e9c20bcb.png 3840w"
+                    src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/f1f5eb5690d4c23dc7535514e9c20bcb.png">
+                <figcaption></figcaption>
+            </figure>
+            <p></p>
+            <p><span>After Adding Test Networks </span><br><br><span>&gt; &gt; </span><strong><span>We will need some
+                        Testnet ETH for powering these transactions.</span></strong><br><br><span>There are multiple
+                    Faucets available</span><br></p>
+            <figure><img alt="post image" width="1653" height="1013" data-nimg="1"
+                    srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/0678547ea138b7202fb2b0c6a0b8d947.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/0678547ea138b7202fb2b0c6a0b8d947.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/0678547ea138b7202fb2b0c6a0b8d947.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/0678547ea138b7202fb2b0c6a0b8d947.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/0678547ea138b7202fb2b0c6a0b8d947.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/0678547ea138b7202fb2b0c6a0b8d947.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/0678547ea138b7202fb2b0c6a0b8d947.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/0678547ea138b7202fb2b0c6a0b8d947.png 3840w"
+                    src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/0678547ea138b7202fb2b0c6a0b8d947.png">
+                <figcaption></figcaption>
+            </figure>
+            <p><span>we will use </span><strong><span>Arbitrum Sepolia Faucet By Alchemy</span></strong><span>
+                </span><span data-name="grinning" data-type="emoji">😀</span><span> </span><br><a target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    href="https://www.alchemy.com/faucets/arbitrum-sepolia"><span>https://www.alchemy.com/faucets/arbitrum-sepolia</span></a><br><br><span>now
+                    after funding our wallet with </span><strong><span>test</span></strong><span>
+                </span><strong><span>Ethers</span></strong><span>.</span><br><br><span>let’s head back to
+                </span><strong><span>Remix</span></strong></p>
+            <figure><img alt="post image" width="1" height="1" data-nimg="1"
+                    srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/a5efc8474e0947cfa54f9d958764f1b9.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/a5efc8474e0947cfa54f9d958764f1b9.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/a5efc8474e0947cfa54f9d958764f1b9.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/a5efc8474e0947cfa54f9d958764f1b9.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/a5efc8474e0947cfa54f9d958764f1b9.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/a5efc8474e0947cfa54f9d958764f1b9.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/a5efc8474e0947cfa54f9d958764f1b9.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/a5efc8474e0947cfa54f9d958764f1b9.png 3840w"
+                    src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/a5efc8474e0947cfa54f9d958764f1b9.png">
+                <figcaption></figcaption>
+            </figure>
+            <p><br><br><span>after writing our codes we can get back to </span><strong><span>Arbitrum
+                        Stylus</span></strong><span> tab</span><br><span>&gt; then click on
+                    "</span><strong><span>compile</span></strong><span>" </span><br><span>it will compile our codes
+                </span><br><br><span>after completing of this process it will show " </span><strong><span>Build
+                        Complete</span></strong><span>"</span></p>
+            <figure><img alt="post image" width="1" height="1" data-nimg="1"
+                    srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/692c30757b9b4954ad30a6318b9bab10.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/692c30757b9b4954ad30a6318b9bab10.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/692c30757b9b4954ad30a6318b9bab10.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/692c30757b9b4954ad30a6318b9bab10.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/692c30757b9b4954ad30a6318b9bab10.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/692c30757b9b4954ad30a6318b9bab10.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/692c30757b9b4954ad30a6318b9bab10.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/692c30757b9b4954ad30a6318b9bab10.png 3840w"
+                    src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/692c30757b9b4954ad30a6318b9bab10.png">
+                <figcaption></figcaption>
+            </figure>
+            <ul>
+                <li>
+                    <p><span>then click on "</span><strong><span>deploy</span></strong><span>" to push the codes
+                            onchain</span><br><span>it will ask you to confirm few checklist </span><br><span>confirm
+                            and sign the transaction to publish it on the blockchain</span></p>
+                    <figure><img alt="post image" width="1" height="1" data-nimg="1"
+                            srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/c1eafa96a5440e4a924e67365354d0c6.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/c1eafa96a5440e4a924e67365354d0c6.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/c1eafa96a5440e4a924e67365354d0c6.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/c1eafa96a5440e4a924e67365354d0c6.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/c1eafa96a5440e4a924e67365354d0c6.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/c1eafa96a5440e4a924e67365354d0c6.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/c1eafa96a5440e4a924e67365354d0c6.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/c1eafa96a5440e4a924e67365354d0c6.png 3840w"
+                            src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/c1eafa96a5440e4a924e67365354d0c6.png">
+                        <figcaption></figcaption>
+                    </figure>
+                    <p></p>
+                    <p><span>voila </span><span data-name="hooray" data-type="emoji"></span><span> we have successfully
+                            written a smart contract in Rust, and deployed it to the blockchain</span></p>
+                </li>
+            </ul>
+            <figure><img alt="post image" width="1920" height="1048" data-nimg="1"
+                    srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/acdfb9adb6a8bda3595f959e11b83218.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/acdfb9adb6a8bda3595f959e11b83218.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/acdfb9adb6a8bda3595f959e11b83218.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/acdfb9adb6a8bda3595f959e11b83218.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/acdfb9adb6a8bda3595f959e11b83218.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/acdfb9adb6a8bda3595f959e11b83218.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/acdfb9adb6a8bda3595f959e11b83218.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/acdfb9adb6a8bda3595f959e11b83218.png 3840w"
+                    src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/acdfb9adb6a8bda3595f959e11b83218.png">
+                <figcaption></figcaption>
+            </figure>
+            <p><br><span>you can visit the contract page on the explorer site to check the deployed files </span><br>
+            </p>
+            <figure><img alt="post image" width="1653" height="1013" data-nimg="1"
+                    srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/d1e156efe5c953a26c3a32a53783c5e3.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/d1e156efe5c953a26c3a32a53783c5e3.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/d1e156efe5c953a26c3a32a53783c5e3.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/d1e156efe5c953a26c3a32a53783c5e3.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/d1e156efe5c953a26c3a32a53783c5e3.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/d1e156efe5c953a26c3a32a53783c5e3.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/d1e156efe5c953a26c3a32a53783c5e3.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/d1e156efe5c953a26c3a32a53783c5e3.png 3840w"
+                    src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/d1e156efe5c953a26c3a32a53783c5e3.png">
+                <figcaption></figcaption>
+            </figure>
+        </li>
+    </ul>
+    <p><span>on the explorer in contract section you will be able to see options to Export ABI, Read, Write Option, And
+            option to Check All the Files and codes </span><br></p>
+    <figure><img alt="post image" width="1599" height="841" data-nimg="1"
+            srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/b432fc2f217e1fc77caff1d80982d39b.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/b432fc2f217e1fc77caff1d80982d39b.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/b432fc2f217e1fc77caff1d80982d39b.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/b432fc2f217e1fc77caff1d80982d39b.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/b432fc2f217e1fc77caff1d80982d39b.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/b432fc2f217e1fc77caff1d80982d39b.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/b432fc2f217e1fc77caff1d80982d39b.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/b432fc2f217e1fc77caff1d80982d39b.png 3840w"
+            src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/b432fc2f217e1fc77caff1d80982d39b.png">
+        <figcaption></figcaption>
+    </figure>
+    <p><span>here in “ Write Contract " Section You can interact with your contract</span><br></p>
+    <figure><img alt="post image" width="1599" height="841" data-nimg="1"
+            srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/9496faafc92e0c37d97fd3f36c957487.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/9496faafc92e0c37d97fd3f36c957487.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/9496faafc92e0c37d97fd3f36c957487.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/9496faafc92e0c37d97fd3f36c957487.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/9496faafc92e0c37d97fd3f36c957487.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/9496faafc92e0c37d97fd3f36c957487.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/9496faafc92e0c37d97fd3f36c957487.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/9496faafc92e0c37d97fd3f36c957487.png 3840w"
+            src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/9496faafc92e0c37d97fd3f36c957487.png">
+        <figcaption></figcaption>
+    </figure>
+    <p><span>here we are doing a increment to our contract.</span><br><br><span>after clicking on write
+        </span><br><span>&gt; confirm the transaction on the wallet </span><br><span>&gt; after successful
+            transaction</span><br></p>
+    <figure><img alt="post image" width="1599" height="841" data-nimg="1"
+            srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/0e5c5020ee8f3166621d1b8a32cfe549.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/0e5c5020ee8f3166621d1b8a32cfe549.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/0e5c5020ee8f3166621d1b8a32cfe549.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/0e5c5020ee8f3166621d1b8a32cfe549.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/0e5c5020ee8f3166621d1b8a32cfe549.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/0e5c5020ee8f3166621d1b8a32cfe549.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/0e5c5020ee8f3166621d1b8a32cfe549.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/0e5c5020ee8f3166621d1b8a32cfe549.png 3840w"
+            src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/0e5c5020ee8f3166621d1b8a32cfe549.png">
+        <figcaption></figcaption>
+    </figure>
+    <ul>
+        <li>
+            <p><span>we can see the contract transaction on Block Explorer</span><br><br><span>&gt;Call ‘Increment’ is
+                    used</span><br><br><span>There are various others methods to interact with our Contract, we just
+                    used the most easiest path.</span><br><br><span>till now </span><br><br><u><span>we deployed our
+                        contract through Remix Online IDE </span></u><br><u><span>and interacted with our contract via
+                        Block Explorer</span></u></p>
+        </li>
+    </ul>
+    <p><span>enjoy this meme</span></p>
+    <figure><img alt="post image" width="225" height="225" data-nimg="1"
+            srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/e46497a11aecf2fce38a437985f51110.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/e46497a11aecf2fce38a437985f51110.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/e46497a11aecf2fce38a437985f51110.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/e46497a11aecf2fce38a437985f51110.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/e46497a11aecf2fce38a437985f51110.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/e46497a11aecf2fce38a437985f51110.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/e46497a11aecf2fce38a437985f51110.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/e46497a11aecf2fce38a437985f51110.png 3840w"
+            src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/e46497a11aecf2fce38a437985f51110.png">
+        <figcaption></figcaption>
+    </figure>
+    <p><br><span>hope u learned and enjoyed till now.</span><br></p>
+    <hr>
+    <div>
+        <h2 id="h-now-we-will-use-cli-to-deploy-contract-on-the-blockchain"><span>Now We will use CLI to Deploy Contract
+                On The Blockchain</span><br><br><span> </span></h2>
+    </div>
+    <div>
+        <h3
+            id="h-though-using-online-ide-is-the-easiest-method-its-not-always-suitableso-now-we-will-setup-our-local-environment-for-building-stylus-smart-contract">
+            <span>though using online ide is the easiest method, it’s not always suitable.</span><br><br><span>so now we
+                will setup our local environment for building Stylus Smart Contract</span><br></h3>
+    </div>
+    <ul>
+        <li>
+            <p><span>Pre-Requisits </span><br><br><span>we need to check and setup these before Writing Smart
+                    Contracts</span><br><br><span>(embedded links redirects to installation page, all of these are super
+                    easy to install)</span><br><br><span>&gt; </span><a target="_blank"
+                    rel="noopener noreferrer nofollow" href="https://www.rust-lang.org/tools/install"><span>Rust ( cargo
+                        )</span></a><br><span>&gt; </span><a target="_blank" rel="noopener noreferrer nofollow"
+                    href="https://github.com/OffchainLabs/cargo-stylus"><span>Cargo Stylus</span></a><span> (Stylus
+                    SDK)</span><br><span>&gt; </span><a target="_blank" rel="noopener noreferrer nofollow"
+                    href="https://book.getfoundry.sh/getting-started/installation"><span>Foundry </span></a><span>( To
+                    Use Cast and other Foundry Tools )</span><br><span>&gt; </span><a target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    href="https://docs.docker.com/get-docker/"><span>Docker</span></a><span> ( Container
+                    )</span><br><span>&gt; </span><a target="_blank" rel="noopener noreferrer nofollow"
+                    href="https://docs.docker.com/compose/intro/compose-application-model/"><span>Docker Compose
+                    </span></a><br><span>&gt; </span><a target="_blank" rel="noopener noreferrer nofollow"
+                    href="https://docs.arbitrum.io/run-arbitrum-node/run-nitro-dev-node"><span>Nocal Dev
+                        Node</span></a><span> ( Arbitrum Dev Node need up and running to do transactions locally
+                    )</span><br><br><span>Note : Some Linux Distros already have few tools preinstalled, so check on ur
+                    Terminal before to avoid any issues. </span><br><br></p><lite-youtube videoid="NPxcQ9YW48k"
+                id="youtube-NPxcQ9YW48k"><a title="Play Video"><span>Play Video</span></a></lite-youtube>
+        </li>
+    </ul>
+    <p><span>After Making Sure All The Required Tools Are Installed ( Keep The Local Node Running )
+        </span><br><span>let’s start building a Smart Contract on Rust</span><br><br><span>&gt; let’s create a new
+            project first, by using </span></p>
+    <pre><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><code>cargo stylus <span >new</span> <span >&lt;</span>projectname<span >&gt;</span></code></pre>
+    <figure><img alt="post image" width="866" height="542" data-nimg="1"
+            srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/5e66fc55165d5ab865798837ad853f72.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/5e66fc55165d5ab865798837ad853f72.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/5e66fc55165d5ab865798837ad853f72.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/5e66fc55165d5ab865798837ad853f72.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/5e66fc55165d5ab865798837ad853f72.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/5e66fc55165d5ab865798837ad853f72.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/5e66fc55165d5ab865798837ad853f72.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/5e66fc55165d5ab865798837ad853f72.png 3840w"
+            src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/5e66fc55165d5ab865798837ad853f72.png">
+        <figcaption></figcaption>
+    </figure>
+    <figure><img alt="post image" width="955" height="563" data-nimg="1"
+            srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/c7cf3849b857963660ccad70a97cc193.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/c7cf3849b857963660ccad70a97cc193.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/c7cf3849b857963660ccad70a97cc193.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/c7cf3849b857963660ccad70a97cc193.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/c7cf3849b857963660ccad70a97cc193.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/c7cf3849b857963660ccad70a97cc193.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/c7cf3849b857963660ccad70a97cc193.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/c7cf3849b857963660ccad70a97cc193.png 3840w"
+            src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/c7cf3849b857963660ccad70a97cc193.png">
+        <figcaption></figcaption>
+    </figure>
+    <p><br><span>This Will Create Project Directory And Files. </span><br><span>You Will See
+            ‘</span><code><span>scr</span></code><span>’ folder and ‘</span><code><span>lib.rs</span></code><span> ‘ in
+            src folder </span></p>
+    <p><span>now open this folder in ur favourite IDE ( vim / VS Code or ur preference )</span><br></p>
+    <figure><img alt="post image" width="1362" height="710" data-nimg="1"
+            srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/82a176ef6b3ae479b832120702aebf50.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/82a176ef6b3ae479b832120702aebf50.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/82a176ef6b3ae479b832120702aebf50.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/82a176ef6b3ae479b832120702aebf50.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/82a176ef6b3ae479b832120702aebf50.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/82a176ef6b3ae479b832120702aebf50.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/82a176ef6b3ae479b832120702aebf50.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/82a176ef6b3ae479b832120702aebf50.png 3840w"
+            src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/82a176ef6b3ae479b832120702aebf50.png">
+        <figcaption><br><span>in our case we are using VS Code .</span></figcaption>
+    </figure>
+    <p><span> &gt; here run a Stylus Check ( to check whether your contract can be deployed onchain or not)</span></p>
+    <p><code><span>cargo stylus check</span></code></p>
+    <p><span>it will take a while </span><br><br><span> in the meantime </span><br><span>&gt; check the Local
+            Node</span></p>
+    <figure><img alt="post image" width="948" height="567" data-nimg="1"
+            srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/2a79e1e9c64b15304186498b925b3f75.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/2a79e1e9c64b15304186498b925b3f75.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/2a79e1e9c64b15304186498b925b3f75.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/2a79e1e9c64b15304186498b925b3f75.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/2a79e1e9c64b15304186498b925b3f75.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/2a79e1e9c64b15304186498b925b3f75.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/2a79e1e9c64b15304186498b925b3f75.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/2a79e1e9c64b15304186498b925b3f75.png 3840w"
+            src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/2a79e1e9c64b15304186498b925b3f75.png">
+        <figcaption></figcaption>
+    </figure>
+    <figure><img alt="post image" width="1920" height="1048" data-nimg="1"
+            srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/56d9555ba05a7de1996127aa30e6a24e.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/56d9555ba05a7de1996127aa30e6a24e.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/56d9555ba05a7de1996127aa30e6a24e.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/56d9555ba05a7de1996127aa30e6a24e.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/56d9555ba05a7de1996127aa30e6a24e.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/56d9555ba05a7de1996127aa30e6a24e.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/56d9555ba05a7de1996127aa30e6a24e.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/56d9555ba05a7de1996127aa30e6a24e.png 3840w"
+            src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/56d9555ba05a7de1996127aa30e6a24e.png">
+        <figcaption></figcaption>
+    </figure>
+    <p><span>keep this node running in the background</span><br></p>
+    <div>
+        <h3 id="h-now-we-will-deploy-our-code"><span>Now We Will Deploy our Code</span></h3>
+    </div>
+    <p><span>Here We Will Use </span><code><span>cargo stylus deploy</span></code><span> command </span><br><span>and we
+            will use the give wallet and private key from </span><a target="_blank" rel="noopener noreferrer nofollow"
+            href="https://docs.arbitrum.io/run-arbitrum-node/run-nitro-dev-node"><span>Arbitrum Node Docs
+                Page</span></a><span> </span><br><span>Wallet Address:
+        </span><code><span>0x3f1Eae7D46d88F08fc2F8ed27FCb2AB183EB2d0E</span></code><br><span>Private key:
+        </span><code><span>0xb6b15c8cb491557369f3c7d2c287b053eb229daa9c22138887752191c9520659</span></code><span>
+        </span><br><span>This wallet is funded with </span><strong><span>Local ETH</span></strong><span> so we don’t
+            need to Fund our Wallet from any faucet as of now.</span><br><br><span>In Our Case we are using in built CLI
+            in VS Code, </span><br><span>( u can use Console/Terminal and change directory to proect directory
+            )</span><br><br><span>1. now let’s deploy our contract to local node by running : </span></p>
+    <pre><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><code>cargo stylus deploy -e http://localhost:<span >8547</span> --<span >private</span>-<span >key</span> <span >0</span>xb6b15c8cb491557369f3c7d2c287b053eb229daa9c22138887752191c9520659</code></pre>
+    <figure><img alt="post image" width="1360" height="711" data-nimg="1"
+            srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/f82f29f72bf151cff0ea775994d55ab7.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/f82f29f72bf151cff0ea775994d55ab7.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/f82f29f72bf151cff0ea775994d55ab7.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/f82f29f72bf151cff0ea775994d55ab7.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/f82f29f72bf151cff0ea775994d55ab7.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/f82f29f72bf151cff0ea775994d55ab7.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/f82f29f72bf151cff0ea775994d55ab7.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/f82f29f72bf151cff0ea775994d55ab7.png 3840w"
+            src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/f82f29f72bf151cff0ea775994d55ab7.png">
+        <figcaption></figcaption>
+    </figure>
+    <p><span>It will take few mins ( depends on local environments ) to compile into single wasm file, and then
+            activating it to onchain.</span><br></p>
+    <figure><img alt="post image" width="1361" height="647" data-nimg="1"
+            srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/8c7d0bb0907b0b3aa605b9f14ef0b72c.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/8c7d0bb0907b0b3aa605b9f14ef0b72c.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/8c7d0bb0907b0b3aa605b9f14ef0b72c.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/8c7d0bb0907b0b3aa605b9f14ef0b72c.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/8c7d0bb0907b0b3aa605b9f14ef0b72c.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/8c7d0bb0907b0b3aa605b9f14ef0b72c.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/8c7d0bb0907b0b3aa605b9f14ef0b72c.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/8c7d0bb0907b0b3aa605b9f14ef0b72c.png 3840w"
+            src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/8c7d0bb0907b0b3aa605b9f14ef0b72c.png">
+        <figcaption><br><span>It Will Look Like This</span></figcaption>
+    </figure>
+    <p><span>After the Deploy completes, you will get the Contract
+            Address</span><br><br><code><span>Deployed Code At Address 0x...</span></code><span> /
+        </span><code><span>Activating Program At Address 0x…</span></code><br><span> </span><br><span> (
+        </span><em><span>take note of this address, we will need it for interaction</span></em><span> )
+        </span><br><br><em><span>Voila we / you successfully deployed a smart contract to test node.</span></em><span>
+        </span><span data-name="hooray" data-type="emoji"></span><br><br><span>Now we will need
+        </span><code><span>cast</span></code><span> ( from Foundry ) to interact with our deployed smart contract
+        </span><br><br><span>&gt; next up we will do a </span><code><span>cast call</span></code><br><span>
+        </span><br><span>by running : </span></p>
+    <pre><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><code>cast call <span >-</span><span >-</span>rpc<span >-</span>url <span >'http://localhost:8547'</span> <span >-</span><span >-</span><span >private</span><span >-</span>key <span >0xb6b15c8cb491557369f3c7d2c287b053eb229daa9c22138887752191c9520659</span> <span >&lt;</span><span ><span >contract</span> <span ><span >address</span></span>&gt; "<span >number</span>(<span ></span>)(<span ><span >uint256</span></span>)"</span></code></pre>
+    <figure><img alt="post image" width="1362" height="676" data-nimg="1"
+            srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/06620f0b628c35c7fbdae859b26dfdf6.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/06620f0b628c35c7fbdae859b26dfdf6.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/06620f0b628c35c7fbdae859b26dfdf6.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/06620f0b628c35c7fbdae859b26dfdf6.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/06620f0b628c35c7fbdae859b26dfdf6.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/06620f0b628c35c7fbdae859b26dfdf6.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/06620f0b628c35c7fbdae859b26dfdf6.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/06620f0b628c35c7fbdae859b26dfdf6.png 3840w"
+            src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/06620f0b628c35c7fbdae859b26dfdf6.png">
+        <figcaption></figcaption>
+    </figure>
+    <p><span>the exit result would be </span><code><span>0 </span></code><span> </span><br><br><span>now let’s send a
+            ‘</span><code><span>increment</span></code><span>’ transaction. it will increase the value to
+        </span><code><span>1 </span></code><br><br><span>let’s send a transaction first, then we will do a
+            call.</span><br><br><span>we will send a increment transaction by following command : </span></p>
+    <pre><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><code>cast call <span >-</span><span >-</span>rpc<span >-</span>url <span >'http://localhost:8547'</span> <span >-</span><span >-</span><span >private</span><span >-</span>key <span >0xb6b15c8cb491557369f3c7d2c287b053eb229daa9c22138887752191c9520659</span> <span >&lt;</span>contrac_address<span >&gt;</span> <span >"number()(uint256)"</span></code></pre>
+    <figure><img alt="post image" width="1120" height="497" data-nimg="1"
+            srcset="https://img.paragraph.com/cdn-cgi/image/format=auto,width=640,quality=85/https://storage.googleapis.com/papyrus_images/21e9a451a14c565ac6e0b78544f18bf9.png 640w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=750,quality=85/https://storage.googleapis.com/papyrus_images/21e9a451a14c565ac6e0b78544f18bf9.png 750w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=828,quality=85/https://storage.googleapis.com/papyrus_images/21e9a451a14c565ac6e0b78544f18bf9.png 828w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/21e9a451a14c565ac6e0b78544f18bf9.png 1080w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1200,quality=85/https://storage.googleapis.com/papyrus_images/21e9a451a14c565ac6e0b78544f18bf9.png 1200w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=1920,quality=85/https://storage.googleapis.com/papyrus_images/21e9a451a14c565ac6e0b78544f18bf9.png 1920w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=2048,quality=85/https://storage.googleapis.com/papyrus_images/21e9a451a14c565ac6e0b78544f18bf9.png 2048w, https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/21e9a451a14c565ac6e0b78544f18bf9.png 3840w"
+            src="https://img.paragraph.com/cdn-cgi/image/format=auto,width=3840,quality=85/https://storage.googleapis.com/papyrus_images/21e9a451a14c565ac6e0b78544f18bf9.png">
+        <figcaption></figcaption>
+    </figure>
+    <p><span>The counter will display </span><code><span>1</span></code><span> </span><br><span>here we incremented the
+            value by </span><code><span>1</span></code><br><br><span>This way we can interact with our contract by using
+            cast and Foundry Tools</span><br><br><span>Check Out More About Stylus : </span><a target="_blank"
+            rel="noopener noreferrer nofollow"
+            href="https://bento.me/stylus"><span>https://bento.me/stylus</span></a><span> </span><br><br><span>Ethereum
+            Resources : </span><a target="_blank" rel="noopener noreferrer nofollow"
+            href="https://github.com/ethereum-lists"><span>https://github.com/ethereum-lists</span></a><br><br><br><br><br><span>Note
+            : </span><br><br><span>During Cargo Installation, you might face different isssue</span><br><br><span>for
+            example I failed to install Cargo Stylus Package due to OpenSSL Package issue</span><br><br><span>after
+            updating OpenSSL, this issue was solved. </span><br><br><span>So check each tools installation pages and
+            docs carefully to experience smooth installation.</span><br><br><span>Using Online IDE might seems easy, but
+            using local IDE and using command line tools will equip you with additional experience and problem solving
+            skills.</span><br><br><span>Thanks. for. reading till here. </span><br><span>Have a great day.</span></p>
+</div>
+            </article>
+
+            <div class="comments-section">
+                <hr style="border: 0; border-top: 1px solid #d4c5b0; margin: 40px 0;">
+                <h3 style="font-family: 'Playfair Display', serif; color: #2c2c2c; margin-bottom: 20px;">Comments</h3>
+                <!-- Giscus Comments -->
+                <script src="https://giscus.app/client.js" data-repo="p4r1ch4y/p4r1ch4y.github.io"
+                    data-repo-id="R_kgDOO9PUjw" data-category="General" data-category-id="DIC_kwDOO9PUj84CzZXi"
+                    data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0"
+                    data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="en"
+                    crossorigin="anonymous" async>
+                    </script>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Translate Script -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+
+</html>

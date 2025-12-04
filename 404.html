@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,13 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        body {
+            background: var(--gradient-bg);
+            /* Ensure background is set */
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
         .error-container {
             min-height: 100vh;
             display: flex;
@@ -14,12 +22,17 @@
             justify-content: center;
             text-align: center;
             padding: 2rem;
-            background: var(--gradient-bg);
+            position: relative;
+            z-index: 1;
         }
+
         .error-content {
             max-width: 600px;
             color: var(--text-primary);
+            position: relative;
+            z-index: 2;
         }
+
         .error-code {
             font-size: 8rem;
             font-weight: bold;
@@ -30,22 +43,26 @@
             margin-bottom: 1rem;
             line-height: 1;
         }
+
         .error-message {
             font-size: 1.5rem;
             margin-bottom: 1rem;
             color: var(--text-secondary);
         }
+
         .error-description {
             font-size: 1.1rem;
             margin-bottom: 2rem;
             color: var(--text-muted);
         }
+
         .error-actions {
             display: flex;
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
         }
+
         .btn {
             display: inline-flex;
             align-items: center;
@@ -59,41 +76,46 @@
             border: none;
             cursor: pointer;
         }
+
         .btn--primary {
             background: var(--gradient-primary);
             color: white;
         }
+
         .btn--primary:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-neon);
         }
+
         .btn--outline {
             background: transparent;
             border: 1px solid var(--border-glass);
             color: var(--text-primary);
         }
+
         .btn--outline:hover {
             background: var(--bg-glass);
         }
     </style>
 </head>
+
 <body>
     <div class="error-container">
         <div class="error-content">
             <div class="error-code">404</div>
             <h1 class="error-message">Page Not Found</h1>
             <p class="error-description">
-                The page you're looking for doesn't exist or has been moved. 
+                The page you're looking for doesn't exist or has been moved.
                 Let's get you back to exploring my portfolio!
             </p>
             <div class="error-actions">
-                <a href="/" class="btn btn--primary">
+                <a href="index.html" class="btn btn--primary">
                     <i class="fas fa-home"></i>&nbsp; Go Home
                 </a>
-                <a href="/#projects" class="btn btn--outline">
+                <a href="index.html#projects" class="btn btn--outline">
                     <i class="fas fa-folder"></i>&nbsp; View Projects
                 </a>
-                <a href="/#contact" class="btn btn--outline">
+                <a href="index.html#contact" class="btn btn--outline">
                     <i class="fas fa-envelope"></i>&nbsp; Contact Me
                 </a>
             </div>
@@ -117,35 +139,36 @@
             particle.style.left = Math.random() * window.innerWidth + 'px';
             particle.style.top = Math.random() * window.innerHeight + 'px';
             particle.style.zIndex = '-1';
-            
+
             document.getElementById('particles-container').appendChild(particle);
-            
+
             // Animate particle
             let x = parseFloat(particle.style.left);
             let y = parseFloat(particle.style.top);
             let vx = (Math.random() - 0.5) * 2;
             let vy = (Math.random() - 0.5) * 2;
-            
+
             function animate() {
                 x += vx;
                 y += vy;
-                
+
                 if (x < 0 || x > window.innerWidth) vx *= -1;
                 if (y < 0 || y > window.innerHeight) vy *= -1;
-                
+
                 particle.style.left = x + 'px';
                 particle.style.top = y + 'px';
-                
+
                 requestAnimationFrame(animate);
             }
-            
+
             animate();
         }
-        
+
         // Create particles
         for (let i = 0; i < 20; i++) {
             setTimeout(() => createParticle(), i * 100);
         }
     </script>
 </body>
+
 </html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Subrata Choudhury</title>
+    <meta name="description"
+        content="Technical blog by Subrata Choudhury covering Web3, Developer Relations, and Software Engineering.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <style>
+        .blog-container {
+            padding-top: 120px;
+            min-height: 100vh;
+        }
+
+        .blog-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .translate-widget {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .blog-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: var(--transition-base);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .blog-date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .blog-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .blog-excerpt {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .read-more {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        /* Comments Section */
+        .comments-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo"><a href="index.html" style="text-decoration: none; color: inherit;"><span
+                        class="logo-text">Subrata Choudhury</span></a></div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="blog.html" class="nav-link active">Blog</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="container blog-container">
+        <div class="blog-header">
+            <h1 class="section-title">Technical Blog</h1>
+            <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                Thoughts on Web3, Developer Relations, and Software Engineering.
+            </p>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem; font-style: italic;">
+                Note: Past blogs are scattered around multiple services and will be integrated here soon.
+            </p>
+
+            <!-- Google Translate Widget -->
+            <div class="translate-widget">
+                <div id="google_translate_element"></div>
+            </div>
+        </div>
+
+        <div class="blog-grid">
+            <article class="blog-card">
+                <span class="blog-date">December 10, 2024</span>
+                <h2 class="blog-title">A Beginner's Guide to Use Arbitrum Stylus SDK</h2>
+                <p class="blog-excerpt">
+                    Learn how to write smart contracts in Rust, C, and C++ on Arbitrum using the Stylus SDK. A
+                    comprehensive guide for setting up your environment and deploying your first contract.
+                </p>
+                <a href="posts/arbitrum-stylus-guide.html" class="read-more">Read Article <i
+                        class="fas fa-arrow-right"></i></a>
+            </article>
+
+            <article class="blog-card">
+                <span class="blog-date">December 8, 2024</span>
+                <h2 class="blog-title">DevRel Uni Cohort 6: Key Learnings & Insights</h2>
+                <p class="blog-excerpt">
+                    A deep dive into the key takeaways from DevRel Uni Cohort 6 powered by Arbitrum. Covering strategic
+                    planning, storytelling, content creation, and scaling Web3 technologies.
+                </p>
+                <a href="posts/devrel-uni-cohort6.html" class="read-more">Read Article <i
+                        class="fas fa-arrow-right"></i></a>
+            </article>
+
+            <article class="blog-card">
+                <span class="blog-date">September 15, 2025</span>
+                <h2 class="blog-title">Using Dodo's Adapter to Handle Payments in Your AI SaaS</h2>
+                <p class="blog-excerpt">
+                    Why building payments infrastructure from scratch is a trap for AI startups. How Dodo's adapter
+                    simplifies global checkout, tax compliance, and automated metering.
+                </p>
+                <a href="posts/dodo-billing-sdk.html" class="read-more">Read Article <i
+                        class="fas fa-arrow-right"></i></a>
+            </article>
+        </div>
+
+        <!-- Comments Section -->
+        <div class="comments-section">
+            <h3>Discussion</h3>
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Join the conversation!</p>
+
+            <!-- Giscus Comments -->
+            <script src="https://giscus.app/client.js" data-repo="p4r1ch4y/p4r1ch4y.github.io"
+                data-repo-id="R_kgDOO9PUjw" data-category="General" data-category-id="DIC_kwDOO9PUj84CzZXi"
+                data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0"
+                data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="en" crossorigin="anonymous"
+                async>
+                </script>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Subrata Choudhury. Built with passion.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Google Translate Script -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- App Logic -->
+    <script src="app.js"></script>
+</body>
+
+</html>
