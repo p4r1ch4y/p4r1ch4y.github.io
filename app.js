@@ -35,7 +35,7 @@ const projects = [
     },
     {
         title: "LogisTech - Warehouse Orchestration System",
-        description: "A centralised warehouse orchestration system built as a backend assignment for Masai School. Targeted for Logistics and Warehousing sectors.",
+        description: "A centralised warehouse orchestration system built as a backend assignment for Masai School. users : Logistics and Warehousing sectors.",
         technologies: ["Backend", "Node.js", "Express.js", "TypeScript", "PostgreSQL", "Docker"],
         features: [
             "Centralized Inventory Control",
@@ -265,6 +265,22 @@ const projects = [
         liveUrl: "#",
         githubUrl: "https://bento.me/parichay",
         youtubeEmbed: null
+    },
+    {
+        title: "Gemini Adaptive Planner",
+        description: "Your smart learning buddy - an app that actually understands you and your time and goals. Built for Google DeepMind - Vibe Code with Gemini 3 Pro Hackathon.",
+        technologies: ["Gemini 3 Pro Preview", "Google AI Studio", "Prompt Engineering", "AI Agent"],
+        features: [
+            "Adaptive Learning Plans",
+            "Smart Goal Understanding",
+            "Time Management Integration",
+            "Personalized AI Assistant"
+        ],
+        challenges: "Designing effective prompts for Gemini 3 Pro Preview to act as an adaptive planner.",
+        keyLearnings: "Advanced Prompt Engineering, AI Agent Design, Google AI Studio Workflow",
+        liveUrl: "https://aistudio.google.com/prompts/1QytT4J2naFCihfKo5N5C_kn_bOptsnfB",
+        githubUrl: "#",
+        youtubeEmbed: '<iframe width="560" height="315" src="https://www.youtube.com/embed/qY5U1OGoQac?si=feature" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
     }
 ];
 
