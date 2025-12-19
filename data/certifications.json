@@ -5,7 +5,8 @@
     "org": "Microsoft",
     "date": "Jun 2025",
     "verify": "https://learn.microsoft.com/en-in/users/subratachoudhury-2160/credentials/a0788efa0e2d9d96",
-    "featured": true
+    "featured": true,
+    "category": "training"
   },
   {
     "type": "certificate",
@@ -13,7 +14,8 @@
     "org": "DevRel Uni",
     "date": "Jan 2025",
     "verify": "https://x.com/iamcsubrata/status/1884928731468406806",
-    "featured": true
+    "featured": true,
+    "category": "training"
   },
   {
     "type": "certificate",
@@ -21,7 +23,8 @@
     "org": "IBM",
     "date": "Jul 2025",
     "verify": "https://www.credly.com/badges/1206fd6d-a31d-4b61-9952-08270988629e/",
-    "featured": true
+    "featured": true,
+    "category": "training"
   },
   {
     "type": "certificate",
@@ -29,7 +32,8 @@
     "org": "Postman",
     "date": "Oct 2025",
     "verify": "https://badgr.com/public/assertions/Lx_kGwvwQ5yE9Qc_7kA6vw",
-    "featured": false
+    "featured": true,
+    "category": "training"
   },
   {
     "type": "certificate",
@@ -37,7 +41,17 @@
     "org": "Anveshan",
     "date": "Jun 2025",
     "verify": "https://www.linkedin.com/in/iamcsubrata/overlay/certifications/1092294084/multiple-media-viewer/",
-    "featured": false
+    "featured": false,
+    "category": "misc"
+  },
+  {
+    "type": "certificate",
+    "title": "xto10x Hackathon Participation Cert",
+    "org": "Masai School",
+    "date": "11 Jun 2025",
+    "verify": "https://xbjt7q5k.r.ap-south-1.awstrack.me/L0/https:%2F%2Fcerts.masaischool.com%2Fcertificate%2Fed3-p-945/1/01090197632e8899-727d2fd5-60a1-4dd1-a9f3-690b2fed21cb-000000/i0XaFh7UJOd-RaJztVgfWVjOVb0=211",
+    "featured": false,
+    "category": "misc"
   },
   {
     "type": "certificate",
@@ -45,7 +59,8 @@
     "org": "Forage",
     "date": "Apr 2025",
     "verify": "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/9PBTqmSxAf6zZTseP/io9DzWKe3PTsiS6GG_9PBTqmSxAf6zZTseP_DMmtpsBZwYMM8N3ba_1744024206022_completion_certificate.pdf",
-    "featured": false
+    "featured": false,
+    "category": "training"
   },
   {
     "type": "training",
@@ -54,7 +69,8 @@
     "org": "Ackee",
     "date": "Completed Sep 2025",
     "verify": "https://solscan.io/token/FecTcghLMF4Whx9d7fRDLyfUsMi243gmPqkMWiQ8aU6D",
-    "featured": false
+    "featured": true,
+    "category": "training"
   },
   {
     "type": "training",
@@ -63,7 +79,8 @@
     "org": "Rektoff",
     "date": "In progress (Oct-Dec 2025)",
     "verify": "https://x.com/iamcsubrata/status/1971735797142639039",
-    "featured": true
+    "featured": true,
+    "category": "training"
   },
   {
     "type": "training",
@@ -72,7 +89,8 @@
     "org": "IIT Kharagpur",
     "date": "Completed (Jun - Dec Semester 2025)",
     "verify": "",
-    "featured": false
+    "featured": false,
+    "category": "training"
   },
   {
     "type": "training",
@@ -81,7 +99,8 @@
     "org": "DevTown",
     "date": "17 Aug 2025",
     "verify": "https://devtown-uploads.s3.ap-south-1.amazonaws.com/certificates/ZuaxY/1rqgjn.pdf",
-    "featured": false
+    "featured": false,
+    "category": "masterclass"
   },
   {
     "type": "training",
@@ -90,7 +109,28 @@
     "org": "DevTown",
     "date": "9 Aug 2025",
     "verify": "https://devtown-uploads.s3.ap-south-1.amazonaws.com/certificates/ZuaxY/1H9lbF.pdf",
-    "featured": false
+    "featured": false,
+    "category": "masterclass"
+  },
+  {
+    "type": "training",
+    "subgroup": "Bootcamps",
+    "title": "TRIE DSA : SEARCH LIKE A CODING WIZARD",
+    "org": "DevTown",
+    "date": "30 Jul 2025",
+    "verify": "https://devtown-uploads.s3.ap-south-1.amazonaws.com/certificates/ZuaxY/thWso.pdf",
+    "featured": false,
+    "category": "masterclass"
+  },
+  {
+    "type": "training",
+    "subgroup": "Bootcamps",
+    "title": "Fundamentals of Docker & Kubernetes",
+    "org": "Scaler",
+    "date": "14 Oct 2025",
+    "verify": "https://moonshot.scaler.com/s/sl/AB8gmrKQar",
+    "featured": false,
+    "category": "masterclass"
   },
   {
     "type": "training",
@@ -99,6 +139,7 @@
     "org": "CDAC",
     "date": "Completed Oct 2025",
     "verify": "",
-    "featured": false
+    "featured": false,
+    "category": "training"
   }
 ]

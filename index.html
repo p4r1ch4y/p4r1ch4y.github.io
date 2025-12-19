@@ -241,7 +241,12 @@
                                 <i class="fas fa-trophy achievement-icon"></i>
                                 <div>
                                     <h4>2x Hackathon Winner</h4>
-                                    <p>Won Jun 2025 Anveshan Hackathon & Dec 2025 Hackarena 2.O Hackathon By Masai
+                                    <p>Won <a
+                                            href="https://www.linkedin.com/feed/update/urn:li:activity:7353082976286461957/"
+                                            target="_blank" rel="noopener noreferrer">Jun 2025 Anveshan Hackathon</a> &
+                                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7404767797161078784/"
+                                            target="_blank" rel="noopener noreferrer">Dec 2025 Hackarena 2.O
+                                            Hackathon</a> By Masai
                                         School in Software Development</p>
                                 </div>
                             </div>
@@ -249,7 +254,10 @@
                                 <i class="fas fa-pen-nib achievement-icon"></i>
                                 <div>
                                     <h4>Technical Writing Prize</h4>
-                                    <p>2nd Position at DevRel Uni Cohort 6 & Prize from The Arbitrum Foundation</p>
+                                    <p>2nd Position at <a
+                                            href="https://arbiscan.io/tx/0x58176a9d818919f80f444d1dff039bcd93964dfc9f02f8669b6264028cb0cd1d"
+                                            target="_blank" rel="noopener noreferrer">DevRel Uni Cohort 6 & Prize from
+                                            The Arbitrum Foundation</a></p>
                                 </div>
                             </div>
                             <div class="achievement-item">
@@ -1136,189 +1144,7 @@
             }
         });
     </script>
-    <script>
-        // Certifications: lazy-load and render expanded list when user requests it.
-        (function () {
-            const btn = document.getElementById('cert-expand');
-            const more = document.getElementById('certifications-more');
-            let loaded = false;
-            let itemsCache = null;
-
-            // Render featured certificates into #cert-featured on load
-            const featuredContainer = document.getElementById('cert-featured');
-
-            function createFeaturedCard(item) {
-                const verifyBadge = item.verify ? `<div class="cert-card-badge" aria-hidden="true"><i class="fas fa-check-circle" title="Verified"></i></div>` : '';
-                const icon = item.org && item.org.toLowerCase().includes('microsoft') ? 'fas fa-certificate' : (item.org && item.org.toLowerCase().includes('ibm') ? 'fas fa-atom' : (item.org && item.org.toLowerCase().includes('forage') ? 'fab fa-aws' : 'fas fa-award'));
-                return `
-                    <article class="cert-card">
-                        <div class="cert-card-left">
-                            <div class="cert-icon"><i class="${icon}"></i></div>
-                            <div>
-                                <div class="cert-card-title">${item.verify ? `<a href="${item.verify}" target="_blank" rel="noopener noreferrer">${item.title}</a>` : `<span class="cert-title-text">${item.title}</span>`}</div>
-                                <div class="cert-card-org">${item.org} : <small>${item.date || ''}</small></div>
-                            </div>
-                        </div>
-                        ${verifyBadge}
-                    </article>`;
-            }
-
-            async function loadFeatured() {
-                if (!featuredContainer) return;
-                try {
-                    const url = new URL('data/certifications.json', location.href).href;
-                    let res = await fetch(url);
-                    if (!res.ok) res = await fetch('./data/certifications.json');
-                    if (!res.ok) throw new Error('Failed to load featured JSON');
-                    const items = await res.json();
-                    itemsCache = items;
-                    // Pick primary 3-4 certificates to show in front in this priority order. Fall back to featured flag when available.
-                    const priority = ["Azure AI Fundamentals", "Postman API Fundamentals", "DevRel Uni Cohort", "School of Solana", "Qiskit Global Summer School"];
-                    const picked = [];
-
-                    // first pick certificates matching priority titles
-                    for (const key of priority) {
-                        const found = items.find(i => i.title && i.title.toLowerCase().includes(key.toLowerCase()) && i.type === 'certificate' || i.type === 'training' && i.subgroup && key.toLowerCase().includes('school of solana') && i.title.toLowerCase().includes('school of solana'));
-                        if (found && !picked.includes(found)) picked.push(found);
-                        if (picked.length >= 4) break;
-                    }
-
-                    // fill using featured flag if not enough
-                    if (picked.length < 4) {
-                        const fromFeatured = items.filter(i => i.featured && !picked.includes(i) && i.type === 'certificate');
-                        for (const f of fromFeatured) {
-                            picked.push(f);
-                            if (picked.length >= 4) break;
-                        }
-                    }
-
-                    // fallback: take first certificate items
-                    if (picked.length < 4) {
-                        const certs = items.filter(i => i.type === 'certificate' && !picked.includes(i));
-                        for (const c of certs) {
-                            picked.push(c);
-                            if (picked.length >= 4) break;
-                        }
-                    }
-
-                    if (picked.length === 0) {
-                        featuredContainer.innerHTML = '<p class="muted">No featured certificates yet.</p>';
-                        return;
-                    }
-                    featuredContainer.innerHTML = picked.map(createFeaturedCard).join('');
-                } catch (e) {
-                    console.error('Featured load error:', e);
-                    featuredContainer.innerHTML = '<p class="muted">Unable to load featured certificates.</p>';
-                }
-            }
-
-            function createItemNode(item) {
-                // If a verification URL is available, make the title a link to it (opens in new tab).
-                const titleHtml = item.verify
-                    ? `<a href="${item.verify}" target="_blank" rel="noopener noreferrer" class="cert-title-link">${item.title}</a>`
-                    : `<span class="cert-title-text">${item.title}</span>`;
-
-                return `
-                    <li class="cert-item">
-                        <div class="cert-left">
-                            <div class="cert-title">${titleHtml}</div>
-                            <div class="cert-meta">${item.org} : <small>${item.date || ''}</small></div>
-                        </div>
-                    </li>`;
-            }
-
-            function renderGroups(items) {
-                const groups = items.reduce((acc, it) => {
-                    const key = it.subgroup || (it.type === 'certificate' ? 'Certifications' : 'Other');
-                    if (!acc[key]) acc[key] = [];
-                    acc[key].push(it);
-                    return acc;
-                }, {});
-
-                const html = Object.keys(groups).map((groupName, idx) => {
-                    const list = groups[groupName].map(createItemNode).join('');
-                    const listId = `cert-list-${idx}`;
-                    return `
-                    <section class="cert-group">
-                        <h3>
-                            <button class="group-toggle" aria-expanded="false" aria-controls="${listId}">
-                                ${groupName} <span class="group-count">(${groups[groupName].length})</span>
-                            </button>
-                        </h3>
-                        <ul id="${listId}" class="cert-list" hidden>
-                            ${list}
-                        </ul>
-                    </section>`;
-                }).join('');
-
-                more.innerHTML = `<h3 id="certifications-more-title" class="visually-hidden">More Certifications and Training</h3>` + html;
-
-                // Attach toggle handlers for each group toggle
-                const toggles = more.querySelectorAll('.group-toggle');
-                toggles.forEach(t => {
-                    t.addEventListener('click', (ev) => {
-                        const expanded = t.getAttribute('aria-expanded') === 'true';
-                        const targetId = t.getAttribute('aria-controls');
-                        const listEl = document.getElementById(targetId);
-                        if (!listEl) return;
-                        if (expanded) {
-                            t.setAttribute('aria-expanded', 'false');
-                            listEl.setAttribute('hidden', '');
-                        } else {
-                            t.setAttribute('aria-expanded', 'true');
-                            listEl.removeAttribute('hidden');
-                        }
-                    });
-                });
-            }
-
-            async function loadAndShow() {
-                try {
-                    // Robust fetch: resolve relative to current document location
-                    const url = new URL('data/certifications.json', location.href).href;
-                    let res = await fetch(url);
-                    if (!res.ok) {
-                        // Try a fallback relative path
-                        res = await fetch('./data/certifications.json');
-                    }
-                    if (!res.ok) throw new Error('Failed to load certifications JSON');
-                    const items = await res.json();
-                    itemsCache = items;
-                    renderGroups(items);
-                    // Ensure featured are present (if not already loaded)
-                    if (featuredContainer && featuredContainer.innerHTML.indexOf('cert-card') === -1) {
-                        const featured = items.filter(i => i.featured).slice(0, 5);
-                        if (featured.length) featuredContainer.innerHTML = featured.map(createFeaturedCard).join('');
-                    }
-                    loaded = true;
-                } catch (e) {
-                    more.innerHTML = '<p>Unable to load more certifications at this time.</p>';
-                    console.error('Cert load error:', e);
-                }
-            }
-
-            if (btn && more) {
-                btn.addEventListener('click', async (e) => {
-                    const expanded = btn.getAttribute('aria-expanded') === 'true';
-                    if (!expanded && !loaded) {
-                        // lazy-load data
-                        await loadAndShow();
-                    }
-
-                    btn.setAttribute('aria-expanded', String(!expanded));
-                    if (expanded) {
-                        more.setAttribute('hidden', '');
-                        btn.textContent = 'Show more';
-                    } else {
-                        more.removeAttribute('hidden');
-                        btn.textContent = 'Show less';
-                    }
-                });
-            }
-            // Load featured cards on startup (non-blocking)
-            loadFeatured();
-        })();
-    </script>
+    <script src="certifications.js"></script>
     <!-- Theme toggle removed per request -->
 </body>
 
