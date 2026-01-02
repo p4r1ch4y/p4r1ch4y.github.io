@@ -141,5 +141,25 @@
     "verify": "",
     "featured": false,
     "category": "training"
+  },
+  {
+    "type": "training",
+    "subgroup": "Training",
+    "title": "AWS APAC - Solutions Architecture Job Simulation",
+    "org": "Forage",
+    "date": "Completed March 2025",
+    "verify": "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/pmnMSL4QiQ9JCgE3W/kkE9HyeNcw6rwCRGw_pmnMSL4QiQ9JCgE3W_DMmtpsBZwYMM8N3ba_1743425805862_completion_certificate.pdf",
+    "featured": false,
+    "category": "training"
+  },
+  {
+    "type": "training",
+    "subgroup": "Training",
+    "title": "Quantum Computing (One Month Course)",
+    "org": "C-DAC Hyderabad & IIT Roorkee",
+    "date": "May - Jun 2025",
+    "verify": "CDACH/QML/935",
+    "featured": false,
+    "category": "training"
   }
 ]
