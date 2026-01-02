@@ -281,6 +281,22 @@ const projects = [
         liveUrl: "https://aistudio.google.com/prompts/1QytT4J2naFCihfKo5N5C_kn_bOptsnfB",
         githubUrl: "#",
         youtubeEmbed: '<iframe width="560" height="315" src="https://www.youtube.com/embed/qY5U1OGoQac?si=feature" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
+    },
+    {
+        title: "CIVIC - Client-side AI Guardian",
+        description: "An on-device AI guardian that flags risky content and calls (misinformation, phishing, 'digital arrest' scams) in real time with clear explanations, while preserving user privacy.",
+        technologies: ["AI/ML", "Privacy", "Web Extension", "Android", "On-Device"],
+        features: [
+            "Real-time Scam Detection",
+            "On-device Privacy-first Analysis",
+            "Web & Call Monitoring",
+            "Educational Overlays"
+        ],
+        challenges: "Optimizing ML models for mobile devices while ensuring zero data leakage.",
+        keyLearnings: "On-device ML, Privacy Engineering, Browser Extensions, Android Accessibility Services",
+        liveUrl: "posts/civic-ai-guardian.html",
+        githubUrl: "#",
+        youtubeEmbed: null
     }
 ];
 

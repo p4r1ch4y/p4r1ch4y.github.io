@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIVIC: Client-side Intelligent Veracity & Integrity Companion - Subrata Choudhury</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Georgia&family=Courier+New&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="blog-post-page">
+    <div class="paper-container">
+        <!-- Google Translate Button -->
+        <div id="google_translate_element" style="position: absolute; top: 20px; right: 20px; z-index: 1000;"></div>
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+            }
+        </script>
+        <script type="text/javascript"
+            src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <div class="paper-content">
+            <a href="../blog.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+
+            <article class="blog-post-body">
+                <h1 class="blog-post-title">CIVIC: The Client-side AI Guardian (eRaksha AI for Peace & Safety)</h1>
+                <div class="blog-post-meta">
+                    <span>Date: December 29, 2025</span> • <span>Category: AI / Security</span>
+                </div>
+
+                <p class="blog-post-tldr">TL;DR: CIVIC is your smart, on-device friend that whispers "Hey, this looks
+                    fishy" when you encounter digital arrest scams, fake news, or phishing links—without compromising
+                    your privacy. Built for eRaksha AI for Peace & Safety Building Trust in the Age of Machines Initiative </p>
+
+                <img src="/assets/projects/CIVIC_infographic.jpg"
+                    alt="CIVIC Infographic" style="width:100%; margin: 20px 0; border-radius: 4px;">
+
+                <p><strong>CIVIC (Client-side Intelligent Veracity & Integrity Companion)</strong> is like a
+                    <strong>smart friend</strong> living inside your phone and browser whose only job is to whisper,
+                    “<strong>Hey, this looks fishy, be careful.</strong>”</p>
+
+                <p>It quietly reads or listens <em><strong>on your device</strong></em> to what websites, messages, and
+                    callers are saying, and looks for danger signs: <strong>fake news tricks, scam links,
+                        bullying</strong> words, or classic “<strong>digital arrest</strong>” scripts where someone on
+                    WhatsApp <strong>pretends</strong> to be police or customs and <strong>demands money</strong>.</p>
+
+                <p>When it sees these patterns, <strong>it doesn’t spy on you or upload your chats</strong>; instead,
+                    <strong>it shows a small card on your screen</strong> explaining in simple language <strong>why this
+                        looks risky</strong> (for example, “<strong>unknown number + threats of arrest + demand for
+                        quick payment</strong>”) and <strong>suggests safe next steps</strong> like “<strong>hang
+                        up</strong> and <strong>call the official helpline</strong>” or “<strong>double-check</strong>
+                    this news on <strong>trusted sites</strong>.”</p>
+
+                <hr style="border: 0; border-top: 1px dashed #d4c5b0; margin: 30px 0;">
+
+                <h2>Quick: What, How, and Why?</h2>
+                <ul>
+                    <li><strong>What:</strong> CIVIC, a dual-mode (web + call) client-side AI guardian against
+                        misinformation and cyberfraud.</li>
+                    <li><strong>How:</strong> On-device ML, privacy-preserving architecture, overlays in browser and
+                        call UI, real-time risk scoring and explanations.</li>
+                    <li><strong>Why:</strong> Directly tackles fake news and “digital arrest” scams hurting citizens,
+                        while aligning with government safety goals and privacy regulations.</li>
+                </ul>
+
+                <h2>Key Capabilities</h2>
+                <h3>Web Defense</h3>
+                <p>Highlights likely fake news, scam websites, phishing forms, and abusive comments in the browser/AI
+                    sidebars.</p>
+
+                <h3>Call Defense</h3>
+                <p>Warns during suspicious WhatsApp/VoIP/phone calls where someone pretends to be police/customs/CBI and
+                    threatens “digital arrest” or fake legal action.</p>
+
+                <h3>Explanations</h3>
+                <p>Uses simple overlay cards to explain <em>why</em> something looks risky (language patterns, domain
+                    issues, scam script patterns) and suggests safe actions.</p>
+
+                <h2>Why This Matters</h2>
+                <p>India and many countries are facing a surge in <strong>deepfake, AI scams and “digital arrest” style
+                        fraud</strong>. The Supreme Court, NITI Aayog, and banks have issued specific warnings, but a
+                    <strong>client-side, privacy-first assistant</strong> helps citizens directly at the point of risk,
+                    without waiting for platforms to moderate everything.</p>
+
+                <h2>System Architecture</h2>
+                <p>CIVIC operates entirely client-side to preserve user privacy. It acts as a guardian layer between the
+                    user and potential digital threats.</p>
+
+                <div
+                    style="background: #f4f0e6; padding: 15px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.9em; overflow-x: auto; border: 1px solid #d4c5b0;">
+                    <pre>
+User [Citizen] --> Browses Web / Receives Call
+
+[CIVIC Guardian Layer (Local Device)]
+Browser/Phone --> On-Device AI Engine
+AI Engine --> Risk Score --> Safety Decision Logic
+
+Decision:
+-> Safe: Green Verification Badge
+-> High Risk: Red Alert / Interruption -> User
+                    </pre>
+                </div>
+
+                <h2>Implementation & Future</h2>
+                <p><strong>Phase 1 (Web MVP)</strong>: A Manifest v3 extension running small transformers
+                    (DistilBERT/TinyBERT) via ONNX/WebAssembly to compute misinformation scores locally.</p>
+                <p><strong>Phase 2 (Mobile MVP)</strong>: An Android app using accessibility permissions to detect
+                    vishing scripts on the fly.</p>
+                <p><strong>Phase 3 (Privacy)</strong>: Integrating Federated Learning to improve models without raw data
+                    leaving your phone.</p>
+
+                <p><em>This project aligns with the vision that on-device AI is a practical alternative to cloud-centric
+                        systems for privacy-sensitive domains.</em></p>
+
+            </article>
+
+            <div class="comments-section">
+                <hr style="border: 0; border-top: 1px solid #d4c5b0; margin: 40px 0;">
+                <h3 style="font-family: 'Playfair Display', serif; color: #2c2c2c; margin-bottom: 20px;">Comments</h3>
+                <!-- Giscus Comments -->
+                <script src="https://giscus.app/client.js" data-repo="p4r1ch4y/p4r1ch4y.github.io"
+                    data-repo-id="R_kgDOO9PUjw" data-category="General" data-category-id="DIC_kwDOO9PUj84CzZXi"
+                    data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0"
+                    data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="en"
+                    crossorigin="anonymous" async>
+                    </script>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
