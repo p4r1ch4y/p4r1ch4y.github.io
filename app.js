@@ -841,18 +841,36 @@ function handleFormSubmit(e) {
         return;
     }
 
-    // Simulate form submission with loading state
+    // Submit form via Web3Forms API
     const submitBtn = contactForm.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
 
-    setTimeout(() => {
-        showFormMessage('Thank you for your message! I\'ll get back to you soon.', 'success');
-        contactForm.reset();
+    const formData = new FormData(contactForm);
+
+    fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+    })
+    .then(async (response) => {
+        const json = await response.json();
+        if (response.status === 200) {
+            showFormMessage('Thank you for your message! I\'ll get back to you soon.', 'success');
+            contactForm.reset();
+        } else {
+            console.log(response);
+            showFormMessage(json.message || 'Something went wrong!', 'error');
+        }
+    })
+    .catch((error) => {
+        console.log(error);
+        showFormMessage('Something went wrong! Please try again.', 'error');
+    })
+    .finally(() => {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
-    }, 1500);
+    });
 }
 
 function showFormMessage(message, type) {
