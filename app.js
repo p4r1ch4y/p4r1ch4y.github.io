@@ -413,24 +413,24 @@ function showLoadingScreen() {
 function hideLoadingScreen() {
     if (loadingScreen) {
         anime.timeline({
-            complete: function() {
+            complete: function () {
                 loadingScreen.style.display = 'none';
             }
         })
-        .add({
-            targets: '.loading-content > *',
-            translateY: -50,
-            opacity: 0,
-            duration: 400,
-            delay: anime.stagger(100),
-            easing: 'easeInExpo'
-        })
-        .add({
-            targets: loadingScreen,
-            opacity: 0,
-            duration: 500,
-            easing: 'easeOutSine'
-        }, '-=200');
+            .add({
+                targets: '.loading-content > *',
+                translateY: -50,
+                opacity: 0,
+                duration: 400,
+                delay: anime.stagger(100),
+                easing: 'easeInExpo'
+            })
+            .add({
+                targets: loadingScreen,
+                opacity: 0,
+                duration: 500,
+                easing: 'easeOutSine'
+            }, '-=200');
     }
 }
 
@@ -619,16 +619,16 @@ function initializeTypewriter() {
     // Wrap each character in a span for stagger animation
     typewriter.innerHTML = text.replace(/\S/g, "<span class='letter' style='display:inline-block;'>$&</span>");
 
-    anime.timeline({loop: false})
-      .add({
-        targets: '#typewriter .letter',
-        scale: [1.5, 1],
-        opacity: [0, 1],
-        translateZ: 0,
-        easing: "easeOutQuart",
-        duration: 1200,
-        delay: anime.stagger(80)
-      });
+    anime.timeline({ loop: false })
+        .add({
+            targets: '#typewriter .letter',
+            scale: [1.5, 1],
+            opacity: [0, 1],
+            translateZ: 0,
+            easing: "easeOutQuart",
+            duration: 1200,
+            delay: anime.stagger(80)
+        });
 }
 
 // Skills Animation - Enhanced
@@ -675,7 +675,7 @@ function initializeScrollAnimations() {
     };
 
     const elementsToAnimate = document.querySelectorAll('.skill-category, .project-card, .timeline-item, .about-info, .about-interests, .about-stats');
-    
+
     // Set initial opacity so Anime.js can fade them in
     elementsToAnimate.forEach(el => {
         el.style.opacity = '0';
@@ -684,42 +684,39 @@ function initializeScrollAnimations() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const elementId = entry.target.id || entry.target.className;
+                // Soft gliding animation for revealing elements
+                anime({
+                    targets: entry.target,
+                    translateY: [40, 0],
+                    opacity: [0, 1],
+                    easing: 'easeOutQuart',
+                    duration: 1500
+                });
 
-                if (!animatedElements.has(elementId)) {
-                    animatedElements.add(elementId);
-
-                    // Soft gliding animation for revealing elements
-                    anime({
-                        targets: entry.target,
-                        translateY: [40, 0],
-                        opacity: [0, 1],
-                        easing: 'easeOutQuart',
-                        duration: 1500
-                    });
-
-                    // Trigger specific animations
-                    if (entry.target.classList.contains('skill-category')) {
-                        setTimeout(() => animateSkillBars(entry.target), 150);
-                    }
-                    if (entry.target.classList.contains('about-stats')) {
-                        setTimeout(() => animateStatsCounter(), 150);
-                    }
-                    if (entry.target.classList.contains('timeline-item')) {
-                        const dot = entry.target.querySelector('.timeline-dot');
-                        if (dot) {
-                            anime({
-                                targets: dot,
-                                scale: [0, 1],
-                                opacity: [0, 1],
-                                easing: 'easeOutQuart',
-                                duration: 1200,
-                                delay: 300
-                            });
-                            dot.classList.add('active');
-                        }
+                // Trigger specific animations
+                if (entry.target.classList.contains('skill-category')) {
+                    setTimeout(() => animateSkillBars(entry.target), 150);
+                }
+                if (entry.target.classList.contains('about-stats')) {
+                    setTimeout(() => animateStatsCounter(), 150);
+                }
+                if (entry.target.classList.contains('timeline-item')) {
+                    const dot = entry.target.querySelector('.timeline-dot');
+                    if (dot) {
+                        anime({
+                            targets: dot,
+                            scale: [0, 1],
+                            opacity: [0, 1],
+                            easing: 'easeOutQuart',
+                            duration: 1200,
+                            delay: 300
+                        });
+                        dot.classList.add('active');
                     }
                 }
+
+                // Stop observing once animated
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
@@ -892,7 +889,7 @@ function initializeBackToTop() {
 // Hover Animations - Anime.js Physics
 function initializeHoverAnimations() {
     const interactables = document.querySelectorAll('.project-card, .btn, .nav-link, .timeline-item');
-    
+
     interactables.forEach(el => {
         el.addEventListener('mouseenter', () => {
             anime.remove(el);
@@ -904,7 +901,7 @@ function initializeHoverAnimations() {
                 easing: 'easeOutQuart'
             });
         });
-        
+
         el.addEventListener('mouseleave', () => {
             anime.remove(el);
             anime({
@@ -921,7 +918,7 @@ function initializeHoverAnimations() {
 // Hero Animations - Floating Profile
 function initializeHeroAnimations() {
     const profile = document.querySelector('.profile-circle');
-    if(profile) {
+    if (profile) {
         anime({
             targets: profile,
             translateY: [-15, 15],
