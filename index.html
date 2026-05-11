@@ -39,6 +39,11 @@
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
     <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -111,6 +116,7 @@
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#home" class="nav-link active">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
                 <li><a href="#education" class="nav-link">Education</a></li>
@@ -136,7 +142,16 @@
         <section id="home" class="hero" aria-label="Introduction and hero section">
             <div class="hero-content">
                 <div class="hero-image">
-                    <div class="profile-circle">
+                    <div class="profile-blob">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                          <path class="blob-path" fill="url(#grad)" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,81.4,-46.1C91,-33.2,97.2,-17.4,98.6,-1.2C100,15,96.6,31.7,87.6,45.4C78.7,59.2,64.2,70.2,48.5,77.7C32.8,85.2,15.9,89.2,-0.2,89.5C-16.3,89.9,-32.6,86.6,-47.9,78.9C-63.2,71.2,-77.6,59,-86.6,44.1C-95.6,29.1,-99.2,11.3,-97.6,-5.7C-96,-22.7,-89.2,-38.8,-79.1,-52.3C-69.1,-65.8,-55.8,-76.6,-41.2,-83C-26.6,-89.4,-10.8,-91.4,3.1,-96C17,-100.6,30.6,-83.6,44.7,-76.4Z" transform="translate(100 100)" />
+                          <defs>
+                            <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" style="stop-color:var(--primary-color);stop-opacity:1" />
+                              <stop offset="100%" style="stop-color:var(--accent-color);stop-opacity:1" />
+                            </linearGradient>
+                          </defs>
+                        </svg>
                         <div class="profile-inner">SC</div>
                     </div>
                 </div>
@@ -870,7 +885,7 @@
                             <h3>Backend Developer Intern</h3>
                             <h4>Confidential Company</h4>
                             <span class="timeline-period">Jan 2026 - Present</span>
-                            <p>Developing secure, scalable backend systems for large user base, using Node.js and Python, with a focus on data pipelines and prompt engineering (details under NDA).</p>
+                            <p>Developing secure, scalable backend systems using Node.js and Python. Integrated DSC Signer in a web portal and integrated PHP-based SSO. Created detailed user manuals and application user flow guide videos which are viewed by 10k+ users. (details under NDA).</p>
                             <div class="timeline-tech">
                                 <span class="tech-tag">Node.js</span>
                                 <span class="tech-tag">Python</span>
@@ -889,7 +904,7 @@
                             <span class="timeline-period">Jul 2022 - Feb 2024</span>
                             <p>Led community moderation and technical support for 50K+ global user base across diverse
                                 time zones. Contributed to business development and enhanced blockchain adaptation
-                                across the tech industry.</p>
+                                overall.</p>
                             <div class="timeline-tech">
                                 <span class="tech-tag">Community Management</span>
                                 <span class="tech-tag">Web3</span>
@@ -1153,6 +1168,8 @@
         </div>
     </div>
 
+    <!-- Anime.js for smooth animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <!-- Ensure app.js is loaded -->
     <script src="app.js"></script>
     <script>

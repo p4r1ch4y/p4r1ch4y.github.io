@@ -1,65 +1,56 @@
 :root {
-    /* Base Variables - Softer Dark Theme (Default) */
-    --bg-body: #1e1e2e;
-    /* Catppuccin Mocha Base */
-    --bg-card: #252538;
-    /* Slightly lighter */
-    --bg-glass: rgba(30, 30, 46, 0.8);
-    --text-primary: #cdd6f4;
-    /* Text */
-    --text-secondary: #c4c9de;
-    /* Subtext0 */
-    --text-muted: #6c7086;
-    /* Overlay0 */
-    --primary-color: #a6a968;
-    /* Blue */
-    --secondary-color: #2eafd6;
-    /* Mauve */
-    --accent-color: #85875e;
-    /* Teal */
-    --border-color: #313244;
-    /* Surface0 */
-    --border-glass: rgba(147, 153, 178, 0.1);
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.3);
-    --gradient-primary: linear-gradient(135deg, #89b4fa 0%, #114189 100%);
-    --gradient-bg: linear-gradient(135deg, #1e1e2e 0%, #181825 100%);
+    /* Base Variables - Royal Navy Dark Theme */
+    --bg-body: #0a0e17;
+    --bg-card: #111827;
+    --bg-glass: rgba(10, 14, 23, 0.85);
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    
+    --primary-color: #3b82f6;
+    --secondary-color: #60a5fa;
+    --accent-color: #beab1a;
+    
+    --border-color: rgba(255, 255, 255, 0.05);
+    --border-glass: rgba(255, 255, 255, 0.05);
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.25);
+    
+    --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #e9ec24 100%);
+    --gradient-bg: linear-gradient(180deg, #0a0e17 0%, #0f172a 100%);
 
     /* Common */
-    --radius-sm: 6px;
-    --radius-base: 8px;
-    --radius-lg: 12px;
+    --radius-sm: 8px;
+    --radius-base: 16px;
+    --radius-lg: 24px;
     --radius-full: 9999px;
-    --transition-base: all 0.3s ease;
-    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --transition-base: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    
+    --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: 'Playfair Display', serif;
     --font-mono: 'JetBrains Mono', monospace;
 }
 
 [data-theme="light"] {
-    /* Light Theme */
-    --bg-body: #eff1f5;
-    /* Latte Base */
+    /* Light Theme - Crisp Navy */
+    --bg-body: #f8fafc;
     --bg-card: #ffffff;
-    --bg-glass: rgba(255, 255, 255, 0.8);
-    --text-primary: #4c4f69;
-    /* Text */
-    --text-secondary: #6c6f85;
-    /* Subtext0 */
-    --text-muted: #9ca0b0;
-    /* Overlay0 */
-    --primary-color: #175ce8;
-    /* Blue */
-    --secondary-color: #359881;
-    /* Mauve */
-    --accent-color: #179299;
-    /* Teal */
-    --border-color: #ccd0da;
-    /* Surface0 */
+    --bg-glass: rgba(248, 250, 252, 0.85);
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-muted: #64748b;
+    
+    --primary-color: #2563eb;
+    --secondary-color: #3b82f6;
+    --accent-color: #6366f1;
+    
+    --border-color: rgba(0, 0, 0, 0.05);
     --border-glass: rgba(0, 0, 0, 0.05);
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
-    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
-    --gradient-primary: linear-gradient(135deg, #042c7c 0%, #042c7c 100%);
-    --gradient-bg: linear-gradient(135deg, #eff1f5 0%, #e6e9ef 100%);
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.04);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08);
+    
+    --gradient-primary: linear-gradient(135deg, #2563eb 0%, #6366f1 100%);
+    --gradient-bg: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
 }
 
 /* Reset & Base */
@@ -79,15 +70,12 @@ body {
 }
 
 /* Typography */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
     color: var(--text-primary);
     line-height: 1.2;
     margin-bottom: 1rem;
+    font-weight: 600;
 }
 
 a {
@@ -211,27 +199,33 @@ a:hover {
     z-index: 2;
 }
 
-.profile-circle {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background: var(--gradient-primary);
-    padding: 4px;
-    margin: 0 auto 2rem;
+.profile-blob {
     position: relative;
-}
-
-.profile-inner {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: var(--bg-body);
+    width: 250px;
+    height: 250px;
+    margin: 0 auto 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 3rem;
+}
+
+.profile-blob svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 0.8;
+}
+
+.profile-inner {
+    position: relative;
+    z-index: 2;
+    font-size: 3.5rem;
+    font-family: var(--font-serif);
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--bg-body);
 }
 
 .hero-title {
@@ -316,7 +310,7 @@ a:hover {
 
 /* Sections */
 section {
-    padding: 5rem 0;
+    padding: 8rem 0;
 }
 
 .section-title {
@@ -349,7 +343,7 @@ section {
 .education-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .project-card,
@@ -359,10 +353,10 @@ section {
 .interest-card,
 .achievement-card {
     background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    border: none;
+    box-shadow: var(--shadow-sm);
     border-radius: var(--radius-lg);
-    padding: 1.5rem;
-    /* Default padding, overridden for project-card */
+    padding: 2rem;
     transition: var(--transition-base);
     overflow: hidden;
 }
@@ -1242,10 +1236,8 @@ section {
 
 .contact-info p {
     color: var(--text-secondary);
-    background: var(--bg-body);
-    padding: 0.2rem 0.8rem;
-    border-radius: var(--radius-full);
-    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+    line-height: 1.8;
 }
 
 .education-tech {

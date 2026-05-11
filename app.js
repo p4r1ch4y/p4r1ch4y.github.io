@@ -328,6 +328,8 @@ function initializeApp() {
         initializeStatsCounter();
         initializeModalFunctionality();
         initializeScrollAnimations();
+        initializeHoverAnimations();
+        initializeHeroAnimations();
 
         // Hide loading screen after everything is initialized
         setTimeout(() => {
@@ -375,28 +377,60 @@ function updateThemeIcon(theme) {
 // Loading Screen
 function showLoadingScreen() {
     const progressBar = document.querySelector('.loading-progress');
-    if (progressBar) {
-        progressBar.style.width = '0%';
+    const loadingText = document.querySelector('.loading-text');
+    const loadingLogo = document.querySelector('.loading-logo');
 
-        // Animate progress bar
-        let progress = 0;
-        const interval = setInterval(() => {
-            progress += Math.random() * 20 + 5;
-            if (progress >= 100) {
-                progress = 100;
-                clearInterval(interval);
-            }
-            progressBar.style.width = progress + '%';
-        }, 150);
+    if (progressBar) {
+        anime({
+            targets: progressBar,
+            width: ['0%', '100%'],
+            easing: 'easeInOutQuad',
+            duration: 2000
+        });
+    }
+    if (loadingText) {
+        anime({
+            targets: loadingText,
+            opacity: [0.5, 1],
+            direction: 'alternate',
+            loop: true,
+            easing: 'easeInOutSine',
+            duration: 800
+        });
+    }
+    if (loadingLogo) {
+        anime({
+            targets: loadingLogo,
+            scale: [0.9, 1.1],
+            direction: 'alternate',
+            loop: true,
+            easing: 'easeInOutSine',
+            duration: 1000
+        });
     }
 }
 
 function hideLoadingScreen() {
     if (loadingScreen) {
-        loadingScreen.style.opacity = '0';
-        setTimeout(() => {
-            loadingScreen.style.display = 'none';
-        }, 500);
+        anime.timeline({
+            complete: function() {
+                loadingScreen.style.display = 'none';
+            }
+        })
+        .add({
+            targets: '.loading-content > *',
+            translateY: -50,
+            opacity: 0,
+            duration: 400,
+            delay: anime.stagger(100),
+            easing: 'easeInExpo'
+        })
+        .add({
+            targets: loadingScreen,
+            opacity: 0,
+            duration: 500,
+            easing: 'easeOutSine'
+        }, '-=200');
     }
 }
 
@@ -443,36 +477,19 @@ function createParticle() {
 
 function animateParticles() {
     particles.forEach((particle) => {
-        if (!particle.parentNode) return;
-
-        const rect = particle.getBoundingClientRect();
-
-        // Update position
-        particle.velocity.x += (Math.random() - 0.5) * 0.05;
-        particle.velocity.y += (Math.random() - 0.5) * 0.05;
-
-        // Limit velocity
-        particle.velocity.x = Math.max(-1, Math.min(1, particle.velocity.x));
-        particle.velocity.y = Math.max(-1, Math.min(1, particle.velocity.y));
-
-        let newX = rect.left + particle.velocity.x;
-        let newY = rect.top + particle.velocity.y;
-
-        // Bounce off edges
-        if (newX <= 0 || newX >= window.innerWidth) {
-            particle.velocity.x *= -1;
-            newX = Math.max(0, Math.min(window.innerWidth - 5, newX));
-        }
-        if (newY <= 0 || newY >= window.innerHeight) {
-            particle.velocity.y *= -1;
-            newY = Math.max(0, Math.min(window.innerHeight - 5, newY));
-        }
-
-        particle.style.left = newX + 'px';
-        particle.style.top = newY + 'px';
+        // Soft, soothing floating effect
+        anime({
+            targets: particle,
+            translateX: () => anime.random(-150, 150),
+            translateY: () => anime.random(-150, 150),
+            scale: () => anime.random(0.8, 1.5),
+            opacity: [0.1, () => anime.random(0.3, 0.6)],
+            easing: 'easeInOutSine',
+            duration: () => anime.random(4000, 10000),
+            direction: 'alternate',
+            loop: true
+        });
     });
-
-    requestAnimationFrame(animateParticles);
 }
 
 function handleMouseMove(e) {
@@ -599,19 +616,19 @@ function initializeTypewriter() {
     if (!typewriter) return;
 
     const text = "Subrata Choudhury";
-    let index = 0;
+    // Wrap each character in a span for stagger animation
+    typewriter.innerHTML = text.replace(/\S/g, "<span class='letter' style='display:inline-block;'>$&</span>");
 
-    typewriter.textContent = '';
-
-    function typeText() {
-        if (index < text.length) {
-            typewriter.textContent += text.charAt(index);
-            index++;
-            setTimeout(typeText, 120);
-        }
-    }
-
-    setTimeout(typeText, 1500);
+    anime.timeline({loop: false})
+      .add({
+        targets: '#typewriter .letter',
+        scale: [1.5, 1],
+        opacity: [0, 1],
+        translateZ: 0,
+        easing: "easeOutQuart",
+        duration: 1200,
+        delay: anime.stagger(80)
+      });
 }
 
 // Skills Animation - Enhanced
@@ -639,12 +656,13 @@ function animateSkillBars(container) {
         const fillDiv = bar.querySelector('.skill-fill');
 
         if (fillDiv) {
-            // Reset width first
-            fillDiv.style.width = '0%';
-
-            setTimeout(() => {
-                fillDiv.style.width = level + '%';
-            }, index * 150 + 200);
+            anime({
+                targets: fillDiv,
+                width: ['0%', level + '%'],
+                easing: 'easeInOutQuart',
+                duration: 2000,
+                delay: index * 150
+            });
         }
     });
 }
@@ -652,9 +670,16 @@ function animateSkillBars(container) {
 // Scroll Animations - Enhanced
 function initializeScrollAnimations() {
     const observerOptions = {
-        threshold: 0.2,
+        threshold: 0.15,
         rootMargin: '0px 0px -50px 0px'
     };
+
+    const elementsToAnimate = document.querySelectorAll('.skill-category, .project-card, .timeline-item, .about-info, .about-interests, .about-stats');
+    
+    // Set initial opacity so Anime.js can fade them in
+    elementsToAnimate.forEach(el => {
+        el.style.opacity = '0';
+    });
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -662,20 +687,36 @@ function initializeScrollAnimations() {
                 const elementId = entry.target.id || entry.target.className;
 
                 if (!animatedElements.has(elementId)) {
-                    entry.target.classList.add('animate-up');
                     animatedElements.add(elementId);
+
+                    // Soft gliding animation for revealing elements
+                    anime({
+                        targets: entry.target,
+                        translateY: [40, 0],
+                        opacity: [0, 1],
+                        easing: 'easeOutQuart',
+                        duration: 1500
+                    });
 
                     // Trigger specific animations
                     if (entry.target.classList.contains('skill-category')) {
-                        setTimeout(() => animateSkillBars(entry.target), 300);
+                        setTimeout(() => animateSkillBars(entry.target), 150);
                     }
                     if (entry.target.classList.contains('about-stats')) {
-                        setTimeout(() => animateStatsCounter(), 300);
+                        setTimeout(() => animateStatsCounter(), 150);
                     }
                     if (entry.target.classList.contains('timeline-item')) {
                         const dot = entry.target.querySelector('.timeline-dot');
                         if (dot) {
-                            setTimeout(() => dot.classList.add('active'), 200);
+                            anime({
+                                targets: dot,
+                                scale: [0, 1],
+                                opacity: [0, 1],
+                                easing: 'easeOutQuart',
+                                duration: 1200,
+                                delay: 300
+                            });
+                            dot.classList.add('active');
                         }
                     }
                 }
@@ -684,7 +725,6 @@ function initializeScrollAnimations() {
     }, observerOptions);
 
     // Observe elements
-    const elementsToAnimate = document.querySelectorAll('.skill-category, .project-card, .timeline-item, .about-info, .about-interests, .about-stats');
     elementsToAnimate.forEach(el => observer.observe(el));
 }
 
@@ -847,6 +887,50 @@ function initializeBackToTop() {
         e.preventDefault();
         smoothScrollTo(0, 800);
     });
+}
+
+// Hover Animations - Anime.js Physics
+function initializeHoverAnimations() {
+    const interactables = document.querySelectorAll('.project-card, .btn, .nav-link, .timeline-item');
+    
+    interactables.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            anime.remove(el);
+            anime({
+                targets: el,
+                scale: 1.02,
+                translateY: -3,
+                duration: 800,
+                easing: 'easeOutQuart'
+            });
+        });
+        
+        el.addEventListener('mouseleave', () => {
+            anime.remove(el);
+            anime({
+                targets: el,
+                scale: 1,
+                translateY: 0,
+                duration: 1200,
+                easing: 'easeOutQuart'
+            });
+        });
+    });
+}
+
+// Hero Animations - Floating Profile
+function initializeHeroAnimations() {
+    const profile = document.querySelector('.profile-circle');
+    if(profile) {
+        anime({
+            targets: profile,
+            translateY: [-15, 15],
+            direction: 'alternate',
+            loop: true,
+            easing: 'easeInOutSine',
+            duration: 4000
+        });
+    }
 }
 
 // Modal Functionality - Enhanced
