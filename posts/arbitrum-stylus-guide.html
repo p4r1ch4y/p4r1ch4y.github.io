@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>(function(){document.documentElement.setAttribute('data-theme',localStorage.getItem('theme')||'dark');})();</script>
     <title>A Beginner's Guide to Use Arbitrum Stylus SDK - Subrata Choudhury</title>
     <link rel="stylesheet" href="../style.css">
     <link
@@ -582,6 +583,25 @@
     <script type="text/javascript"
         src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
+    <!-- Floating theme toggle (animated view-transition switch) -->
+    <button id="post-theme-toggle" aria-label="Toggle theme" title="Toggle theme"
+        style="position:fixed;bottom:20px;right:20px;z-index:1000;width:42px;height:42px;border-radius:50%;border:1px solid var(--border-strong);background:var(--paper-sheet,var(--bg-card));color:var(--text-secondary);cursor:pointer;font-size:15px;box-shadow:var(--shadow-md);">
+        <i class="fas fa-moon"></i>
+    </button>
+    <script src="../theme-switch.js"></script>
+    <script>
+        (function () {
+            var btn = document.getElementById('post-theme-toggle');
+            var icon = btn.querySelector('i');
+            function sync() { var dark = document.documentElement.getAttribute('data-theme') !== 'light'; icon.className = dark ? 'fas fa-moon' : 'fas fa-sun'; }
+            sync();
+            btn.addEventListener('click', function () {
+                var next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+                var apply = function () { document.documentElement.setAttribute('data-theme', next); localStorage.setItem('theme', next); sync(); };
+                if (window.themeSwitch) window.themeSwitch(btn, apply); else apply();
+            });
+        })();
+    </script>
 </body>
 
 </html>

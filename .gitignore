@@ -1,0 +1,12 @@
+
+
+# Leaked/stale tooling config from another project
+.claude/
+
+# Raw activity report exports (source data only; the site embeds anonymised counts)
+*.xlsx
+*.csv
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db

@@ -1,56 +1,134 @@
+/* ==========================================================================
+   Design tokens — "engineering journal" (PORTFOLIO ONLY)
+   Warm palette for the portfolio pages (index.html, blog.html listing).
+   NOTE: the blog *article* pages (body.blog-post-page) deliberately do NOT use
+   these tokens — they have a self-contained "paper" theme further down (search
+   "BLOG / ARTICLE THEME — PAPER"). Redesign these :root values freely; the blog
+   article theme must stay paper and is locked to survive that. Accent differs
+   per theme to hold ~4.5:1 contrast on each background.
+   ========================================================================== */
 :root {
-    /* Base Variables - Royal Navy Dark Theme */
-    --bg-body: #0a0e17;
-    --bg-card: #111827;
-    --bg-glass: rgba(10, 14, 23, 0.85);
-    --text-primary: #e2e8f0;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    
-    --primary-color: #3b82f6;
-    --secondary-color: #60a5fa;
-    --accent-color: #beab1a;
-    
-    --border-color: rgba(255, 255, 255, 0.05);
-    --border-glass: rgba(255, 255, 255, 0.05);
-    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.15);
-    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.25);
-    
-    --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #e9ec24 100%);
-    --gradient-bg: linear-gradient(180deg, #0a0e17 0%, #0f172a 100%);
+    /* Dark — warm charcoal, the default */
+    --bg-body: #12100d;
+    --bg-card: #1a1713;
+    --bg-raised: #221d18;
+    --bg-glass: rgba(18, 16, 13, 0.82);
+    --text-primary: #f0ece4;
+    --text-secondary: #b3aa9c;
+    --text-muted: #8a8175;
+
+    --primary-color: #e0ab4f;
+    --secondary-color: #f0c876;
+    --accent-color: #7ea896;
+    /* Text/icon colour that sits ON a --primary-color fill. The accent is light
+       in dark mode and dark in light mode, so this flips with it. */
+    --on-accent: #17130c;
+
+    --accent-soft: rgba(224, 171, 79, 0.12);
+    --accent-line: rgba(224, 171, 79, 0.28);
+
+    --border-color: rgba(240, 236, 228, 0.09);
+    --border-glass: rgba(240, 236, 228, 0.08);
+    --border-strong: rgba(240, 236, 228, 0.16);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.22);
+    --shadow-md: 0 2px 3px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 2px 4px rgba(0, 0, 0, 0.3), 0 16px 40px rgba(0, 0, 0, 0.36);
+
+    --gradient-primary: linear-gradient(135deg, #e0ab4f 0%, #c98b3a 100%);
+    --gradient-bg: radial-gradient(120% 90% at 50% -10%, #1c1812 0%, #12100d 58%);
 
     /* Common */
-    --radius-sm: 8px;
-    --radius-base: 16px;
-    --radius-lg: 24px;
+    --radius-sm: 6px;
+    --radius-base: 10px;
+    --radius-lg: 14px;
     --radius-full: 9999px;
-    --transition-base: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    
+    --transition-base: all 0.25s cubic-bezier(0.2, 0.8, 0.3, 1);
+
+    /* Type scale — 1.25 ratio off a 1rem base */
+    --step--1: 0.833rem;
+    --step-0: 1rem;
+    --step-1: 1.25rem;
+    --step-2: 1.563rem;
+    --step-3: 1.953rem;
+    --step-4: clamp(2.1rem, 1.6rem + 2.2vw, 2.9rem);
+    --step-5: clamp(2.6rem, 1.7rem + 4vw, 4.2rem);
+
     --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-serif: 'Playfair Display', serif;
-    --font-mono: 'JetBrains Mono', monospace;
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 [data-theme="light"] {
-    /* Light Theme - Crisp Navy */
-    --bg-body: #f8fafc;
+    /* Light — the same paper the blog posts are printed on */
+    --bg-body: #faf8f4;
     --bg-card: #ffffff;
-    --bg-glass: rgba(248, 250, 252, 0.85);
-    --text-primary: #0f172a;
-    --text-secondary: #334155;
-    --text-muted: #64748b;
-    
-    --primary-color: #2563eb;
-    --secondary-color: #3b82f6;
-    --accent-color: #6366f1;
-    
-    --border-color: rgba(0, 0, 0, 0.05);
-    --border-glass: rgba(0, 0, 0, 0.05);
-    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.04);
-    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08);
-    
-    --gradient-primary: linear-gradient(135deg, #2563eb 0%, #6366f1 100%);
-    --gradient-bg: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+    --bg-raised: #f3efe7;
+    --bg-glass: rgba(250, 248, 244, 0.82);
+    --text-primary: #1c1917;
+    --text-secondary: #57534e;
+    --text-muted: #78716c;
+
+    --primary-color: #8a5a15;
+    --secondary-color: #6f4810;
+    --accent-color: #2f6d59;
+    --on-accent: #ffffff;
+
+    --accent-soft: rgba(138, 90, 21, 0.08);
+    --accent-line: rgba(138, 90, 21, 0.24);
+
+    --border-color: rgba(28, 25, 23, 0.1);
+    --border-glass: rgba(28, 25, 23, 0.08);
+    --border-strong: rgba(28, 25, 23, 0.18);
+    --shadow-sm: 0 1px 2px rgba(60, 45, 25, 0.05), 0 4px 12px rgba(60, 45, 25, 0.05);
+    --shadow-lg: 0 2px 4px rgba(60, 45, 25, 0.06), 0 16px 40px rgba(60, 45, 25, 0.1);
+
+    --gradient-primary: linear-gradient(135deg, #8a5a15 0%, #a8722a 100%);
+    --gradient-bg: radial-gradient(120% 90% at 50% -10%, #fffdf9 0%, #faf8f4 58%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ==========================================================================
+   Animated theme switch — View Transitions API (circular reveal)
+   The incoming theme is clipped into a circle that grows out from the toggle
+   button. The clip-path animation is driven per-click in theme-switch.js
+   (window.themeSwitch); here we just disable the default cross-fade and put
+   the new snapshot on top so only the growing circle animates. Shared by
+   index.html, blog.html and every post page. No-ops where unsupported.
+   ========================================================================== */
+::view-transition-group(root) {
+    animation-duration: 0.55s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* old snapshot sits still & full; the new theme reveals inside a growing circle */
+::view-transition-old(root) {
+    animation: none;
+    z-index: 0;
+}
+::view-transition-new(root) {
+    z-index: 1;
+    mix-blend-mode: normal;
+    animation: theme-circle 0.55s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+@keyframes theme-circle {
+    from { clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 0)); }
+    to   { clip-path: circle(var(--vt-r, 150%) at var(--vt-x, 50%) var(--vt-y, 0)); }
+}
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(root),
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation: none !important;
+    }
 }
 
 /* Reset & Base */
@@ -107,6 +185,13 @@ a:hover {
     z-index: 1000;
     border-bottom: 1px solid var(--border-glass);
     transition: var(--transition-base);
+}
+
+.navbar.scrolled {
+    padding: 0.6rem 0;
+    background: var(--bg-glass);
+    box-shadow: var(--shadow-sm);
+    border-bottom-color: var(--border-strong);
 }
 
 .nav-container {
@@ -199,51 +284,74 @@ a:hover {
     z-index: 2;
 }
 
-.profile-blob {
+.hero-image {
+    margin-bottom: 2.25rem;
+}
+
+.profile-circle {
     position: relative;
-    width: 250px;
-    height: 250px;
-    margin: 0 auto 3rem;
+    width: 128px;
+    height: 128px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.profile-blob svg {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    opacity: 0.8;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    padding: 4px;
+    box-shadow: var(--shadow-md), 0 0 0 1px var(--accent-line);
 }
 
 .profile-inner {
-    position: relative;
-    z-index: 2;
-    font-size: 3.5rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--bg-card);
+    font-size: 2.75rem;
     font-family: var(--font-serif);
     font-weight: 700;
-    color: var(--bg-body);
+    letter-spacing: 0.02em;
+    color: var(--primary-color);
+}
+
+.hero-eyebrow {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    padding: 0.35rem 0.9rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--accent-line);
+    border-radius: var(--radius-full);
+    background: var(--accent-soft);
 }
 
 .hero-title {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
+    font-size: var(--step-5);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.25rem;
+    min-height: 1.1em;
 }
 
 .hero-subtitle {
-    font-size: 1.5rem;
+    font-size: var(--step-1);
+    font-family: var(--font-main);
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
 }
 
 .hero-description {
-    font-size: 1.1rem;
-    color: var(--text-muted);
-    margin-bottom: 2.5rem;
-    line-height: 1.8;
+    font-size: var(--step-0);
+    color: var(--text-secondary);
+    margin: 0 auto 2.5rem;
+    max-width: 60ch;
+    line-height: 1.75;
 }
 
 .hero-buttons {
@@ -286,14 +394,13 @@ a:hover {
 
 .btn--primary {
     background: var(--gradient-primary);
-    color: #fff;
-    /* Always white for contrast on gradient */
-    box-shadow: 0 4px 15px rgba(137, 180, 250, 0.3);
+    color: var(--on-accent);
+    box-shadow: var(--shadow-sm);
 }
 
 .btn--primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(137, 180, 250, 0.4);
+    box-shadow: var(--shadow-lg);
 }
 
 .btn--outline {
@@ -310,29 +417,45 @@ a:hover {
 
 /* Sections */
 section {
-    padding: 8rem 0;
+    padding: 6rem 0;
 }
 
 .section-title {
-    font-size: 2.5rem;
+    font-size: var(--step-4);
+    font-weight: 700;
+    letter-spacing: -0.02em;
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 3.25rem;
     position: relative;
     display: inline-block;
     left: 50%;
     transform: translateX(-50%);
+    padding-bottom: 0.9rem;
 }
 
+/* Editorial hairline under each section heading */
 .section-title::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
+    width: 44px;
+    height: 3px;
     background: var(--gradient-primary);
     border-radius: 2px;
+}
+
+/* Optional monospace eyebrow above a section heading */
+.section-kicker {
+    display: block;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    margin-bottom: 0.85rem;
 }
 
 /* Cards */
@@ -346,6 +469,14 @@ section {
     gap: 2.5rem;
 }
 
+/* The projects grid lives outside .container, so give it the same gutters
+   instead of letting the cards touch the screen edges. */
+.projects-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
 .project-card,
 .blog-card,
 .academic-card,
@@ -353,24 +484,28 @@ section {
 .interest-card,
 .achievement-card {
     background: var(--bg-card);
-    border: none;
+    border: 1px solid var(--border-color);
     box-shadow: var(--shadow-sm);
     border-radius: var(--radius-lg);
     padding: 2rem;
-    transition: var(--transition-base);
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.3, 1),
+                box-shadow 0.25s ease, border-color 0.25s ease;
     overflow: hidden;
 }
 
 .project-card {
     padding: 0;
     /* Reset for image */
+    display: flex;
+    flex-direction: column;
 }
 
 .project-card:hover,
 .blog-card:hover,
-.academic-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--primary-color);
+.academic-card:hover,
+.education-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-line);
     box-shadow: var(--shadow-lg);
 }
 
@@ -398,7 +533,8 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(30, 30, 46, 0.8);
+    background: rgba(18, 16, 13, 0.78);
+    backdrop-filter: blur(2px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -427,14 +563,16 @@ section {
 
 .tech-tag {
     display: inline-block;
-    padding: 0.25rem 0.75rem;
-    background: rgba(137, 180, 250, 0.1);
+    padding: 0.25rem 0.7rem;
+    background: var(--accent-soft);
     color: var(--primary-color);
-    border-radius: var(--radius-full);
-    font-size: 0.8rem;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
-    border: 1px solid rgba(137, 180, 250, 0.2);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.01em;
+    margin-right: 0.4rem;
+    margin-bottom: 0.4rem;
+    border: 1px solid var(--accent-line);
 }
 
 .project-links {
@@ -512,26 +650,32 @@ section {
 .timeline-dot {
     position: absolute;
     left: 11px;
-    top: 0;
-    width: 20px;
-    height: 20px;
+    top: 0.15rem;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     background: var(--bg-body);
     border: 2px solid var(--primary-color);
     z-index: 1;
+    transition: var(--transition-base);
 }
 
 .timeline-dot.active {
     background: var(--primary-color);
+    box-shadow: 0 0 0 5px var(--accent-soft);
 }
 
 .timeline-content h3 {
-    color: var(--primary-color);
+    color: var(--text-primary);
+    font-size: var(--step-1);
     margin-bottom: 0.25rem;
 }
 
 .timeline-content h4 {
-    font-size: 1.1rem;
+    color: var(--primary-color);
+    font-size: 1.05rem;
+    font-family: var(--font-main);
+    font-weight: 600;
     margin-bottom: 0.5rem;
 }
 
@@ -570,7 +714,19 @@ section {
 .form-control:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(137, 180, 250, 0.1);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* Visible keyboard focus for every interactive element. The old stylesheet
+   only styled :focus on .form-control, leaving links and buttons unmarked. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
 }
 
 /* Giscus Container */
@@ -646,6 +802,71 @@ section {
 .footer-links a {
     color: var(--text-muted);
     font-size: 0.9rem;
+}
+
+/* Card link in the footer -> one-page landing */
+.footer-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding: 0.6rem 1.25rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-full);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: var(--transition-base);
+}
+.footer-card-link:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background: var(--accent-soft);
+    transform: translateY(-2px);
+}
+
+/* Animated back-to-top button */
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: var(--gradient-primary);
+    color: var(--on-accent);
+    font-size: 1.05rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(16px) scale(0.9);
+    transition: opacity 0.3s ease, box-shadow 0.3s ease,
+                transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), visibility 0.3s;
+    z-index: 900;
+}
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+.back-to-top:hover {
+    transform: translateY(-4px) scale(1.06);
+    box-shadow: var(--shadow-lg);
+}
+.back-to-top:hover i {
+    animation: back-to-top-bob 0.7s ease-in-out infinite;
+}
+@keyframes back-to-top-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+@media (max-width: 600px) {
+    .back-to-top { bottom: 1.25rem; right: 1.25rem; width: 44px; height: 44px; }
 }
 
 /* Mobile Nav */
@@ -914,7 +1135,7 @@ section {
 .cert-icon {
     width: 40px;
     height: 40px;
-    background: rgba(137, 180, 250, 0.1);
+    background: var(--accent-soft);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1088,10 +1309,8 @@ section {
 .filter-btn:hover,
 .filter-btn.active {
     background: var(--primary-color);
-    color: #fff;
-    /* Ensure contrast */
+    color: var(--on-accent);
     border-color: var(--primary-color);
-    transform: translateY(-2px);
     box-shadow: var(--shadow-sm);
 }
 
@@ -1307,7 +1526,7 @@ section {
 
 .contact-socials .social-link:hover {
     background: var(--primary-color);
-    color: #fff;
+    color: var(--on-accent);
     border-color: var(--primary-color);
     transform: translateY(-3px);
 }
@@ -1433,7 +1652,7 @@ section {
 .topic-tag:hover {
     border-color: var(--primary-color);
     color: var(--primary-color);
-    background: rgba(137, 180, 250, 0.05);
+    background: var(--accent-soft);
     transform: translateY(-2px);
 }
 
@@ -1455,52 +1674,110 @@ section {
     color: #e6e1c5;
 }
 
-/* Vintage Paper Blog Post Theme */
+/* ==========================================================================
+   BLOG / ARTICLE THEME — "PAPER"  ·  SELF-CONTAINED BY DESIGN
+   --------------------------------------------------------------------------
+   RULE (do not break): the article reading pages (body.blog-post-page) have
+   their OWN paper theme — a warm cream sheet in light mode, an aged dark paper
+   in dark mode. This look must stay consistent EVEN IF the portfolio palette is
+   completely redesigned.
+
+   To guarantee that, this block does NOT inherit the site :root palette. It
+   declares its own `--paper-*` tokens and, so any inline styles inside a post
+   also stay on-theme, it re-declares the shared token names (--primary-color,
+   --text-*, --accent-*, --border-*) locally. Editing :root / [data-theme] up
+   top (a portfolio redesign) therefore cannot change how the blog reads.
+
+   To restyle the blog, edit ONLY the values in the two blocks below. The blog
+   flips light/dark with the reader's saved theme (set by the inline script in
+   each post's <head>), but it always stays paper.
+   ========================================================================== */
 .blog-post-page {
-    background-color: #fdfbf7;
-    /* Off-white background for the whole page */
-    color: #2c2c2c;
-    font-family: 'Georgia', serif;
-    /* Serif font for vintage feel */
+    /* Paper palette — LIGHT: warm cream ruled sheet */
+    --paper-bg: #efe4cd;      /* desk behind the sheet */
+    --paper-sheet: #fffdf0;   /* the sheet you read on */
+    --paper-ink: #2c2c2c;
+    --paper-ink-soft: #6f6152;
+    --paper-heading: #4a3b32;
+    --paper-accent: #94631a;  /* gold-brown, ~5.2:1 on the sheet */
+    --paper-line: #d6c7ac;    /* title underline / borders */
+    --paper-border: #e4dac4;
+    --paper-callout: #f4eede;
+    --paper-rule: rgba(151, 116, 58, 0.16);  /* the horizontal ruling */
+    --paper-rule-gap: 34px;                   /* space between ruled lines */
+
+    /* Re-declare shared token names so inline post styles stay on paper too */
+    --primary-color: var(--paper-accent);
+    --secondary-color: #b5843a;
+    --text-primary: var(--paper-ink);
+    --text-secondary: var(--paper-ink-soft);
+    --text-muted: #8a7b68;
+    --accent-line: var(--paper-line);
+    --accent-soft: rgba(148, 99, 26, 0.10);
+    --border-color: var(--paper-border);
+    --border-strong: #cdbfa4;
+
+    background-color: var(--paper-bg);
+    color: var(--paper-ink);
+    font-family: var(--font-serif);
     line-height: 1.8;
+    min-height: 100vh;
 }
 
 [data-theme="dark"] .blog-post-page {
-    background-color: #1a1a1a;
-    color: #e0e0e0;
+    /* Paper palette — DARK: cool grey ruled sheet on a dark desk
+       (a calmer "night" paper, dimmer than the cream — matches the grey
+       ruled-paper reference). Swap --paper-sheet/-bg here to retune it.) */
+    --paper-bg: #131210;      /* dark desk frames the grey sheet */
+    --paper-sheet: #c9cac3;   /* grey paper */
+    --paper-ink: #2a2a26;
+    --paper-ink-soft: #55534b;
+    --paper-heading: #322f29;
+    --paper-accent: #7a5214;  /* deep gold-brown, ~4.6:1 on grey */
+    --paper-line: #a7a89f;
+    --paper-border: #b0b1a8;
+    --paper-callout: #d4d5ce;
+    --paper-rule: rgba(60, 62, 54, 0.16);
+    --paper-rule-gap: 34px;
+
+    --primary-color: var(--paper-accent);
+    --secondary-color: #9a6a1c;
+    --text-primary: var(--paper-ink);
+    --text-secondary: var(--paper-ink-soft);
+    --text-muted: #5e5c54;
+    --accent-line: var(--paper-line);
+    --accent-soft: rgba(122, 82, 20, 0.12);
+    --border-color: var(--paper-border);
+    --border-strong: #9a9b92;
 }
 
 .paper-container {
-    max-width: 800px;
+    max-width: 760px;
     margin: 4rem auto;
-    padding: 4rem;
-    background-color: #fffdf0;
-    /* Yellowish paper color */
-    box-shadow:
-        0 1px 4px rgba(0, 0, 0, 0.05),
-        0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: clamp(1.75rem, 5vw, 4rem);
+    background-color: var(--paper-sheet);
+    /* Horizontal ruled lines, like notebook paper */
+    background-image: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent calc(var(--paper-rule-gap) - 1px),
+        var(--paper-rule) calc(var(--paper-rule-gap) - 1px),
+        var(--paper-rule) var(--paper-rule-gap));
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06), 0 12px 32px rgba(0, 0, 0, 0.14);
     position: relative;
-    border: 1px solid #e6e0d0;
+    border: 1px solid var(--paper-border);
+    border-radius: var(--radius-base);
 }
 
-[data-theme="dark"] .paper-container {
-    background-color: #2a2620;
-    /* Darker paper for dark mode */
-    border-color: #3e3830;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* Paper texture effect */
+/* Paper grain — sits over the ruling, under the text */
 .paper-container::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
-    opacity: 0.5;
+    opacity: 0.35;
     pointer-events: none;
+    border-radius: inherit;
     z-index: 0;
 }
 
@@ -1510,86 +1787,100 @@ section {
 }
 
 .blog-post-title {
-    font-family: 'Playfair Display', serif;
-    /* Elegant heading font */
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-    color: #4a3b32;
-    border-bottom: 2px solid #d4c5b0;
+    font-family: var(--font-serif);
+    font-size: clamp(1.9rem, 1.2rem + 3vw, 2.75rem);
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+    color: var(--paper-heading);
+    border-bottom: 2px solid var(--paper-line);
     padding-bottom: 1rem;
 }
 
-[data-theme="dark"] .blog-post-title {
-    color: #d4c5b0;
-    border-color: #5a4b42;
+.blog-post-meta {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    letter-spacing: 0.01em;
 }
 
-.blog-post-meta {
-    font-family: 'Courier New', monospace;
-    /* Typewriter style for meta */
-    font-size: 0.9rem;
-    color: #8a7b72;
-    margin-bottom: 2rem;
-    font-style: italic;
+.blog-post-tldr {
+    background: var(--paper-callout);
+    border-left: 3px solid var(--paper-accent);
+    padding: 1.1rem 1.35rem;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
 }
 
 .blog-post-body p {
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+.blog-post-body strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.blog-post-body ul {
+    margin: 0 0 1.5rem 1.25rem;
+    padding-left: 1rem;
+}
+
+.blog-post-body li {
+    margin-bottom: 0.7rem;
+    font-size: 1.08rem;
+    line-height: 1.7;
 }
 
 .blog-post-body h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    margin-top: 2.5rem;
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 1.1rem + 1.6vw, 1.9rem);
+    margin-top: 2.75rem;
     margin-bottom: 1rem;
-    color: #5d4037;
+    color: var(--paper-heading);
 }
 
-[data-theme="dark"] .blog-post-body h2 {
-    color: #ccbfa3;
+.blog-post-body h3 {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    margin-top: 1.75rem;
+    margin-bottom: 0.6rem;
+    color: var(--paper-heading);
 }
 
 .blog-post-body img {
     max-width: 100%;
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
     margin: 2rem 0;
-    border: 5px solid #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-[data-theme="dark"] .blog-post-body img {
-    border-color: #3e3830;
+    border: 1px solid var(--border-strong);
+    box-shadow: var(--shadow-md);
 }
 
 .back-link {
     display: inline-block;
-    margin-top: 3rem;
-    font-family: 'Courier New', monospace;
+    margin-bottom: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
     text-decoration: none;
-    color: #5d4037;
-    border-bottom: 1px dashed #5d4037;
-    transition: all 0.3s ease;
+    color: var(--primary-color);
+    border-bottom: 1px dashed var(--accent-line);
+    transition: var(--transition-base);
 }
 
 .back-link:hover {
-    color: #8d6e63;
+    color: var(--secondary-color);
     border-bottom-style: solid;
-}
-
-[data-theme="dark"] .back-link {
-    color: #ccbfa3;
-    border-color: #ccbfa3;
 }
 
 @media (max-width: 768px) {
     .paper-container {
-        padding: 2rem;
         margin: 2rem 1rem;
-    }
-
-    .blog-post-title {
-        font-size: 2rem;
     }
 }
 
@@ -1599,7 +1890,7 @@ section {
     top: 15px;
     right: 15px;
     background: var(--primary-color);
-    color: white;
+    color: var(--on-accent);
     padding: 0.4rem 1rem;
     border-radius: 20px;
     font-size: 0.8rem;
