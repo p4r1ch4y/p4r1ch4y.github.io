@@ -353,14 +353,15 @@ function initializeTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeIcon(newTheme);
+            const apply = () => {
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeIcon(newTheme);
+            };
 
-            // Re-initialize particles with new colors if needed
-            if (particles.length > 0) {
-                // Optional: Change particle colors based on theme
-            }
+            // Circular reveal growing from the toggle button (theme-switch.js)
+            if (window.themeSwitch) window.themeSwitch(themeToggle, apply);
+            else apply();
         });
     }
 }

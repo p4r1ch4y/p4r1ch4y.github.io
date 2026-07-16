@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Subrata Choudhury · Software Engineer</title>
+    <meta name="description"
+        content="Software engineer building reliable systems for real people: public platforms, healthcare tech, and AI-powered tools. Full-stack, with a background in electrical engineering and a focus on clean, dependable software.">
+    <meta name="keywords"
+        content="Subrata Choudhury, Software Engineer, Full Stack Engineer, Healthcare Tech, Public Interest Technology, Node.js, TypeScript, Web3, Solana, Developer Relations">
+    <meta name="author" content="Subrata Choudhury">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://p4r1ch4y.github.io/portfolio.html">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Subrata Choudhury · Software Engineer">
+    <meta property="og:description"
+        content="Building reliable systems for real people: public platforms, healthcare tech, and AI-powered tools. Full-stack engineer who keeps things simple and dependable.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://p4r1ch4y.github.io/portfolio.html">
+    <!-- NOTE: Replace with a real screenshot of your new portfolio -->
+    <meta property="og:image" content="https://p4r1ch4y.github.io/portfolio/assets/portfolio-preview.jpg">
+    <meta property="og:site_name" content="Subrata Choudhury Portfolio">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@iamcsubrata">
+    <meta name="twitter:creator" content="@iamcsubrata">
+    <meta name="twitter:title" content="Subrata Choudhury · Software Engineer">
+    <meta name="twitter:description"
+        content="Building practical software for healthcare, public systems, and AI tools. Full-stack, simple, and dependable.">
+    <!-- NOTE: Replace with a real screenshot -->
+    <meta name="twitter:image" content="https://p4r1ch4y.github.io/portfolio/assets/portfolio-preview.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="app.js" as="script">
+
+    <!-- Structured Data - UPDATED -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Subrata Choudhury",
+        "jobTitle": "Software Engineer",
+            "description": "Software engineer building reliable systems for real people: public platforms, healthcare tech, and AI-powered tools. Full-stack, with a background in electrical engineering and a focus on clean, dependable software.",
+        "url": "https://p4r1ch4y.github.io/",
+        "email": "iamcsubrata@proton.me",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Kharagpur",
+            "addressRegion": "West Bengal",
+            "addressCountry": "India"
+        },
+        "sameAs": [
+            "https://github.com/p4r1ch4y",
+            "https://linkedin.com/in/iamcsubrata",
+            "https://twitter.com/iamcsubrata"
+        ],
+        "knowsAbout": [
+            "Software Engineering",
+            "Full Stack Development",
+            "Healthcare Technology",
+            "Public Interest Technology",
+            "Web3 Technologies",
+            "Solana",
+            "Developer Relations"
+        ],
+        "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "IIT Guwahati"
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <!-- Skip to Content Link for Accessibility -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <!-- Loading Screen (Unchanged, it's good) -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">SC</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <div class="loading-text">Initializing Portfolio...</div>
+        </div>
+    </div>
+
+    <!-- Particle Background (Unchanged) -->
+    <div id="particles-container"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo"><a href="#home" style="text-decoration: none; color: inherit;"><span
+                        class="logo-text">Subrata Choudhury</span></a></div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="blog.html" class="nav-link">Blog</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="index.html" class="nav-link" title="One-page card view"><i class="fas fa-id-badge"></i> Card</a></li>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle mobile navigation" aria-expanded="false">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section - FULLY REDESIGNED NARRATIVE -->
+        <section id="home" class="hero" aria-label="Introduction and hero section">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <!-- The typewriter text now shows your trajectory -->
+                    <span class="typewriter" id="typewriter"></span>
+                    <span class="cursor">|</span>
+                </h1>
+                <p class="hero-subtitle">Building practical software for real-world use cases: healthcare, public
+                    systems, and web platforms.</p>
+                <p class="hero-description">
+                    I'm a software engineer focused on building reliable systems for real people: public platforms,
+                    health records, and tools that quietly run in the background and just work. I enjoy taking messy,
+                    high-stakes problems and turning them into simple, dependable software.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn--primary">View My Work</a>
+                    <!-- NOTE: Add the correct path to your PDF resume -->
+                    <!-- <a href="assets/Subrata_Choudhury_Resume.pdf" class="btn btn--outline" id="download-resume">Download
+                        Resume</a> -->
+                </div>
+                <div class="hero-socials">
+                    <a href="https://github.com/p4r1ch4y" target="_blank" rel="noopener noreferrer"
+                        class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/iamcsubrata" target="_blank" rel="noopener noreferrer"
+                        class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://twitter.com/iamcsubrata" target="_blank" rel="noopener noreferrer"
+                        class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="https://youtube.com/@p4r1ch4y" target="_blank" rel="noopener noreferrer"
+                        class="social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.kaggle.com/subratachoudhury" target="_blank" rel="noopener noreferrer"
+                        class="social-link"><i class="fab fa-kaggle"></i></a>
+                </div>
+                <div class="hero-profiles" aria-hidden="false">
+                    <a href="https://profiles.cyfrin.io/u/p4r1ch4y" target="_blank" rel="noopener noreferrer"
+                        class="btn btn--outline profile-btn">Cyfrin Profile</a>
+                    <a href="https://cantina.xyz/u/p4r1ch4y" target="_blank" rel="noopener noreferrer"
+                        class="btn btn--outline profile-btn">Cantina Profile</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <span class="section-kicker">01 / Who I Am</span>
+                <h2 class="section-title">About Me</h2>
+
+                <div class="about-grid-layout">
+                    <!-- Left Column: Text & Interests -->
+                    <div class="about-left">
+                        <div class="about-text">
+                            <p>
+                                I'm a software engineer with a background in electrical engineering and a habit of
+                                building things that solve real problems. I like working on both backend systems and
+                                frontend interfaces, as long as the outcome is clean, predictable, and useful in the
+                                real world.
+                            </p>
+                            <p>
+                                A lot of my work sits at the intersection of public systems, healthcare tech, and Web3.
+                                I've worked on patient record systems with offline sync, document workflows with
+                                e-signatures, and agentic AI tools that plug into existing workflows instead of
+                                replacing them. I enjoy taking vague requirements, understanding the real need, and then
+                                shaping them into straightforward, maintainable software.
+                            </p>
+                            <p>
+                                Outside of code, I like calisthenics, music, and low-budget trips to the hills. I also
+                                spend time in developer communities, sharing what I learn, learning from others, and
+                                contributing to open-source tools when I can. I strongly believe small, honest
+                                contributions and collaboration move technology forward more than buzzwords ever will.
+                            </p>
+                        </div>
+
+                        <div class="about-interests">
+                            <h3>Interests</h3>
+                            <div class="tech-tag-group">
+                                <span>Public-Interest Tech</span>
+                                <span>Backend & Platform Engineering</span>
+                                <span>Web3 & Blockchain</span>
+                                <span>Developer Relations</span>
+                                <span>Security & Auth</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Stats & Achievements -->
+                    <div class="about-right">
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <div class="stat-number" data-target="17+">0</div>
+                                <div class="stat-label">Projects Built</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" data-target="9+">0</div>
+                                <div class="stat-label">Hackathons</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" data-target="12+">0</div>
+                                <div class="stat-label">Certifications</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" data-target="15+">0</div>
+                                <div class="stat-label">Technical Blogs</div>
+                            </div>
+                        </div>
+
+                        <div class="achievements-list">
+                            <h3>Key Achievements</h3>
+                            <div class="achievement-item">
+                                <i class="fas fa-trophy achievement-icon"></i>
+                                <div>
+                                    <h4>2x Hackathon Winner</h4>
+                                    <p>Won <a
+                                            href="https://www.linkedin.com/feed/update/urn:li:activity:7353082976286461957/"
+                                            target="_blank" rel="noopener noreferrer">Jun 2025 Anveshan Hackathon</a> &
+                                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7404767797161078784/"
+                                            target="_blank" rel="noopener noreferrer">Dec 2025 Hackarena 2.O
+                                            Hackathon</a> By Masai
+                                        School in Software Development
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="achievement-item">
+                                <i class="fas fa-pen-nib achievement-icon"></i>
+                                <div>
+                                    <h4>Technical Writing Prize</h4>
+                                    <p>2nd Position at <a
+                                            href="https://arbiscan.io/tx/0x58176a9d818919f80f444d1dff039bcd93964dfc9f02f8669b6264028cb0cd1d"
+                                            target="_blank" rel="noopener noreferrer">DevRel Uni Cohort 6 & Prize from
+                                            The Arbitrum Foundation</a></p>
+                                </div>
+                            </div>
+                            <div class="achievement-item">
+                                <i class="fas fa-users achievement-icon"></i>
+                                <div>
+                                    <h4>Community Leadership</h4>
+                                    <p>Managed Global Member Communities & Blockchain initiatives</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="experience">
+            <div class="container">
+                <span class="section-kicker">02 / Where I’ve Worked</span>
+                <h2 class="section-title">Professional Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot active"></div>
+                        <div class="timeline-content">
+                            <h3>Software Engineering Intern</h3>
+                            <h4>Confidential (under NDA)</h4>
+                            <span class="timeline-period">Jan 2026 to Jul 2026</span>
+                            <p>Six months of backend engineering on large-scale public-sector platforms. Migrated
+                                core services from Python to Node.js/TypeScript, integrated single sign-on end-to-end
+                                (IdP-initiated login, single logout, email-OTP MFA), and hardened file-upload and API
+                                flows. Built KPI dashboards, org-hierarchy trees and a document-viewer experience, and
+                                ran a Google Maps / BigQuery data pipeline for a pilot program.</p>
+                            <div class="timeline-tech">
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">TypeScript</span>
+                                <span class="tech-tag">Prisma</span>
+                                <span class="tech-tag">SSO / Auth</span>
+                                <span class="tech-tag">BigQuery</span>
+                                <span class="tech-tag">Data Engineering</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Web3 Project Administrator</h3>
+                            <h4>O3 Labs Inc.</h4>
+                            <span class="timeline-period">Jul 2022 - Feb 2024</span>
+                            <p>Led community moderation and technical support for 50K+ global user base across diverse
+                                time zones. Contributed to business development and enhanced blockchain adaptation
+                                overall.</p>
+                            <div class="timeline-tech">
+                                <span class="tech-tag">Community Management</span>
+                                <span class="tech-tag">Web3</span>
+                                <span class="tech-tag">Blockchain</span>
+                                <span class="tech-tag">Technical Support</span>
+                                <span class="tech-tag">Business Development</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Web3 Administrator</h3>
+                            <h4>Theia Studios</h4>
+                            <span class="timeline-period">Jan 2022 - May 2022</span>
+                            <p>Moderated gaming communities and explained blockchain concepts in accessible language.
+                                Provided technical support and contributed to business development strategies for
+                                blockchain gaming ecosystem.</p>
+                            <div class="timeline-tech">
+                                <span class="tech-tag">Community Moderation</span>
+                                <span class="tech-tag">Blockchain Education</span>
+                                <span class="tech-tag">Gaming</span>
+                                <span class="tech-tag">Technical Support</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <div class="container">
+                <span class="section-kicker">03 / Things I’ve Built</span>
+                <h2 class="section-title">Featured Projects</h2>
+
+                <!-- Project Filters -->
+                <div class="filter-container">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="fullstack">Full Stack</button>
+                    <button class="filter-btn" data-filter="devrel_web3">Web3 & DevRel</button>
+                    <button class="filter-btn" data-filter="ai">AI & IoT</button>
+                    <button class="filter-btn" data-filter="backend">Backend</button>
+                </div>
+
+                <div class="projects-intro">
+                    <p>I design and build full-stack applications, from database schemas and APIs to responsive
+                        frontends. My focus is on things that are easy to reason about, easy to maintain, and actually
+                        useful for the people who use them.</p>
+                </div>
+
+            </div>
+
+            <div class="projects-grid">
+                <!-- CIVIC (Featured) -->
+                <div class="project-card" data-category="ai">
+                    <div class="project-image">
+                        <div class="featured-badge">
+                            <i class="fas fa-star"></i> Featured
+                        </div>
+                        <img src="/assets/projects/CIVIC_Extension_SC.webp"
+                            alt="CIVIC AI Guardian"
+                            onerror="this.src='https://via.placeholder.com/400x250/2a2a2a/ffffff?text=CIVIC'">
+                        <div class="project-overlay">
+                            <button class="btn btn--primary project-details-btn" data-project="16">View
+                                Details</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>CIVIC - Client-side AI Guardian</h3>
+                        <p>An on-device AI guardian that flags risky content and calls (misinformation, phishing,
+                            "digital arrest" scams) in real time while preserving user privacy. Built for eRaksha AI for Peace & Safety Initiative</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">AI/ML</span>
+                            <span class="tech-tag">Privacy</span>
+                            <span class="tech-tag">On-Device</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="posts/civic-ai-guardian.html" class="project-link">
+                                <i class="fas fa-file-alt"></i> Read Blog
+                            </a>
+                            <a href="https://github.com/p4r1ch4y/civic" class="project-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gemini Adaptive Planner (Featured) -->
+                <div class="project-card" data-category="ai">
+                    <div class="project-image">
+                        <div class="featured-badge">
+                            <i class="fas fa-star"></i> Featured
+                        </div>
+                        <img src="assets/projects/geminiPlanner.webp" alt="Gemini Adaptive Planner"
+                            onerror="this.src='https://via.placeholder.com/400x250/4285f4/fff?text=Gemini+Planner'">
+                        <div class="project-overlay">
+                            <button class="btn btn--primary project-details-btn" data-project="15">View
+                                Details</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Gemini Adaptive Planner</h3>
+                        <p>Your smart learning buddy - an app that actually understands you and your time and goals.
+                            Built for Google DeepMind - Vibe Code with Gemini 3 Pro Hackathon.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Gemini 3 Pro Preview</span>
+                            <span class="tech-tag">Google AI Studio</span>
+                            <span class="tech-tag">Prompt Engineering</span>
+                            <span class="tech-tag">AI Agent</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://aistudio.google.com/apps/drive/1QytT4J2naFCihfKo5N5C_kn_bOptsnfB?showPreview=true&showAssistant=true&fullscreenApplet=true"
+                                class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://www.kaggle.com/competitions/gemini-3/writeups/gemini-adaptive-planner-adaptive-learning-planne#3374407"
+                                class="project-link" target="_blank">
+                                <i class="fab fa-kaggle"></i> Kaggle
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Smart City OS (Featured) -->
+                <div class="project-card" data-category="ai">
+                    <div class="project-image">
+                        <div class="featured-badge">
+                            <i class="fas fa-star"></i> Featured
+                        </div>
+                        <img src="assets/projects/smartCityOS.webp" alt="Smart City OS"
+                            onerror="this.src='https://via.placeholder.com/400x250/0f3460/eee?text=Smart+City+OS'">
+                        <div class="project-overlay">
+                            <button class="btn btn--primary project-details-btn" data-project="5">View
+                                Details</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Smart City OS - A Smart City Management OS</h3>
+                        <p>AI-powered IoT Embedded Smart City Management OS / Application which tracks city wide
+                            sensor data and uses those data to predict and take better management decisions.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Blockchain</span>
+                            <span class="tech-tag">AI/ML Models</span>
+                            <span class="tech-tag">Supabase</span>
+                            <span class="tech-tag">IoT</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://smartcityos.vercel.app/" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/p4r1ch4y/smart_city_os" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHC Commons (Featured) -->
+                <div class="project-card" data-category="fullstack">
+                    <div class="project-image">
+                        <div class="featured-badge">
+                            <i class="fas fa-star"></i> Featured
+                        </div>
+                        <img src="assets/projects/phc.webp" alt="PHC Commons"
+                            onerror="this.src='https://via.placeholder.com/400x250/0f3460/eee?text=PHC+Commons'">
+                        <div class="project-overlay">
+                            <button class="btn btn--primary project-details-btn" data-project="0">View
+                                Details</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>PHC Commons - Public Health Center Management</h3>
+                        <p>Full Stack Web Application for Medical PHCs, Government, and Private entities. Built
+                            during MasaiVerse x platformcommons Hackarena Hackathon.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Container App</span>
+                            <span class="tech-tag">Progressive Web App</span>
+                            <span class="tech-tag">Hackathon</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://phccommons.vercel.app/" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/p4r1ch4y/phc_hms_platformcommons" class="project-link"
+                                target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LifeWeeks (Featured) -->
+                <div class="project-card" data-category="ai">
+                    <div class="project-image">
+                        <div class="featured-badge">
+                            <i class="fas fa-star"></i> Featured
+                        </div>
+                        <img src="assets/projects/lifeWeeks.webp" alt="LifeWeeks AI Timeline App"
+                            onerror="this.src='https://via.placeholder.com/400x250/0f3460/eee?text=LifeWeeks'">
+                        <div class="project-overlay">
+                            <button class="btn btn--primary project-details-btn" data-project="9">View
+                                Details</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>LifeWeeks - Your Life in 4,000 Weeks</h3>
+                        <p>AI-powered interactive timeline application that visualizes your life week by week.
+                            Hackathon winner with advanced AI features.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Next.js</span>
+                            <span class="tech-tag">AI Integration</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Hugging Face</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://lifeweeks.vercel.app/" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/p4r1ch4y/FunctionForce_LifeInWeeks" class="project-link"
+                                target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daily Spark Solana (Featured) -->
+                <div class="project-card" data-category="devrel_web3">
+                    <div class="project-image">
+                        <div class="featured-badge">
+                            <i class="fas fa-star"></i> Featured
+                        </div>
+                        <img src="assets/projects/dailySpark.webp" alt="Daily Spark Solana"
+                            onerror="this.src='https://via.placeholder.com/400x250/1a1a2e/eee?text=Daily+Spark'">
+                        <div class="project-overlay">
+                            <button class="btn btn--primary project-details-btn" data-project="6">View
+                                Details</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Daily Spark Solana - A Dapp on Solana Devnet </h3>
+                        <p>An interative web3 application built on Solana Devnet. With Working frontend and anchor
+                            programs deployed on Solana Devnet.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Solana Program</span>
+                            <span class="tech-tag">Blockchain Programming</span>
+                            <span class="tech-tag">Smart Contracts</span>
+                            <span class="tech-tag">Frontend Development</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://dailysparksolana.vercel.app/" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="#" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LogisTech -->
+                <div class="project-card" data-category="backend">
+                    <div class="project-image">
+                        <img src="assets/projects/logistech.webp" alt="LogisTech"
+                            onerror="this.src='https://via.placeholder.com/400x250/1a1a2e/eee?text=LogisTech'">
+                        <div class="project-overlay">
+                            <button class="btn btn--primary project-details-btn" data-project="1">View
+                                Details</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>LogisTech - Warehouse Orchestration System</h3>
+                        <p>Centralised warehouse orchestration system built as a backend assignment. Targeted for
+                            Logistics and Warehousing sectors.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Backend</span>
+                            <span class="tech-tag">Logistics</span>
+                            <span class="tech-tag">Warehouse</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://logistech-78pt.onrender.com/" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/p4r1ch4y/logisTech" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Smart CRM -->
+                <div class="project-card" data-category="fullstack">
+                    <div class="project-image">
+                        <img src="assets/projects/crm.webp" alt="Smart CRM System"
+                            onerror="this.src='https://via.placeholder.com/400x250/16213e/eee?text=Smart+CRM'">
+                        <div class="project-overlay">
+                            <button class="btn btn--primary project-details-btn" data-project="2">View
+                                Details</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Smart CRM System</h3>
+                        <p>Full Stack Web Application for Gym Owners & Business Owners. Built for Masters' Union
+                            Hackathon.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Full Stack</span>
+                            <span class="tech-tag">CRM</span>
+                            <span class="tech-tag">Business Tool</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://smartcrmsystem.vercel.app/" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/p4r1ch4y/crm-system" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Xporter -->
+                <div class="project-card" data-category="devrel_web3">
+                    <div class="project-image">
+                        <img src="assets/projects/xporter.webp" alt="Xporter"
+                            onerror="this.src='https://via.placeholder.com/400x250/533483/eee?text=Xporter'">
+                        <div class="project-overlay">
+                            <button class="btn btn--primary project-details-btn" data-project="3">View
+                                Details</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Xporter - Universal Gateway CLI</h3>
+                        <p>Universal Gateway CLI for x402.org protocol by Coinbase. Built during Solana and Base
+                            x402 Hackathon.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Rust</span>
+                            <span class="tech-tag">CLI</span>
+                            <span class="tech-tag">Solana</span>
+                            <span class="tech-tag">x402</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/p4r1ch4y/xporter" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hangoutly -->
+                <div class="project-card" data-category="fullstack">
+                    <div class="project-image">
+                        <img src="assets/projects/hangoutly.webp" alt="Hangoutly"
+                            onerror="this.src='https://via.placeholder.com/400x250/ff6600/fff?text=Hangoutly'">
+                        <div class="project-overlay">
+                            <button class="btn btn--primary project-details-btn" data-project="4">View
+                                Details</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Hangoutly - Event Planning App</h3>
+                        <p>Full Stack Web Application for planning hangouts and outings. Built for MasaiVerse x
+                            Nobroker Hackarena Hackathon.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Full Stack</span>
+                            <span class="tech-tag">Event Planning</span>
+                            <span class="tech-tag">Social</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://hangoutly.pages.dev/" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/p4r1ch4y/hangoutly_aryatechies" class="project-link"
+                                target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stylus SDK -->
+                <div class="project-card" data-category="devrel_web3">
+                    <div class="project-image">
+                        <img src="assets/projects/stylus.webp" alt="Stylus SDK Technical Articles"
+                            onerror="this.src='https://via.placeholder.com/400x250/1a1a2e/eee?text=Stylus+SDK'">
+                        <div class="project-overlay">
+                            <button class="btn btn--primary project-details-btn" data-project="7">View
+                                Details</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Stylus SDK Technical Documentation</h3>
+                        <p>Comprehensive technical articles and smart contract development guides for Stylus SDK
+                            during DevRel Uni Cohort 6. Winner of Technical Writing Prize.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Technical Writing</span>
+                            <span class="tech-tag">Web3 Education</span>
+                            <span class="tech-tag">Smart Contracts</span>
+                            <span class="tech-tag">Developer Relations</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://bento.me/stylus" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Portfolio
+                            </a>
+                            <a href="#" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> Documentation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Portal -->
+                <div class="project-card" data-category="fullstack">
+                    <div class="project-image">
+                        <img src="assets/projects/jobPortal.webp" alt="Job Portal Full Stack Application"
+                            onerror="this.src='https://via.placeholder.com/400x250/16213e/eee?text=Job+Portal'">
+                        <div class="project-overlay">
+                            <button class="btn btn--primary project-details-btn" data-project="8">View
+                                Details</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Job Portal - Full Stack Application</h3>
+                        <p>Complete job portal platform with user authentication, job posting, application tracking,
+                            and real-time notifications.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">REST API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://job-portal-frontend-parichay.vercel.app/" class="project-link"
+                                target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/p4r1ch4y/job-portal" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SkillSync -->
+                <div class="project-card" data-category="fullstack">
+                    <div class="project-image">
+                        <img src="assets/projects/skillSync.webp" alt="SkillSync Matching Platform"
+                            onerror="this.src='https://via.placeholder.com/400x250/533483/eee?text=SkillSync'">
+                        <div class="project-overlay">
+                            <button class="btn btn--primary project-details-btn" data-project="10">View
+                                Details</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>SkillSync - Intelligent Recruitment Platform</h3>
+                        <p>Advanced candidate-recruiter matching platform with intelligent algorithms, real-time
+                            communication, and comprehensive analytics dashboard.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">SQL Database</span>
+                            <span class="tech-tag">Matching Algorithms</span>
+                            <span class="tech-tag">Team Leadership</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://skillsynced.vercel.app/" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/p4r1ch4y/skillsync" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- XDA -->
+                <div class="project-card" data-category="devrel_web3">
+                    <div class="project-image">
+                        <img src="assets/projects/xdaProfile.webp" alt="XDA Developers Technical Articles"
+                            onerror="this.src='https://via.placeholder.com/400x250/ff6600/fff?text=XDA+Articles'">
+                        <div class="project-overlay">
+                            <button class="btn btn--primary project-details-btn" data-project="14">View
+                                Details</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Android Modding on XDA Forums - Technical Writing</h3>
+                        <p>7+ years of technical writing and community contributions on XDA Developers and related
+                            forums. Published tutorials, guides, and system modification articles.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Technical Writing</span>
+                            <span class="tech-tag">Android Development</span>
+                            <span class="tech-tag">Community Building</span>
+                            <span class="tech-tag">System Modification</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> XDA Profile
+                            </a>
+                            <a href="https://bento.me/parichay" class="project-link" target="_blank">
+                                <i class="fas fa-user"></i> Portfolio
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills">
+            <div class="container">
+                <span class="section-kicker">04 / My Toolkit</span>
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="skills-intro">
+                    <p>A polyglot engineer with hands-on experience across the stack, from low-level systems programming
+                        to modern, full-stack web applications.</p>
+                </div>
+                <div class="skills-grid-new">
+                    <div class="skill-category-new">
+                        <h3>Languages</h3>
+                        <div class="tech-tag-group">
+                            <span>C++</span><span>Python</span><span>JavaScript</span><span>TypeScript</span><span>SQL</span><span>Rust</span>
+                        </div>
+                    </div>
+                    <div class="skill-category-new">
+                        <h3>Frontend</h3>
+                        <div class="tech-tag-group">
+                            <span>React</span><span>Next.js</span><span>HTML5/CSS3</span><span>Tailwind CSS</span>
+                        </div>
+                    </div>
+                    <div class="skill-category-new">
+                        <h3>Backend</h3>
+                        <div class="tech-tag-group">
+                            <span>Node.js</span><span>Express.js</span><span>JWT Auth</span><span>REST APIs</span>
+                        </div>
+                    </div>
+                    <div class="skill-category-new">
+                        <h3>Databases & BaaS</h3>
+                        <div class="tech-tag-group">
+                            <span>PostgreSQL</span><span>MongoDB</span><span>Supabase</span><span>Neon</span>
+                        </div>
+                    </div>
+                    <div class="skill-category-new">
+                        <h3>Web3 & Protocol</h3>
+                        <div class="tech-tag-group">
+                            <span>Solana</span><span>Anchor</span><span>Smart Contracts</span><span>Protocol
+                                Security</span>
+                        </div>
+                    </div>
+                    <div class="skill-category-new">
+                        <h3>DevTools & Concepts</h3>
+                        <div class="tech-tag-group">
+                            <span>Git/GitHub</span><span>Docker</span><span>System Design</span><span>Algorithms</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="academic-projects" class="academic-projects">
+            <div class="container">
+                <h2 class="section-title">Academic & Hardware Projects</h2>
+                <div class="academic-intro">
+                    <p>Foundation projects from my Electrical Engineering background, showcasing hands-on experience
+                        with circuit design, signal processing, and embedded systems.</p>
+                </div>
+                <div class="academic-grid">
+                    <div class="academic-card">
+                        <div class="academic-icon">
+                            <i class="fas fa-wave-square"></i>
+                        </div>
+                        <h3>Digital Signal Processing Suite</h3>
+                        <p>Advanced signal processing algorithms for real-time audio and biomedical signal analysis with
+                            MATLAB and Python implementation.</p>
+                        <div class="academic-tech">
+                            <span class="tech-tag-small">MATLAB</span>
+                            <span class="tech-tag-small">Python</span>
+                            <span class="tech-tag-small">NumPy</span>
+                            <span class="tech-tag-small">Signal Processing</span>
+                        </div>
+                    </div>
+
+                    <div class="academic-card">
+                        <div class="academic-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>AC-DC Inverter Fabrication</h3>
+                        <p>Group project designing and building a homemade AC-DC inverter for portable power solutions.
+                            Hands-on electrical engineering experience.</p>
+                        <div class="academic-tech">
+                            <span class="tech-tag-small">Circuit Design</span>
+                            <span class="tech-tag-small">Power Electronics</span>
+                            <span class="tech-tag-small">Analog Circuits</span>
+                            <span class="tech-tag-small">Team Project</span>
+                        </div>
+                    </div>
+
+                    <div class="academic-card">
+                        <div class="academic-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <h3>IC555 Timer Relay Circuit</h3>
+                        <p>Electronic circuit project implementing precise time delay functionality using IC555 timer
+                            and microcontroller integration.</p>
+                        <div class="academic-tech">
+                            <span class="tech-tag-small">IC555</span>
+                            <span class="tech-tag-small">Microcontrollers</span>
+                            <span class="tech-tag-small">8051</span>
+                            <span class="tech-tag-small">Embedded Systems</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="education">
+            <div class="container">
+                <span class="section-kicker">05 / Where I Studied</span>
+                <h2 class="section-title">Education</h2>
+                <div class="education-grid">
+                    <div class="education-card">
+                        <div class="education-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="education-content">
+                            <h3>Computer Science Engineering</h3>
+                            <h4> IIT Guwahati</h4>
+                            <span class="education-period">May 2024 - December 2025</span>
+                            <p>Computer Science Engineering Credit Linked Program with Masai School and NSDC. With focus on AI, secure systems, and high-performance
+                                software. Specializing in System Design, algorithms, and S-SDLC principles.</p>
+                            <div class="education-tech">
+                                <span class="tech-tag-small">C++</span>
+                                <span class="tech-tag-small">System Design and Architecture</span>
+                                <span class="tech-tag-small">Database</span>
+                                <span class="tech-tag-small">Algorithms</span>
+                                <span class="tech-tag-small">Data Structures</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="education-card">
+                        <div class="education-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="education-content">
+                            <h3>Electrical Engineering</h3>
+                            <h4>XXXX Govt. Engineering College</Canvas></h4>
+                            <span class="education-period">Aug 2020 - Aug 2023</span>
+                            <p>Comprehensive electrical engineering education covering power systems, power generation,
+                                control theory, and digital electronics systems.</p>
+                            <div class="education-tech">
+                                <span class="tech-tag-small">Circuit Design</span>
+                                <span class="tech-tag-small">Power Systems</span>
+                                <span class="tech-tag-small">Control Theory</span>
+                                <span class="tech-tag-small">Embedded Systems</span>
+                                <span class="tech-tag-small">Microcontrollers</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" class="blog">
+            <div class="container">
+                <span class="section-kicker">06 / Writing</span>
+                <h2 class="section-title">Technical Blog</h2>
+                <div class="blog-content">
+                    <div class="blog-intro">
+                        <h3>Sharing Knowledge Through Writing</h3>
+                        <p>I write about the things I actually work on: public-interest and civic tech
+                            engineering, backend and security, Web3 and developer relations. Some of it is tutorials,
+                            some of it is honest field notes from inside the systems I've helped build.</p>
+                    </div>
+
+                    <div class="blog-redirect-card">
+                        <div class="blog-icon">
+                            <i class="fas fa-feather-pointed"></i>
+                        </div>
+                        <h3>Visit My Blog</h3>
+                        <p>Tutorials and field notes on the things I build.</p>
+                        <a href="blog.html" class="btn btn--primary blog-btn">
+                            <i class="fas fa-book-open"></i> Read My Articles
+                        </a>
+                    </div>
+
+                    <div class="blog-topics">
+                        <h4>Topics I Write About</h4>
+                        <div class="topic-tags">
+                            <span class="topic-tag">Public-Interest Tech</span>
+                            <span class="topic-tag">Civic Tech</span>
+                            <span class="topic-tag">Backend & Security</span>
+                            <span class="topic-tag">Developer Relations</span>
+                            <span class="topic-tag">Web3 & Smart Contracts</span>
+                            <span class="topic-tag">Technical Writing</span>
+                            <span class="topic-tag">Open Source</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications-training" class="certifications-training" role="region"
+            aria-labelledby="certifications-title">
+            <div class="container">
+                <span class="section-kicker">07 / Credentials</span>
+                <h2 class="section-title">Certifications & Training</h2>
+                <div class="certifications-training-grid">
+                    <!-- Certifications -->
+                    <div class="certifications-group">
+                        <h3>Certifications</h3>
+                        <div id="cert-featured" class="card-grid" aria-live="polite">
+                            <!-- Featured certificates will be rendered here (4-5 major items). -->
+                            <p class="muted">Loading featured certificates…</p>
+                        </div>
+                    </div>
+
+                    <!-- Training, Workshops & Hackathons removed from front display; these items are available in 'Show more' -->
+                </div>
+            </div>
+            <!-- Show more toggle: lazy-load larger list when user requests it -->
+            <div class="cert-toggle-wrap">
+                <button id="cert-expand" class="expand-btn" aria-expanded="false"
+                    aria-controls="certifications-more">Show more</button>
+                <div id="certifications-more" class="certifications-more" role="region"
+                    aria-labelledby="certifications-more-title" hidden></div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <span class="section-kicker">08 / Say Hello</span>
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Let's Connect</h3>
+                        <p>I'm passionate about Developer Relations, technical writing, and Web3 technologies. Always
+                            open to discussing opportunities in developer relations, software engineering and blockchain
+                            related roles.</p>
+
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>iamcsubrata@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 XXXXX XXXXX</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Kharagpur, WB</span>
+                        </div>
+
+                        <div class="contact-socials">
+                            <a href="https://github.com/p4r1ch4y" target="_blank" class="social-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/iamcsubrata" target="_blank" class="social-link">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://twitter.com/iamcsubrata" target="_blank" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://bento.me/parichay" target="_blank" class="social-link">
+                                <i class="fas fa-user"></i>
+                            </a>
+                            <a href="https://youtube.com/@p4r1ch4y" target="_blank" class="social-link">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="https://www.kaggle.com/subratachoudhury" target="_blank" class="social-link">
+                                <i class="fab fa-kaggle"></i>
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <form class="contact-form" id="contact-form">
+                        <input type="hidden" name="access_key" value="7f3d3162-b667-4130-aae3-81e9aa6e5ff5">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" id="subject" name="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full-width">Send Message</button>
+                        <div id="form-message" class="form-message" role="status" aria-live="polite"></div>
+                    </form>
+
+                    <!-- Giscus Guestbook -->
+                    <div class="giscus-container" style="margin-top: 3rem; width: 100%;">
+                        <h3>Guestbook</h3>
+                        <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Leave a message for me!</p>
+                        <script src="https://giscus.app/client.js" data-repo="p4r1ch4y/p4r1ch4y.github.io"
+                            data-repo-id="R_kgDOO9PUjw" data-category="General" data-category-id="DIC_kwDOO9PUj84CzZXi"
+                            data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0"
+                            data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="en"
+                            crossorigin="anonymous" async>
+                            </script>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <a href="index.html" class="footer-card-link" title="One-page card view">
+                    <i class="fas fa-id-badge"></i> View the one-page card
+                </a>
+                <p>&copy; 2025 Subrata Choudhury. Built with passion for the future of technology.</p>
+                <div class="footer-links">
+                    <a href="#home">Privacy Policy</a>
+                    <a href="#home">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+        <button id="back-to-top" class="back-to-top">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </footer>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Anime.js for smooth animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <!-- Ensure app.js is loaded -->
+    <script src="theme-switch.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // JS for the typewriter effect - UPDATED WITH NEW STRINGS
+        document.addEventListener('DOMContentLoaded', function () {
+            const typewriterElement = document.getElementById('typewriter');
+            if (typewriterElement) {
+                const words = ["Software Engineer.", "Backend & Platform Engineer.", "Public-Interest Technologist.", "Web3 Builder."];
+                let wordIndex = 0;
+                let charIndex = 0;
+                let isDeleting = false;
+
+                function type() {
+                    const currentWord = words[wordIndex];
+                    let displayText = '';
+
+                    if (isDeleting) {
+                        displayText = currentWord.substring(0, charIndex - 1);
+                        charIndex--;
+                    } else {
+                        displayText = currentWord.substring(0, charIndex + 1);
+                        charIndex++;
+                    }
+
+                    typewriterElement.textContent = displayText;
+
+                    let typeSpeed = isDeleting ? 100 : 200;
+
+                    if (!isDeleting && charIndex === currentWord.length) {
+                        typeSpeed = 2000; // Pause after typing word
+                        isDeleting = true;
+                    } else if (isDeleting && charIndex === 0) {
+                        isDeleting = false;
+                        wordIndex = (wordIndex + 1) % words.length;
+                        typeSpeed = 500; // Pause before typing new word
+                    }
+
+                    setTimeout(type, typeSpeed);
+                }
+                type();
+            }
+        });
+    </script>
+    <script src="certifications.js"></script>
+    <!-- Theme toggle removed per request -->
+</body>
+
+</html>

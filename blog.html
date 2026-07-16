@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>(function () { document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark'); })();</script>
     <title>Blog - Subrata Choudhury</title>
     <meta name="description"
         content="Technical blog by Subrata Choudhury covering Web3, Developer Relations, and Software Engineering.">
@@ -38,24 +39,31 @@
             border: 1px solid var(--border-color);
             border-radius: var(--radius-lg);
             padding: 2rem;
-            transition: var(--transition-base);
+            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.3, 1),
+                        box-shadow 0.25s ease, border-color 0.25s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .blog-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-color);
+            transform: translateY(-4px);
+            border-color: var(--accent-line);
             box-shadow: var(--shadow-lg);
         }
 
         .blog-date {
-            color: var(--text-muted);
-            font-size: 0.9rem;
+            color: var(--primary-color);
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
             margin-bottom: 1rem;
             display: block;
         }
 
         .blog-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
+            line-height: 1.25;
             margin-bottom: 1rem;
             color: var(--text-primary);
         }
@@ -67,6 +75,7 @@
         }
 
         .read-more {
+            margin-top: auto;
             color: var(--primary-color);
             text-decoration: none;
             font-weight: 500;
@@ -95,13 +104,13 @@
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="nav-logo"><a href="index.html" style="text-decoration: none; color: inherit;"><span
+            <div class="nav-logo"><a href="portfolio.html" style="text-decoration: none; color: inherit;"><span
                         class="logo-text">Subrata Choudhury</span></a></div>
             <ul class="nav-menu" id="nav-menu">
-                <li><a href="index.html#home" class="nav-link">Home</a></li>
-                <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="portfolio.html#home" class="nav-link">Home</a></li>
+                <li><a href="portfolio.html#projects" class="nav-link">Projects</a></li>
                 <li><a href="blog.html" class="nav-link active">Blog</a></li>
-                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                <li><a href="portfolio.html#contact" class="nav-link">Contact</a></li>
                 <li>
                     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
                         <i class="fas fa-moon"></i>
@@ -120,7 +129,7 @@
         <div class="blog-header">
             <h1 class="section-title">Technical Blog</h1>
             <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
-                Thoughts on Web3, Developer Relations, and Software Engineering.
+                Field notes on public-interest tech, backend and security, Web3, and developer relations.
             </p>
             <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem; font-style: italic;">
                 Note: Past blogs are scattered around multiple services and will be integrated here soon.
@@ -211,6 +220,7 @@
         src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <!-- App Logic -->
+    <script src="theme-switch.js"></script>
     <script src="app.js"></script>
 </body>
 

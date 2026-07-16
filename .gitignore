@@ -1,0 +1,8 @@
+
+
+# Leaked/stale tooling config from another project
+.claude/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db

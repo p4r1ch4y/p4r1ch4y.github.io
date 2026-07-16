@@ -4,1201 +4,536 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>(function () { document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark'); })();</script>
 
-    <!-- Primary Meta Tags - UPDATED FOR NEW NARRATIVE -->
-    <title>Subrata Choudhury - Software Engineer & Deep Tech Student</title>
+    <title>Subrata Choudhury · Software Engineer</title>
     <meta name="description"
-        content="A results-driven Software Engineer with a foundation in Web3 and Developer Relations. Currently deepening expertise in Protocol Security, Quantitative Systems, and Quantum Computing through elite training programs.">
-    <meta name="keywords"
-        content="Subrata Choudhury, Software Engineer, Protocol Security, Solana, Web3, Blockchain, AI, Machine Learning, Quantum Computing, Systems Design, IIT Guwahati">
-    <meta name="author" content="Subrata Choudhury">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://p4r1ch4y.github.io/portfolio/">
-
-    <!-- Open Graph Meta Tags - UPDATED -->
-    <meta property="og:title" content="Subrata Choudhury - Software Engineer & Deep Tech Student">
+        content="Full-stack engineer with roots in electrical engineering, working on healthcare tech, public systems, and AI-powered tools. Clear architecture, honest documentation, dependable software.">
+    <link rel="canonical" href="https://p4r1ch4y.github.io/">
+    <meta property="og:title" content="Subrata Choudhury · Software Engineer">
     <meta property="og:description"
-        content="A proven builder now in a up-skilling phase deepening expertise in Protocol Security (School of Solana), Quantitative Systems, and Quantum Computing (IBM Qiskit).">
+        content="Full-stack engineer working on healthcare tech, public systems, and AI-powered tools. Simple, dependable software.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://p4r1ch4y.github.io/portfolio/">
-    <!-- NOTE: Replace with a real screenshot of your new portfolio -->
-    <meta property="og:image" content="https://p4r1ch4y.github.io/portfolio/assets/portfolio-preview.jpg">
-    <meta property="og:site_name" content="Subrata Choudhury Portfolio">
+    <meta property="og:url" content="https://p4r1ch4y.github.io/">
 
-    <!-- Twitter Card Meta Tags - UPDATED -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@iamcsubrata">
-    <meta name="twitter:creator" content="@iamcsubrata">
-    <meta name="twitter:title" content="Subrata Choudhury - Software Engineer & Deep Tech Student">
-    <meta name="twitter:description"
-        content="Exploring the intersection of AI, Web3 Security, and the future of computation.">
-    <!-- NOTE: Replace with a real screenshot -->
-    <meta name="twitter:image" content="https://p4r1ch4y.github.io/portfolio/assets/portfolio-preview.jpg">
-
-    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Preload Critical Resources -->
-    <link rel="preload" href="style.css" as="style">
-    <link rel="preload" href="app.js" as="script">
-
-    <!-- Structured Data - UPDATED -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Subrata Choudhury",
-        "jobTitle": "Student & Software Engineer",
-            "description": "Computer science student and aspiring software engineer exploring Web3, security research, and deep tech. Learning, building, and sharing along the way.",
-        "url": "https://p4r1ch4y.github.io/",
-        "email": "iamcsubrata@proton.me",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Kharagpur",
-            "addressRegion": "West Bengal",
-            "addressCountry": "India"
-        },
-        "sameAs": [
-            "https://github.com/p4r1ch4y",
-            "https://linkedin.com/in/iamcsubrata",
-            "https://twitter.com/iamcsubrata"
-        ],
-        "knowsAbout": [
-            "Software Engineering",
-            "Web3 Technologies",
-            "Blockchain Security",
-            "Solana",
-            "Systems Design",
-            "Quantum Computing",
-            "Developer Relations"
-        ],
-        "alumniOf": {
-            "@type": "EducationalOrganization",
-            "name": "IIT Guwahati"
+    <style>
+        /* ==================================================================
+           Landing: mono-minimal single page.
+           Warm, theme-aware palette (shares the site's light/dark intent) but
+           a terminal/monospace layout distinct from the full portfolio.
+           ================================================================== */
+        :root {
+            --bg: #12100d;
+            --bg-raised: #1a1713;
+            --ink: #f0ece4;
+            --ink-soft: #b3aa9c;
+            --ink-muted: #8a8175;
+            --accent: #e0ab4f;
+            --accent-soft: rgba(224, 171, 79, 0.12);
+            --line: rgba(240, 236, 228, 0.10);
+            --line-strong: rgba(240, 236, 228, 0.18);
+            /* heatmap steps */
+            --hm-0: rgba(240, 236, 228, 0.06);
+            --hm-1: rgba(224, 171, 79, 0.28);
+            --hm-2: rgba(224, 171, 79, 0.5);
+            --hm-3: rgba(224, 171, 79, 0.76);
+            --hm-4: #e6b45a;
+            --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+            --sans: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
         }
-    }
-    </script>
+
+        :root[data-theme="light"] {
+            --bg: #faf8f4;
+            --bg-raised: #f3efe7;
+            --ink: #1c1917;
+            --ink-soft: #57534e;
+            --ink-muted: #78716c;
+            --accent: #8a5a15;
+            --accent-soft: rgba(138, 90, 21, 0.10);
+            --line: rgba(28, 25, 23, 0.10);
+            --line-strong: rgba(28, 25, 23, 0.18);
+            --hm-0: rgba(28, 25, 23, 0.06);
+            --hm-1: rgba(138, 90, 21, 0.22);
+            --hm-2: rgba(138, 90, 21, 0.45);
+            --hm-3: rgba(138, 90, 21, 0.7);
+            --hm-4: #8a5a15;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; transition: none !important; }
+        }
+
+        /* Animated theme switch: View Transitions API (circular reveal from the
+           toggle button; clip-path driven by theme-switch.js) */
+        ::view-transition-group(root) { animation-duration: 0.55s; animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+        ::view-transition-old(root) { animation: none; z-index: 0; }
+        ::view-transition-new(root) { z-index: 1; mix-blend-mode: normal; animation: theme-circle 0.55s cubic-bezier(0.4, 0, 0.2, 1) both; }
+        @keyframes theme-circle {
+            from { clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 0)); }
+            to   { clip-path: circle(var(--vt-r, 150%) at var(--vt-x, 50%) var(--vt-y, 0)); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            ::view-transition-group(root), ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: var(--mono);
+            font-size: 14px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            padding: 0 1.25rem;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .wrap {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2.5rem 0 4rem;
+            position: relative;
+        }
+
+        /* dotted frame lines down each side of the column */
+        .wrap::before,
+        .wrap::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background-image: repeating-linear-gradient(to bottom, var(--line) 0 4px, transparent 4px 8px);
+            pointer-events: none;
+        }
+        .wrap::before { left: max(1.25rem, calc(50% - 300px - 1.25rem)); }
+        .wrap::after { right: max(1.25rem, calc(50% - 300px - 1.25rem)); }
+
+        /* dotted decoration band */
+        .dots {
+            height: 56px;
+            background-image: radial-gradient(var(--line-strong) 1px, transparent 1px);
+            background-size: 10px 10px;
+            opacity: 0.7;
+            margin-bottom: 2.5rem;
+        }
+        .dots.bottom { margin: 3.5rem 0 0; }
+
+        /* top bar */
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            letter-spacing: 0.06em;
+            color: var(--ink-muted);
+            text-transform: uppercase;
+            margin-bottom: 2.25rem;
+        }
+        .topbar .right { display: flex; align-items: center; gap: 0.9rem; }
+        #clock { font-variant-numeric: tabular-nums; }
+        .icon-btn {
+            background: none; border: none; color: var(--ink-muted); cursor: pointer;
+            font-size: 12px; padding: 2px; line-height: 1;
+        }
+        .icon-btn:hover { color: var(--accent); }
+
+        /* hero */
+        .orb {
+            width: 60px; height: 60px; border-radius: 50%;
+            background: radial-gradient(circle at 32% 28%, #ffe3ad, var(--accent) 55%, #9a6a1c 100%);
+            box-shadow: 0 0 32px -6px var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        h1 {
+            font-family: var(--mono);
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.15rem;
+        }
+        .role { color: var(--ink-soft); font-size: 13px; margin-bottom: 1.5rem; }
+        .intro p { color: var(--ink-soft); margin-bottom: 0.9rem; font-size: 13.5px; }
+        .intro strong { color: var(--ink); font-weight: 600; }
+        .intro .hl { color: var(--accent); font-weight: 500; }
+        .status {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-size: 11px; color: var(--ink-muted); margin-top: 0.4rem;
+            text-transform: uppercase; letter-spacing: 0.05em;
+        }
+        .status .dot {
+            width: 7px; height: 7px; border-radius: 50%; background: #6bbf82;
+            box-shadow: 0 0 0 3px rgba(107, 191, 130, 0.18);
+        }
+
+        /* section */
+        section { margin-top: 3.25rem; }
+        .sec-title {
+            font-size: 13px; font-weight: 600; color: var(--ink);
+            margin-bottom: 1.25rem; letter-spacing: 0.01em;
+            display: flex; align-items: baseline; gap: 0.6rem;
+        }
+        .sec-title::after {
+            content: ""; flex: 1; height: 1px; background: var(--line);
+        }
+
+        /* project / experience rows */
+        .card {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 1rem 1.1rem;
+            margin-bottom: 0.75rem;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .card:hover { border-color: var(--line-strong); background: var(--bg-raised); }
+        .card-head { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+        .card-head h3 { font-size: 13.5px; font-weight: 600; }
+        .badge {
+            font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em;
+            color: var(--accent); background: var(--accent-soft);
+            border: 1px solid var(--accent-soft); border-radius: 20px; padding: 2px 8px;
+        }
+        .card p { color: var(--ink-soft); font-size: 12.5px; margin: 0.4rem 0 0.6rem; }
+        .card-links { display: flex; gap: 1rem; font-size: 11.5px; color: var(--ink-muted); }
+        .card-links a { color: var(--ink-muted); }
+        .card-links a:hover { color: var(--accent); }
+
+        .exp { display: flex; justify-content: space-between; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px solid var(--line); }
+        .exp:last-child { border-bottom: 0; }
+        .exp .who h3 { font-size: 13px; font-weight: 600; }
+        .exp .who span { font-size: 12px; color: var(--ink-soft); }
+        .exp .when { font-size: 11px; color: var(--ink-muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+        /* heatmap */
+        .hm-block { margin-bottom: 2rem; }
+        .hm-cap { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; font-size: 12px; }
+        .hm-cap .count { color: var(--ink-soft); }
+        .hm-cap .count b { color: var(--accent); font-weight: 600; }
+        .hm-note { font-size: 11px; color: var(--ink-muted); margin: 0.55rem 0 0; }
+        .hm-scroll { overflow-x: auto; padding-bottom: 4px; }
+        .hm-inner { display: inline-block; min-width: max-content; }
+        .hm-months { display: flex; gap: 2px; margin-bottom: 4px; }
+        .hm-mlabel { width: 9px; font-size: 9px; color: var(--ink-muted); white-space: nowrap; overflow: visible; }
+        .hm-grid { display: flex; gap: 2px; }
+        .hm-col { display: flex; flex-direction: column; gap: 2px; }
+        .hm-cell { width: 9px; height: 9px; border-radius: 2px; background: var(--hm-0); }
+        .hm-cell[data-l="1"] { background: var(--hm-1); }
+        .hm-cell[data-l="2"] { background: var(--hm-2); }
+        .hm-cell[data-l="3"] { background: var(--hm-3); }
+        .hm-cell[data-l="4"] { background: var(--hm-4); }
+        .hm-legend { display: flex; align-items: center; gap: 5px; justify-content: flex-end; margin-top: 6px; font-size: 10px; color: var(--ink-muted); }
+        .hm-legend .hm-cell { display: inline-block; }
+        .hm-loading { color: var(--ink-muted); font-size: 12px; padding: 0.5rem 0; }
+
+        /* tech tags */
+        .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .tags span {
+            font-size: 11.5px; color: var(--ink-soft);
+            border: 1px solid var(--line); border-radius: 6px; padding: 3px 9px;
+        }
+
+        /* connect */
+        .connect { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
+        .connect a { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 12.5px; color: var(--ink-soft); }
+        .connect a:hover { color: var(--accent); }
+        .connect i { width: 16px; text-align: center; color: var(--ink-muted); }
+        .connect a:hover i { color: var(--accent); }
+
+        /* footer switch */
+        .foot { margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; }
+        .switch {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            border: 1px solid var(--line-strong); border-radius: 8px; padding: 0.55rem 0.95rem;
+            font-size: 12.5px; color: var(--ink); transition: border-color 0.2s, background 0.2s;
+        }
+        .switch:hover { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+        .foot .meta { font-size: 11px; color: var(--ink-muted); }
+        .credit { margin-top: 1rem; font-size: 11px; color: var(--ink-muted); }
+        .credit a { color: var(--ink-soft); border-bottom: 1px dashed var(--line-strong); }
+        .credit a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+        :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+        @media (max-width: 640px) {
+            .wrap::before, .wrap::after { display: none; }
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Skip to Content Link for Accessibility -->
-    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+    <div class="wrap">
+        <div class="dots"></div>
 
-    <!-- Loading Screen (Unchanged, it's good) -->
-    <div id="loading-screen">
-        <div class="loading-content">
-            <div class="loading-logo">SC</div>
-            <div class="loading-bar">
-                <div class="loading-progress"></div>
-            </div>
-            <div class="loading-text">Initializing Portfolio...</div>
+        <div class="topbar">
+            <span>Subrata&nbsp;Choudhury</span>
+            <span class="right">
+                <span id="clock">--:--:--</span>
+                <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><i class="fas fa-moon"></i></button>
+            </span>
         </div>
+
+        <!-- Hero -->
+        <div class="orb" aria-hidden="true"></div>
+        <h1>Subrata Choudhury</h1>
+        <p class="role">Software Engineer</p>
+        <div class="intro">
+            <p>I'm a full-stack engineer with roots in <strong>electrical engineering</strong>, building reliable
+                systems for real people: <span class="hl">public platforms</span>, health records, and tools that
+                quietly run in the background and just work.</p>
+            <p>I care about clear architecture, honest documentation, and taking messy, high-stakes problems and
+                turning them into <strong>simple, dependable software</strong>.</p>
+            <div class="status"><span class="dot"></span> Open to opportunities · Kharagpur, IN</div>
+        </div>
+
+        <!-- Projects -->
+        <section>
+            <div class="sec-title">Projects I've Built</div>
+            <div class="card">
+                <div class="card-head"><h3>CIVIC: Client-side AI Guardian</h3><span class="badge">Featured</span></div>
+                <p>On-device AI that flags misinformation, phishing and "digital arrest" scams in real time, without
+                    sending your data anywhere. Built for the eRaksha AI for Peace initiative.</p>
+                <div class="card-links">
+                    <a href="posts/civic-ai-guardian.html">Read →</a>
+                    <a href="https://github.com/p4r1ch4y/civic" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><h3>Smart City OS</h3></div>
+                <p>AI-powered IoT platform that ingests city-wide sensor data and turns it into management decisions.
+                    Blockchain-backed, Supabase, live demo.</p>
+                <div class="card-links">
+                    <a href="https://smartcityos.vercel.app/" target="_blank" rel="noopener">Live →</a>
+                    <a href="https://github.com/p4r1ch4y/smart_city_os" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><h3>Daily Spark: Solana dApp</h3></div>
+                <p>An interactive Web3 app on Solana Devnet with a working frontend and Anchor programs deployed
+                    on-chain.</p>
+                <div class="card-links">
+                    <a href="https://dailysparksolana.vercel.app/" target="_blank" rel="noopener">Live →</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><h3>PHC Commons</h3><span class="badge">Hackathon</span></div>
+                <p>Full-stack, offline-first PWA for public health centres, government and private clinics. Container
+                    app built during MasaiVerse × PlatformCommons.</p>
+                <div class="card-links">
+                    <a href="https://phccommons.vercel.app/" target="_blank" rel="noopener">Live →</a>
+                    <a href="https://github.com/p4r1ch4y/phc_hms_platformcommons" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section>
+            <div class="sec-title">Experience</div>
+            <div class="exp">
+                <div class="who"><h3>Software Engineering Intern</h3><span>Confidential (under NDA)</span></div>
+                <div class="when">Jan to Jul 2026</div>
+            </div>
+            <div class="exp">
+                <div class="who"><h3>Web3 Project Administrator</h3><span>O3 Labs Inc.</span></div>
+                <div class="when">2022 to 2024</div>
+            </div>
+            <div class="exp">
+                <div class="who"><h3>Web3 Administrator</h3><span>Theia Studios</span></div>
+                <div class="when">2022</div>
+            </div>
+        </section>
+
+        <!-- Activity graphs -->
+        <section>
+            <div class="sec-title">GitHub Activity <span style="font-weight:400;color:var(--ink-muted);font-size:11px;">(last 12 months)</span></div>
+            <div class="hm-block" id="gh-block">
+                <div class="hm-cap"><span class="count" id="gh-count">Loading…</span><span style="color:var(--ink-muted);font-size:11px;">@p4r1ch4y</span></div>
+                <div class="hm-scroll"><div class="hm-inner" id="gh-graph"><div class="hm-loading">Fetching contributions…</div></div></div>
+                <div class="hm-legend" id="gh-legend"></div>
+            </div>
+        </section>
+
+        <section>
+            <div class="sec-title">OpenForge Activity <span style="font-weight:400;color:var(--ink-muted);font-size:11px;">(2026)</span></div>
+            <div class="hm-block" id="of-block">
+                <div class="hm-cap"><span class="count" id="of-count"></span><span style="color:var(--ink-muted);font-size:11px;">internship</span></div>
+                <div class="hm-scroll"><div class="hm-inner" id="of-graph"></div></div>
+                <div class="hm-legend" id="of-legend"></div>
+                <p class="hm-note">Commits and daily activity from my internship work on OpenForge. Not all of it
+                    shows up on GitHub.</p>
+            </div>
+        </section>
+
+        <!-- Tech -->
+        <section>
+            <div class="sec-title">Technology &amp; Tools I Use</div>
+            <div class="tags">
+                <span>TypeScript</span><span>Node.js</span><span>React</span><span>Next.js</span><span>Prisma</span>
+                <span>PostgreSQL</span><span>Redis</span><span>Solana / Anchor</span><span>Rust</span>
+                <span>Python</span><span>BigQuery</span><span>Docker</span><span>Git</span>
+            </div>
+        </section>
+
+        <!-- Connect -->
+        <section>
+            <div class="sec-title">Connect with Me</div>
+            <div class="connect">
+                <a href="https://github.com/p4r1ch4y" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://linkedin.com/in/iamcsubrata" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://twitter.com/iamcsubrata" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> Twitter</a>
+                <a href="https://youtube.com/@p4r1ch4y" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> YouTube</a>
+                <a href="mailto:iamcsubrata@proton.me"><i class="fas fa-envelope"></i> Email</a>
+                <a href="blog.html"><i class="fas fa-feather-pointed"></i> Blog</a>
+            </div>
+        </section>
+
+        <!-- Footer / switch to full portfolio -->
+        <div class="foot">
+            <a class="switch" href="portfolio.html">Explore the full portfolio <i class="fas fa-arrow-right"></i></a>
+            <span class="meta">© 2026 Subrata Choudhury</span>
+        </div>
+        <p class="credit">Card layout inspired by
+            <a href="https://nikhilnigamnik.com/" target="_blank" rel="noopener">Nikhil Nigam</a>'s portfolio.</p>
+
+        <div class="dots bottom"></div>
     </div>
 
-    <!-- Particle Background (Unchanged) -->
-    <div id="particles-container"></div>
-
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="nav-logo"><a href="#home" style="text-decoration: none; color: inherit;"><span
-                        class="logo-text">Subrata Choudhury</span></a></div>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#education" class="nav-link">Education</a></li>
-                <li><a href="blog.html" class="nav-link">Blog</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-                <li>
-                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                </li>
-            </ul>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle mobile navigation" aria-expanded="false">
-                <span class="bar" aria-hidden="true"></span>
-                <span class="bar" aria-hidden="true"></span>
-                <span class="bar" aria-hidden="true"></span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main id="main-content">
-        <!-- Hero Section - FULLY REDESIGNED NARRATIVE -->
-        <section id="home" class="hero" aria-label="Introduction and hero section">
-            <div class="hero-content">
-                <div class="hero-image">
-                    <div class="profile-circle">
-                        <div class="profile-inner">SC</div>
-                    </div>
-                </div>
-                <h1 class="hero-title">
-                    <!-- The typewriter text now shows your trajectory -->
-                    <span class="typewriter" id="typewriter"></span>
-                    <span class="cursor">|</span>
-                </h1>
-                <!-- Friendly, humble student subtitle -->
-                <p class="hero-subtitle">Computer Science Student • Aspiring Software Engineer</p>
-                <!-- A small, humble summary -->
-                <p class="hero-description">
-                    I'm a curious student and builder exploring Web3, security research, and deep tech. I enjoy learning
-                    by building small projects, sharing what I learn, and helping others grow.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn--primary">View My Work</a>
-                    <!-- NOTE: Add the correct path to your PDF resume -->
-                    <!-- <a href="assets/Subrata_Choudhury_Resume.pdf" class="btn btn--outline" id="download-resume">Download
-                        Resume</a> -->
-                </div>
-                <div class="hero-socials">
-                    <a href="https://github.com/p4r1ch4y" target="_blank" rel="noopener noreferrer"
-                        class="social-link"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com/in/iamcsubrata" target="_blank" rel="noopener noreferrer"
-                        class="social-link"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://twitter.com/iamcsubrata" target="_blank" rel="noopener noreferrer"
-                        class="social-link"><i class="fab fa-twitter"></i></a>
-                    <a href="https://youtube.com/@p4r1ch4y" target="_blank" rel="noopener noreferrer"
-                        class="social-link"><i class="fab fa-youtube"></i></a>
-                    <a href="https://www.kaggle.com/subratachoudhury" target="_blank" rel="noopener noreferrer"
-                        class="social-link"><i class="fab fa-kaggle"></i></a>
-                </div>
-                <div class="hero-profiles" aria-hidden="false">
-                    <a href="https://profiles.cyfrin.io/u/p4r1ch4y" target="_blank" rel="noopener noreferrer"
-                        class="btn btn--outline profile-btn">Cyfrin Profile</a>
-                    <a href="https://cantina.xyz/u/p4r1ch4y" target="_blank" rel="noopener noreferrer"
-                        class="btn btn--outline profile-btn">Cantina Profile</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section - Placeholder text updated -->
-        <section id="about" class="about">
-            <div class="container">
-                <h2 class="section-title">About Me</h2>
-
-                <div class="about-grid-layout">
-                    <!-- Left Column: Text & Interests -->
-                    <div class="about-left">
-                        <div class="about-text">
-                            <p>
-                                I'm a software engineer with a passion for building practical solutions.
-                                My journey involves exploring new technologies and applying them to solve real-world
-                                problems.
-                                I enjoy working on both backend systems and frontend interfaces, always aiming for clean
-                                and efficient code.
-                            </p>
-                            <p>
-                                Beyond coding, I'm active in developer communities, sharing knowledge and learning from
-                                others.
-                                I believe in the power of open source and collaboration to drive innovation.
-                            </p>
-                        </div>
-
-                        <div class="about-interests">
-                            <h3>Interests</h3>
-                            <div class="tech-tag-group">
-                                <span>Smart and Modern Technologies</span>
-                                <span>Hardware</span>
-                                <span>Web3 & Blockchain</span>
-                                <span>Developer Relations</span>
-                                <span>Deep Tech</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right Column: Stats & Achievements -->
-                    <div class="about-right">
-                        <div class="about-stats">
-                            <div class="stat-item">
-                                <div class="stat-number" data-target="15">0</div>
-                                <div class="stat-label">Projects Built</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number" data-target="6">0</div>
-                                <div class="stat-label">Hackathons</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number" data-target="12">0</div>
-                                <div class="stat-label">Certifications</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number" data-target="10">0</div>
-                                <div class="stat-label">Technical Blogs</div>
-                            </div>
-                        </div>
-
-                        <div class="achievements-list">
-                            <h3>Key Achievements</h3>
-                            <div class="achievement-item">
-                                <i class="fas fa-trophy achievement-icon"></i>
-                                <div>
-                                    <h4>2x Hackathon Winner</h4>
-                                    <p>Won <a
-                                            href="https://www.linkedin.com/feed/update/urn:li:activity:7353082976286461957/"
-                                            target="_blank" rel="noopener noreferrer">Jun 2025 Anveshan Hackathon</a> &
-                                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7404767797161078784/"
-                                            target="_blank" rel="noopener noreferrer">Dec 2025 Hackarena 2.O
-                                            Hackathon</a> By Masai
-                                        School in Software Development
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="achievement-item">
-                                <i class="fas fa-pen-nib achievement-icon"></i>
-                                <div>
-                                    <h4>Technical Writing Prize</h4>
-                                    <p>2nd Position at <a
-                                            href="https://arbiscan.io/tx/0x58176a9d818919f80f444d1dff039bcd93964dfc9f02f8669b6264028cb0cd1d"
-                                            target="_blank" rel="noopener noreferrer">DevRel Uni Cohort 6 & Prize from
-                                            The Arbitrum Foundation</a></p>
-                                </div>
-                            </div>
-                            <div class="achievement-item">
-                                <i class="fas fa-users achievement-icon"></i>
-                                <div>
-                                    <h4>Community Leadership</h4>
-                                    <p>Managed Global Member Communities & Blockchain initiatives</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="skills">
-            <div class="container">
-                <h2 class="section-title">Technical Skills</h2>
-                <div class="skills-intro">
-                    <p>A polyglot engineer with hands-on experience across the stack, from low-level systems programming
-                        to modern, full-stack web applications.</p>
-                </div>
-                <div class="skills-grid-new">
-                    <div class="skill-category-new">
-                        <h3>Languages</h3>
-                        <div class="tech-tag-group">
-                            <span>C++</span><span>Python</span><span>JavaScript</span><span>TypeScript</span><span>SQL</span><span>Rust</span>
-                        </div>
-                    </div>
-                    <div class="skill-category-new">
-                        <h3>Frontend</h3>
-                        <div class="tech-tag-group">
-                            <span>React</span><span>Next.js</span><span>HTML5/CSS3</span><span>Tailwind CSS</span>
-                        </div>
-                    </div>
-                    <div class="skill-category-new">
-                        <h3>Backend</h3>
-                        <div class="tech-tag-group">
-                            <span>Node.js</span><span>Express.js</span><span>JWT Auth</span><span>REST APIs</span>
-                        </div>
-                    </div>
-                    <div class="skill-category-new">
-                        <h3>Databases & BaaS</h3>
-                        <div class="tech-tag-group">
-                            <span>PostgreSQL</span><span>MongoDB</span><span>Supabase</span><span>Neon</span>
-                        </div>
-                    </div>
-                    <div class="skill-category-new">
-                        <h3>Web3 & Protocol</h3>
-                        <div class="tech-tag-group">
-                            <span>Solana</span><span>Anchor</span><span>Smart Contracts</span><span>Protocol
-                                Security</span>
-                        </div>
-                    </div>
-                    <div class="skill-category-new">
-                        <h3>DevTools & Concepts</h3>
-                        <div class="tech-tag-group">
-                            <span>Git/GitHub</span><span>Docker</span><span>System Design</span><span>Algorithms</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section - Updated with image path advice -->
-        <section id="projects" class="projects">
-            <div class="container">
-                <h2 class="section-title">Featured Projects</h2>
-
-                <!-- Project Filters -->
-                <div class="filter-container">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="fullstack">Full Stack</button>
-                    <button class="filter-btn" data-filter="devrel_web3">Web3 & DevRel</button>
-                    <button class="filter-btn" data-filter="ai">AI & IoT</button>
-                    <button class="filter-btn" data-filter="backend">Backend</button>
-                </div>
-
-                <div class="projects-intro">
-                    <p>Showcasing my expertise in Developer Relations, Web3 technologies, and full-stack development
-                        through real-world applications and technical contributions.</p>
-                </div>
-
-            </div>
-
-            <div class="projects-grid">
-                <!-- CIVIC (Featured) -->
-                <div class="project-card" data-category="ai">
-                    <div class="project-image">
-                        <div class="featured-badge">
-                            <i class="fas fa-star"></i> Featured
-                        </div>
-                        <img src="/assets/projects/CIVIC_Extension_SC.webp"
-                            alt="CIVIC AI Guardian"
-                            onerror="this.src='https://via.placeholder.com/400x250/2a2a2a/ffffff?text=CIVIC'">
-                        <div class="project-overlay">
-                            <button class="btn btn--primary project-details-btn" data-project="16">View
-                                Details</button>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>CIVIC - Client-side AI Guardian</h3>
-                        <p>An on-device AI guardian that flags risky content and calls (misinformation, phishing,
-                            "digital arrest" scams) in real time while preserving user privacy. Built for eRaksha AI for Peace & Safety Initiative</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">AI/ML</span>
-                            <span class="tech-tag">Privacy</span>
-                            <span class="tech-tag">On-Device</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="posts/civic-ai-guardian.html" class="project-link">
-                                <i class="fas fa-file-alt"></i> Read Blog
-                            </a>
-                            <a href="https://github.com/p4r1ch4y/civic" class="project-link">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Gemini Adaptive Planner (Featured) -->
-                <div class="project-card" data-category="ai">
-                    <div class="project-image">
-                        <div class="featured-badge">
-                            <i class="fas fa-star"></i> Featured
-                        </div>
-                        <img src="assets/projects/geminiPlanner.webp" alt="Gemini Adaptive Planner"
-                            onerror="this.src='https://via.placeholder.com/400x250/4285f4/fff?text=Gemini+Planner'">
-                        <div class="project-overlay">
-                            <button class="btn btn--primary project-details-btn" data-project="15">View
-                                Details</button>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Gemini Adaptive Planner</h3>
-                        <p>Your smart learning buddy - an app that actually understands you and your time and goals.
-                            Built for Google DeepMind - Vibe Code with Gemini 3 Pro Hackathon.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Gemini 3 Pro Preview</span>
-                            <span class="tech-tag">Google AI Studio</span>
-                            <span class="tech-tag">Prompt Engineering</span>
-                            <span class="tech-tag">AI Agent</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://aistudio.google.com/apps/drive/1QytT4J2naFCihfKo5N5C_kn_bOptsnfB?showPreview=true&showAssistant=true&fullscreenApplet=true"
-                                class="project-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="https://www.kaggle.com/competitions/gemini-3/writeups/gemini-adaptive-planner-adaptive-learning-planne#3374407"
-                                class="project-link" target="_blank">
-                                <i class="fab fa-kaggle"></i> Kaggle
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Smart City OS (Featured) -->
-                <div class="project-card" data-category="ai">
-                    <div class="project-image">
-                        <div class="featured-badge">
-                            <i class="fas fa-star"></i> Featured
-                        </div>
-                        <img src="assets/projects/smartCityOS.webp" alt="Smart City OS"
-                            onerror="this.src='https://via.placeholder.com/400x250/0f3460/eee?text=Smart+City+OS'">
-                        <div class="project-overlay">
-                            <button class="btn btn--primary project-details-btn" data-project="5">View
-                                Details</button>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Smart City OS - A Smart City Management OS</h3>
-                        <p>AI-powered IoT Embedded Smart City Management OS / Application which tracks city wide
-                            sensor data and uses those data to predict and take better management decisions.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Blockchain</span>
-                            <span class="tech-tag">AI/ML Models</span>
-                            <span class="tech-tag">Supabase</span>
-                            <span class="tech-tag">IoT</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://smartcityos.vercel.app/" class="project-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="https://github.com/p4r1ch4y/smart_city_os" class="project-link" target="_blank">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PHC Commons (Featured) -->
-                <div class="project-card" data-category="fullstack">
-                    <div class="project-image">
-                        <div class="featured-badge">
-                            <i class="fas fa-star"></i> Featured
-                        </div>
-                        <img src="assets/projects/phc.webp" alt="PHC Commons"
-                            onerror="this.src='https://via.placeholder.com/400x250/0f3460/eee?text=PHC+Commons'">
-                        <div class="project-overlay">
-                            <button class="btn btn--primary project-details-btn" data-project="0">View
-                                Details</button>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>PHC Commons - Public Health Center Management</h3>
-                        <p>Full Stack Web Application for Medical PHCs, Government, and Private entities. Built
-                            during MasaiVerse x platformcommons Hackarena Hackathon.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Container App</span>
-                            <span class="tech-tag">Progressive Web App</span>
-                            <span class="tech-tag">Hackathon</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://phccommons.vercel.app/" class="project-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="https://github.com/p4r1ch4y/phc_hms_platformcommons" class="project-link"
-                                target="_blank">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- LifeWeeks (Featured) -->
-                <div class="project-card" data-category="ai">
-                    <div class="project-image">
-                        <div class="featured-badge">
-                            <i class="fas fa-star"></i> Featured
-                        </div>
-                        <img src="assets/projects/lifeWeeks.webp" alt="LifeWeeks AI Timeline App"
-                            onerror="this.src='https://via.placeholder.com/400x250/0f3460/eee?text=LifeWeeks'">
-                        <div class="project-overlay">
-                            <button class="btn btn--primary project-details-btn" data-project="9">View
-                                Details</button>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>LifeWeeks - Your Life in 4,000 Weeks</h3>
-                        <p>AI-powered interactive timeline application that visualizes your life week by week.
-                            Hackathon winner with advanced AI features.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Next.js</span>
-                            <span class="tech-tag">AI Integration</span>
-                            <span class="tech-tag">PostgreSQL</span>
-                            <span class="tech-tag">Hugging Face</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://lifeweeks.vercel.app/" class="project-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="https://github.com/p4r1ch4y/FunctionForce_LifeInWeeks" class="project-link"
-                                target="_blank">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Daily Spark Solana (Featured) -->
-                <div class="project-card" data-category="devrel_web3">
-                    <div class="project-image">
-                        <div class="featured-badge">
-                            <i class="fas fa-star"></i> Featured
-                        </div>
-                        <img src="assets/projects/dailySpark.webp" alt="Daily Spark Solana"
-                            onerror="this.src='https://via.placeholder.com/400x250/1a1a2e/eee?text=Daily+Spark'">
-                        <div class="project-overlay">
-                            <button class="btn btn--primary project-details-btn" data-project="6">View
-                                Details</button>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Daily Spark Solana - A Dapp on Solana Devnet </h3>
-                        <p>An interative web3 application built on Solana Devnet. With Working frontend and anchor
-                            programs deployed on Solana Devnet.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Solana Program</span>
-                            <span class="tech-tag">Blockchain Programming</span>
-                            <span class="tech-tag">Smart Contracts</span>
-                            <span class="tech-tag">Frontend Development</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://dailysparksolana.vercel.app/" class="project-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="#" class="project-link" target="_blank">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- LogisTech -->
-                <div class="project-card" data-category="backend">
-                    <div class="project-image">
-                        <img src="assets/projects/logistech.webp" alt="LogisTech"
-                            onerror="this.src='https://via.placeholder.com/400x250/1a1a2e/eee?text=LogisTech'">
-                        <div class="project-overlay">
-                            <button class="btn btn--primary project-details-btn" data-project="1">View
-                                Details</button>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>LogisTech - Warehouse Orchestration System</h3>
-                        <p>Centralised warehouse orchestration system built as a backend assignment. Targeted for
-                            Logistics and Warehousing sectors.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Backend</span>
-                            <span class="tech-tag">Logistics</span>
-                            <span class="tech-tag">Warehouse</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://logistech-78pt.onrender.com/" class="project-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="https://github.com/p4r1ch4y/logisTech" class="project-link" target="_blank">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Smart CRM -->
-                <div class="project-card" data-category="fullstack">
-                    <div class="project-image">
-                        <img src="assets/projects/crm.webp" alt="Smart CRM System"
-                            onerror="this.src='https://via.placeholder.com/400x250/16213e/eee?text=Smart+CRM'">
-                        <div class="project-overlay">
-                            <button class="btn btn--primary project-details-btn" data-project="2">View
-                                Details</button>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Smart CRM System</h3>
-                        <p>Full Stack Web Application for Gym Owners & Business Owners. Built for Masters' Union
-                            Hackathon.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Full Stack</span>
-                            <span class="tech-tag">CRM</span>
-                            <span class="tech-tag">Business Tool</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://smartcrmsystem.vercel.app/" class="project-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="https://github.com/p4r1ch4y/crm-system" class="project-link" target="_blank">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Xporter -->
-                <div class="project-card" data-category="devrel_web3">
-                    <div class="project-image">
-                        <img src="assets/projects/xporter.webp" alt="Xporter"
-                            onerror="this.src='https://via.placeholder.com/400x250/533483/eee?text=Xporter'">
-                        <div class="project-overlay">
-                            <button class="btn btn--primary project-details-btn" data-project="3">View
-                                Details</button>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Xporter - Universal Gateway CLI</h3>
-                        <p>Universal Gateway CLI for x402.org protocol by Coinbase. Built during Solana and Base
-                            x402 Hackathon.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Rust</span>
-                            <span class="tech-tag">CLI</span>
-                            <span class="tech-tag">Solana</span>
-                            <span class="tech-tag">x402</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="https://github.com/p4r1ch4y/xporter" class="project-link" target="_blank">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hangoutly -->
-                <div class="project-card" data-category="fullstack">
-                    <div class="project-image">
-                        <img src="assets/projects/hangoutly.webp" alt="Hangoutly"
-                            onerror="this.src='https://via.placeholder.com/400x250/ff6600/fff?text=Hangoutly'">
-                        <div class="project-overlay">
-                            <button class="btn btn--primary project-details-btn" data-project="4">View
-                                Details</button>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Hangoutly - Event Planning App</h3>
-                        <p>Full Stack Web Application for planning hangouts and outings. Built for MasaiVerse x
-                            Nobroker Hackarena Hackathon.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Full Stack</span>
-                            <span class="tech-tag">Event Planning</span>
-                            <span class="tech-tag">Social</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://hangoutly.pages.dev/" class="project-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="https://github.com/p4r1ch4y/hangoutly_aryatechies" class="project-link"
-                                target="_blank">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Stylus SDK -->
-                <div class="project-card" data-category="devrel_web3">
-                    <div class="project-image">
-                        <img src="assets/projects/stylus.webp" alt="Stylus SDK Technical Articles"
-                            onerror="this.src='https://via.placeholder.com/400x250/1a1a2e/eee?text=Stylus+SDK'">
-                        <div class="project-overlay">
-                            <button class="btn btn--primary project-details-btn" data-project="7">View
-                                Details</button>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Stylus SDK Technical Documentation</h3>
-                        <p>Comprehensive technical articles and smart contract development guides for Stylus SDK
-                            during DevRel Uni Cohort 6. Winner of Technical Writing Prize.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Technical Writing</span>
-                            <span class="tech-tag">Web3 Education</span>
-                            <span class="tech-tag">Smart Contracts</span>
-                            <span class="tech-tag">Developer Relations</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://bento.me/stylus" class="project-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Portfolio
-                            </a>
-                            <a href="#" class="project-link" target="_blank">
-                                <i class="fab fa-github"></i> Documentation
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Job Portal -->
-                <div class="project-card" data-category="fullstack">
-                    <div class="project-image">
-                        <img src="assets/projects/jobPortal.webp" alt="Job Portal Full Stack Application"
-                            onerror="this.src='https://via.placeholder.com/400x250/16213e/eee?text=Job+Portal'">
-                        <div class="project-overlay">
-                            <button class="btn btn--primary project-details-btn" data-project="8">View
-                                Details</button>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Job Portal - Full Stack Application</h3>
-                        <p>Complete job portal platform with user authentication, job posting, application tracking,
-                            and real-time notifications.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">React.js</span>
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">MongoDB</span>
-                            <span class="tech-tag">REST API</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://job-portal-frontend-parichay.vercel.app/" class="project-link"
-                                target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="https://github.com/p4r1ch4y/job-portal" class="project-link" target="_blank">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SkillSync -->
-                <div class="project-card" data-category="fullstack">
-                    <div class="project-image">
-                        <img src="assets/projects/skillSync.webp" alt="SkillSync Matching Platform"
-                            onerror="this.src='https://via.placeholder.com/400x250/533483/eee?text=SkillSync'">
-                        <div class="project-overlay">
-                            <button class="btn btn--primary project-details-btn" data-project="10">View
-                                Details</button>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>SkillSync - Intelligent Recruitment Platform</h3>
-                        <p>Advanced candidate-recruiter matching platform with intelligent algorithms, real-time
-                            communication, and comprehensive analytics dashboard.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">SQL Database</span>
-                            <span class="tech-tag">Matching Algorithms</span>
-                            <span class="tech-tag">Team Leadership</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://skillsynced.vercel.app/" class="project-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="https://github.com/p4r1ch4y/skillsync" class="project-link" target="_blank">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- XDA -->
-                <div class="project-card" data-category="devrel_web3">
-                    <div class="project-image">
-                        <img src="assets/projects/xdaProfile.webp" alt="XDA Developers Technical Articles"
-                            onerror="this.src='https://via.placeholder.com/400x250/ff6600/fff?text=XDA+Articles'">
-                        <div class="project-overlay">
-                            <button class="btn btn--primary project-details-btn" data-project="14">View
-                                Details</button>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Android Modding on XDA Forums - Technical Writing</h3>
-                        <p>7+ years of technical writing and community contributions on XDA Developers and related
-                            forums. Published tutorials, guides, and system modification articles.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Technical Writing</span>
-                            <span class="tech-tag">Android Development</span>
-                            <span class="tech-tag">Community Building</span>
-                            <span class="tech-tag">System Modification</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> XDA Profile
-                            </a>
-                            <a href="https://bento.me/parichay" class="project-link" target="_blank">
-                                <i class="fas fa-user"></i> Portfolio
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </section>
-
-        <!-- Academic & Hardware Projects Section -->
-        <section id="academic-projects" class="academic-projects">
-            <div class="container">
-                <h2 class="section-title">Academic & Hardware Projects</h2>
-                <div class="academic-intro">
-                    <p>Foundation projects from my Electrical Engineering background, showcasing hands-on experience
-                        with circuit design, signal processing, and embedded systems.</p>
-                </div>
-                <div class="academic-grid">
-                    <div class="academic-card">
-                        <div class="academic-icon">
-                            <i class="fas fa-wave-square"></i>
-                        </div>
-                        <h3>Digital Signal Processing Suite</h3>
-                        <p>Advanced signal processing algorithms for real-time audio and biomedical signal analysis with
-                            MATLAB and Python implementation.</p>
-                        <div class="academic-tech">
-                            <span class="tech-tag-small">MATLAB</span>
-                            <span class="tech-tag-small">Python</span>
-                            <span class="tech-tag-small">NumPy</span>
-                            <span class="tech-tag-small">Signal Processing</span>
-                        </div>
-                    </div>
-
-                    <div class="academic-card">
-                        <div class="academic-icon">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                        <h3>AC-DC Inverter Fabrication</h3>
-                        <p>Group project designing and building a homemade AC-DC inverter for portable power solutions.
-                            Hands-on electrical engineering experience.</p>
-                        <div class="academic-tech">
-                            <span class="tech-tag-small">Circuit Design</span>
-                            <span class="tech-tag-small">Power Electronics</span>
-                            <span class="tech-tag-small">Analog Circuits</span>
-                            <span class="tech-tag-small">Team Project</span>
-                        </div>
-                    </div>
-
-                    <div class="academic-card">
-                        <div class="academic-icon">
-                            <i class="fas fa-microchip"></i>
-                        </div>
-                        <h3>IC555 Timer Relay Circuit</h3>
-                        <p>Electronic circuit project implementing precise time delay functionality using IC555 timer
-                            and microcontroller integration.</p>
-                        <div class="academic-tech">
-                            <span class="tech-tag-small">IC555</span>
-                            <span class="tech-tag-small">Microcontrollers</span>
-                            <span class="tech-tag-small">8051</span>
-                            <span class="tech-tag-small">Embedded Systems</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience" class="experience">
-            <div class="container">
-                <h2 class="section-title">Professional Experience</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-dot active"></div>
-                        <div class="timeline-content">
-                            <h3>Backend Developer Intern</h3>
-                            <h4>Confidential Company</h4>
-                            <span class="timeline-period">Jan 2026 - Present</span>
-                            <p>Developing secure, scalable backend systems using Node.js and Python. Integrated DSC Signer in a web portal and integrated PHP-based SSO. Created detailed user manuals and application user flow guide videos which are viewed by 10k+ users. (details under NDA).</p>
-                            <div class="timeline-tech">
-                                <span class="tech-tag">Node.js</span>
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">AI/ML</span>
-                                <span class="tech-tag">Prompt Engineering</span>
-                                <span class="tech-tag">Data Engineering</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h3>Web3 Project Administrator</h3>
-                            <h4>O3 Labs</h4>
-                            <span class="timeline-period">Jul 2022 - Feb 2024</span>
-                            <p>Led community moderation and technical support for 50K+ global user base across diverse
-                                time zones. Contributed to business development and enhanced blockchain adaptation
-                                overall.</p>
-                            <div class="timeline-tech">
-                                <span class="tech-tag">Community Management</span>
-                                <span class="tech-tag">Web3</span>
-                                <span class="tech-tag">Blockchain</span>
-                                <span class="tech-tag">Technical Support</span>
-                                <span class="tech-tag">Business Development</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h3>Web3 Administrator</h3>
-                            <h4>Theia Studios</h4>
-                            <span class="timeline-period">Jan 2022 - May 2022</span>
-                            <p>Moderated gaming communities and explained blockchain concepts in accessible language.
-                                Provided technical support and contributed to business development strategies for
-                                blockchain gaming ecosystem.</p>
-                            <div class="timeline-tech">
-                                <span class="tech-tag">Community Moderation</span>
-                                <span class="tech-tag">Blockchain Education</span>
-                                <span class="tech-tag">Gaming</span>
-                                <span class="tech-tag">Technical Support</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Education Section -->
-        <section id="education" class="education">
-            <div class="container">
-                <h2 class="section-title">Education</h2>
-                <div class="education-grid">
-                    <div class="education-card">
-                        <div class="education-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="education-content">
-                            <h3>Computer Science Engineering</h3>
-                            <h4> IIT Guwahati</h4>
-                            <span class="education-period">May 2024 - December 2025</span>
-                            <p>Computer Science Engineering Credit Linked Program with Masai School and NSDC. With focus on AI, secure systems, and high-performance
-                                software. Specializing in System Design, algorithms, and S-SDLC principles.</p>
-                            <div class="education-tech">
-                                <span class="tech-tag-small">C++</span>
-                                <span class="tech-tag-small">System Design and Architecture</span>
-                                <span class="tech-tag-small">Database</span>
-                                <span class="tech-tag-small">Algorithms</span>
-                                <span class="tech-tag-small">Data Structures</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="education-card">
-                        <div class="education-icon">
-                            <i class="fas fa-microchip"></i>
-                        </div>
-                        <div class="education-content">
-                            <h3>Electrical Engineering</h3>
-                            <h4>XXXX Govt. Engineering College</Canvas></h4>
-                            <span class="education-period">Aug 2020 - Aug 2023</span>
-                            <p>Comprehensive electrical engineering education covering power systems, power generation,
-                                control theory, and digital electronics systems.</p>
-                            <div class="education-tech">
-                                <span class="tech-tag-small">Circuit Design</span>
-                                <span class="tech-tag-small">Power Systems</span>
-                                <span class="tech-tag-small">Control Theory</span>
-                                <span class="tech-tag-small">Embedded Systems</span>
-                                <span class="tech-tag-small">Microcontrollers</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Blog Section -->
-        <section id="blog" class="blog">
-            <div class="container">
-                <h2 class="section-title">Technical Blog</h2>
-                <div class="blog-content">
-                    <div class="blog-intro">
-                        <h3>Sharing Knowledge Through Writing</h3>
-                        <p>I regularly write about Developer Relations, Web3 technologies, technical tutorials, and my
-                            experiences in the tech industry. My blog covers everything from blockchain education to
-                            community building strategies.</p>
-                    </div>
-
-                    <div class="blog-redirect-card">
-                        <div class="blog-icon">
-                            <i class="fas fa-external-link-alt"></i>
-                        </div>
-                        <h3>Visit My Blog</h3>
-                        <p>Read my latest thoughts and updates.</p>
-                        <a href="blog.html" class="btn btn--primary blog-btn">
-                            <i class="fas fa-blog"></i> Read My Articles
-                        </a>
-                    </div>
-
-                    <div class="blog-topics">
-                        <h4>Topics I Write About</h4>
-                        <div class="topic-tags">
-                            <span class="topic-tag">Developer Relations</span>
-                            <span class="topic-tag">Web3 Education</span>
-                            <span class="topic-tag">Blockchain Technology</span>
-                            <span class="topic-tag">Technical Writing</span>
-                            <span class="topic-tag">Community Building</span>
-                            <span class="topic-tag">Smart Contracts</span>
-                            <span class="topic-tag">Android Development</span>
-                            <span class="topic-tag">Open Source</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Certifications Section (Reordered for Impact) -->
-
-        <a id="certifications"></a>
-        <section id="certifications-training" class="certifications-training" role="region"
-            aria-labelledby="certifications-title">
-            <div class="container">
-                <h2 class="section-title">Certifications & Training</h2>
-                <div class="certifications-training-grid">
-                    <!-- Certifications -->
-                    <div class="certifications-group">
-                        <h3>Certifications</h3>
-                        <div id="cert-featured" class="card-grid" aria-live="polite">
-                            <!-- Featured certificates will be rendered here (4-5 major items). -->
-                            <p class="muted">Loading featured certificates…</p>
-                        </div>
-                    </div>
-
-                    <!-- Training, Workshops & Hackathons removed from front display; these items are available in 'Show more' -->
-                </div>
-            </div>
-            <!-- Show more toggle: lazy-load larger list when user requests it -->
-            <div class="cert-toggle-wrap">
-                <button id="cert-expand" class="expand-btn" aria-expanded="false"
-                    aria-controls="certifications-more">Show more</button>
-                <div id="certifications-more" class="certifications-more" role="region"
-                    aria-labelledby="certifications-more-title" hidden></div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact">
-            <div class="container">
-                <h2 class="section-title">Get In Touch</h2>
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <h3>Let's Connect</h3>
-                        <p>I'm passionate about Developer Relations, technical writing, and Web3 technologies. Always
-                            open to discussing opportunities in developer relations, software engineering and blockchain
-                            related roles.</p>
-
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>iamcsubrata@gmail.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>+91 XXXXX XXXXX</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Kharagpur, WB</span>
-                        </div>
-
-                        <div class="contact-socials">
-                            <a href="https://github.com/p4r1ch4y" target="_blank" class="social-link">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://linkedin.com/in/iamcsubrata" target="_blank" class="social-link">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="https://twitter.com/iamcsubrata" target="_blank" class="social-link">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="https://bento.me/parichay" target="_blank" class="social-link">
-                                <i class="fas fa-user"></i>
-                            </a>
-                            <a href="https://youtube.com/@p4r1ch4y" target="_blank" class="social-link">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                            <a href="https://www.kaggle.com/subratachoudhury" target="_blank" class="social-link">
-                                <i class="fab fa-kaggle"></i>
-                            </a>
-
-                        </div>
-                    </div>
-
-                    <form class="contact-form" id="contact-form">
-                        <input type="hidden" name="access_key" value="7f3d3162-b667-4130-aae3-81e9aa6e5ff5">
-                        <div class="form-group">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" id="name" name="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" id="email" name="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject" class="form-label">Subject</label>
-                            <input type="text" id="subject" name="subject" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn--primary btn--full-width">Send Message</button>
-                        <div id="form-message" class="form-message" role="status" aria-live="polite"></div>
-                    </form>
-
-                    <!-- Giscus Guestbook -->
-                    <div class="giscus-container" style="margin-top: 3rem; width: 100%;">
-                        <h3>Guestbook</h3>
-                        <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Leave a message for me!</p>
-                        <script src="https://giscus.app/client.js" data-repo="p4r1ch4y/p4r1ch4y.github.io"
-                            data-repo-id="R_kgDOO9PUjw" data-category="General" data-category-id="DIC_kwDOO9PUj84CzZXi"
-                            data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0"
-                            data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="en"
-                            crossorigin="anonymous" async>
-                            </script>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2025 Subrata Choudhury. Built with passion for the future of technology.</p>
-                <div class="footer-links">
-                    <a href="#home">Privacy Policy</a>
-                    <a href="#home">Terms of Service</a>
-                </div>
-            </div>
-        </div>
-        <button id="back-to-top" class="back-to-top">
-            <i class="fas fa-chevron-up"></i>
-        </button>
-    </footer>
-
-    <!-- Project Modal -->
-    <div id="project-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <div id="modal-body"></div>
-        </div>
-    </div>
-
-    <!-- Anime.js for smooth animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <!-- Ensure app.js is loaded -->
-    <script src="app.js"></script>
+    <script src="theme-switch.js"></script>
     <script>
-        // JS for the typewriter effect - UPDATED WITH NEW STRINGS
-        document.addEventListener('DOMContentLoaded', function () {
-            const typewriterElement = document.getElementById('typewriter');
-            if (typewriterElement) {
-                const words = ["Software Engineer.", "Web3 Developer.", "Deep Tech Enthusiast."];
-                let wordIndex = 0;
-                let charIndex = 0;
-                let isDeleting = false;
+        /* ---- embedded OpenForge daily activity (2026) ---- */
+        const OPENFORGE = {"2026-01-02":1,"2026-01-22":1,"2026-01-23":1,"2026-01-27":1,"2026-01-28":1,"2026-01-29":1,"2026-01-30":1,"2026-02-03":1,"2026-02-04":1,"2026-02-05":1,"2026-02-06":1,"2026-02-08":1,"2026-02-09":1,"2026-02-10":1,"2026-02-11":1,"2026-02-12":1,"2026-02-13":1,"2026-02-16":1,"2026-02-17":1,"2026-02-18":1,"2026-02-19":1,"2026-02-20":1,"2026-02-23":1,"2026-02-24":1,"2026-02-25":1,"2026-02-26":1,"2026-02-27":1,"2026-03-02":1,"2026-03-03":1,"2026-03-05":1,"2026-03-06":1,"2026-03-08":1,"2026-03-09":1,"2026-03-10":1,"2026-03-11":1,"2026-03-12":1,"2026-03-13":1,"2026-03-16":1,"2026-03-17":1,"2026-03-18":1,"2026-03-19":1,"2026-03-20":1,"2026-03-23":1,"2026-03-24":1,"2026-03-25":1,"2026-03-27":1,"2026-03-30":1,"2026-03-31":1,"2026-04-01":1,"2026-04-02":1,"2026-04-06":1,"2026-04-07":1,"2026-04-08":1,"2026-04-09":1,"2026-04-10":1,"2026-04-11":1,"2026-04-12":1,"2026-04-13":1,"2026-04-15":1,"2026-04-16":1,"2026-04-17":1,"2026-04-20":1,"2026-04-21":1,"2026-04-22":1,"2026-04-24":1,"2026-04-27":1,"2026-04-28":1,"2026-04-29":1,"2026-04-30":1,"2026-05-04":1,"2026-05-05":1,"2026-05-06":1,"2026-05-07":1,"2026-05-08":1,"2026-05-11":3,"2026-05-12":1,"2026-05-13":10,"2026-05-14":3,"2026-05-15":1,"2026-05-18":1,"2026-05-19":2,"2026-05-20":1,"2026-05-21":1,"2026-05-22":1,"2026-05-23":1,"2026-05-24":1,"2026-05-25":1,"2026-05-26":5,"2026-05-27":1,"2026-05-28":1,"2026-05-29":1,"2026-06-01":4,"2026-06-02":5,"2026-06-03":1,"2026-06-04":1,"2026-06-05":1,"2026-06-06":1,"2026-06-07":1,"2026-06-08":1,"2026-06-09":3,"2026-06-10":1,"2026-06-11":11,"2026-06-12":1,"2026-06-15":1,"2026-06-16":1,"2026-06-17":1,"2026-06-18":3,"2026-06-19":3,"2026-06-20":7,"2026-06-21":1,"2026-06-22":1,"2026-06-23":1,"2026-06-24":4,"2026-06-25":4,"2026-06-29":2,"2026-06-30":2,"2026-07-01":1,"2026-07-02":3,"2026-07-03":2,"2026-07-04":2,"2026-07-05":5,"2026-07-06":4,"2026-07-07":5,"2026-07-08":3,"2026-07-09":13,"2026-07-10":4,"2026-07-11":9,"2026-07-12":5,"2026-07-13":6,"2026-07-14":9,"2026-07-15":3};
 
-                function type() {
-                    const currentWord = words[wordIndex];
-                    let displayText = '';
+        const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        const pad = n => String(n).padStart(2, '0');
+        const iso = d => d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
 
-                    if (isDeleting) {
-                        displayText = currentWord.substring(0, charIndex - 1);
-                        charIndex--;
-                    } else {
-                        displayText = currentWord.substring(0, charIndex + 1);
-                        charIndex++;
-                    }
-
-                    typewriterElement.textContent = displayText;
-
-                    let typeSpeed = isDeleting ? 100 : 200;
-
-                    if (!isDeleting && charIndex === currentWord.length) {
-                        typeSpeed = 2000; // Pause after typing word
-                        isDeleting = true;
-                    } else if (isDeleting && charIndex === 0) {
-                        isDeleting = false;
-                        wordIndex = (wordIndex + 1) % words.length;
-                        typeSpeed = 500; // Pause before typing new word
-                    }
-
-                    setTimeout(type, typeSpeed);
+        /* Build the last-53-weeks grid (columns of 7 days, Sun→Sat), ending today. */
+        function buildWeeks() {
+            const today = new Date(); today.setHours(0, 0, 0, 0);
+            const start = new Date(today);
+            start.setDate(start.getDate() - 364);
+            start.setDate(start.getDate() - start.getDay()); // back to Sunday
+            const weeks = []; const cur = new Date(start);
+            while (cur <= today) {
+                const wk = [];
+                for (let i = 0; i < 7; i++) {
+                    wk.push(cur <= today ? iso(cur) : null);
+                    cur.setDate(cur.getDate() + 1);
                 }
-                type();
+                weeks.push(wk);
             }
-        });
+            return weeks;
+        }
+
+        /* byDate: { 'YYYY-MM-DD': {c: count, l: level 0-4} } */
+        function renderHeatmap(el, byDate) {
+            const weeks = buildWeeks();
+            const months = document.createElement('div'); months.className = 'hm-months';
+            const grid = document.createElement('div'); grid.className = 'hm-grid';
+            let lastMonth = -1;
+            weeks.forEach(wk => {
+                const firstIso = wk.find(Boolean);
+                const label = document.createElement('span'); label.className = 'hm-mlabel';
+                if (firstIso) {
+                    const mo = new Date(firstIso + 'T00:00:00').getMonth();
+                    if (mo !== lastMonth) { label.textContent = MONTHS[mo]; lastMonth = mo; }
+                }
+                months.appendChild(label);
+                const col = document.createElement('div'); col.className = 'hm-col';
+                wk.forEach(day => {
+                    const cell = document.createElement('span'); cell.className = 'hm-cell';
+                    if (day) {
+                        const d = byDate[day];
+                        cell.dataset.l = d ? d.l : 0;
+                        cell.title = (d ? d.c : 0) + ' on ' + day;
+                    } else { cell.style.visibility = 'hidden'; }
+                    col.appendChild(cell);
+                });
+                grid.appendChild(col);
+            });
+            el.innerHTML = '';
+            el.appendChild(months);
+            el.appendChild(grid);
+            // if the graph overflows (mobile), show the most recent weeks first
+            const sc = el.closest('.hm-scroll');
+            if (sc) sc.scrollLeft = sc.scrollWidth;
+        }
+
+        function legend(el) {
+            el.innerHTML = 'Less' +
+                [0,1,2,3,4].map(l => '<span class="hm-cell" data-l="' + l + '"></span>').join('') + 'More';
+        }
+
+        /* ---- OpenForge (embedded) ---- */
+        (function () {
+            const ofLevel = c => c >= 7 ? 4 : c >= 4 ? 3 : c >= 2 ? 2 : c >= 1 ? 1 : 0;
+            const byDate = {}; let total = 0;
+            for (const [k, v] of Object.entries(OPENFORGE)) { byDate[k] = { c: v, l: ofLevel(v) }; total += v; }
+            document.getElementById('of-count').innerHTML = '<b>' + total + '</b> contributions in 2026';
+            renderHeatmap(document.getElementById('of-graph'), byDate);
+            legend(document.getElementById('of-legend'));
+        })();
+
+        /* ---- GitHub (live, public no-auth API) ---- */
+        (function () {
+            const graph = document.getElementById('gh-graph');
+            const count = document.getElementById('gh-count');
+            fetch('https://github-contributions-api.jogruber.de/v4/p4r1ch4y?y=last')
+                .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+                .then(data => {
+                    const byDate = {};
+                    (data.contributions || []).forEach(c => { byDate[c.date] = { c: c.count, l: c.level }; });
+                    renderHeatmap(graph, byDate);
+                    legend(document.getElementById('gh-legend'));
+                    const t = (data.total && (data.total.lastYear ?? Object.values(data.total)[0])) || 0;
+                    count.innerHTML = '<b>' + t + '</b> contributions in the last year';
+                })
+                .catch(() => {
+                    count.textContent = 'GitHub activity';
+                    graph.innerHTML = '<a class="hm-loading" href="https://github.com/p4r1ch4y" target="_blank" rel="noopener" style="color:var(--accent)">View on GitHub →</a>';
+                });
+        })();
+
+        /* ---- live clock (IST) ---- */
+        (function () {
+            const el = document.getElementById('clock');
+            function tick() {
+                const s = new Date().toLocaleTimeString('en-GB', { hour12: false, timeZone: 'Asia/Kolkata' });
+                el.textContent = s + ' IST';
+            }
+            tick(); setInterval(tick, 1000);
+        })();
+
+        /* ---- theme toggle (shares the site's 'theme' key) ---- */
+        (function () {
+            const btn = document.getElementById('theme-toggle');
+            const icon = btn.querySelector('i');
+            const sync = () => {
+                const dark = document.documentElement.getAttribute('data-theme') !== 'light';
+                icon.className = dark ? 'fas fa-moon' : 'fas fa-sun';
+            };
+            sync();
+            btn.addEventListener('click', () => {
+                const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+                const apply = () => {
+                    document.documentElement.setAttribute('data-theme', next);
+                    localStorage.setItem('theme', next);
+                    sync();
+                };
+                if (window.themeSwitch) window.themeSwitch(btn, apply);
+                else apply();
+            });
+        })();
     </script>
-    <script src="certifications.js"></script>
-    <!-- Theme toggle removed per request -->
 </body>
 
 </html>
