@@ -198,6 +198,12 @@
         .card:hover { border-color: var(--line-strong); background: var(--bg-raised); }
         .card-head { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
         .card-head h3 { font-size: 13.5px; font-weight: 600; }
+        .card-title { display: flex; align-items: center; gap: 0.6rem; min-width: 0; }
+        .proj-logo {
+            width: 28px; height: 28px; border-radius: 7px; object-fit: cover; flex: 0 0 auto;
+            background: var(--bg-raised); border: 1px solid var(--line); padding: 1px;
+        }
+        .proj-logo.ph { display: inline-flex; align-items: center; justify-content: center; color: var(--accent); font-size: 13px; }
         .badge {
             font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em;
             color: var(--accent); background: var(--accent-soft);
@@ -210,6 +216,12 @@
 
         .exp { display: flex; justify-content: space-between; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px solid var(--line); }
         .exp:last-child { border-bottom: 0; }
+        .exp .who { display: flex; align-items: center; gap: 0.7rem; min-width: 0; }
+        .exp-logo {
+            width: 30px; height: 30px; border-radius: 7px; object-fit: contain; flex: 0 0 auto;
+            background: var(--bg-raised); border: 1px solid var(--line); padding: 3px;
+        }
+        .exp-logo.ph { display: inline-flex; align-items: center; justify-content: center; color: var(--ink-muted); font-size: 13px; }
         .exp .who h3 { font-size: 13px; font-weight: 600; }
         .exp .who span { font-size: 12px; color: var(--ink-soft); }
         .exp .when { font-size: 11px; color: var(--ink-muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
@@ -300,7 +312,22 @@
         <section>
             <div class="sec-title">Projects I've Built</div>
             <div class="card">
-                <div class="card-head"><h3>CIVIC: Client-side AI Guardian</h3><span class="badge">Featured</span></div>
+                <div class="card-head">
+                    <div class="card-title"><img class="proj-logo" src="assets/projects/logos/spendLens.png" alt=""><h3>SpendLens</h3></div>
+                    <span class="badge">Featured</span>
+                </div>
+                <p>Offline-first Android expense tracker that turns UPI and bank notifications into a private, on-device
+                    spending ledger. Zero network permission, AES-256 encrypted.</p>
+                <div class="card-links">
+                    <a href="SpendLens/">Details →</a>
+                    <a href="https://github.com/p4r1ch4y/upi-analyser" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">
+                    <div class="card-title"><span class="proj-logo ph"><i class="fas fa-shield-halved"></i></span><h3>CIVIC: Client-side AI Guardian</h3></div>
+                    <span class="badge">Featured</span>
+                </div>
                 <p>On-device AI that flags misinformation, phishing and "digital arrest" scams in real time, without
                     sending your data anywhere. Built for the eRaksha AI for Peace initiative.</p>
                 <div class="card-links">
@@ -309,7 +336,9 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-head"><h3>Smart City OS</h3></div>
+                <div class="card-head">
+                    <div class="card-title"><span class="proj-logo ph"><i class="fas fa-city"></i></span><h3>Smart City OS</h3></div>
+                </div>
                 <p>AI-powered IoT platform that ingests city-wide sensor data and turns it into management decisions.
                     Blockchain-backed, Supabase, live demo.</p>
                 <div class="card-links">
@@ -318,7 +347,9 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-head"><h3>Daily Spark: Solana dApp</h3></div>
+                <div class="card-head">
+                    <div class="card-title"><img class="proj-logo" src="assets/projects/logos/daily-spark.png" alt=""><h3>Daily Spark: Solana dApp</h3></div>
+                </div>
                 <p>An interactive Web3 app on Solana Devnet with a working frontend and Anchor programs deployed
                     on-chain.</p>
                 <div class="card-links">
@@ -326,12 +357,26 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-head"><h3>PHC Commons</h3><span class="badge">Hackathon</span></div>
+                <div class="card-head">
+                    <div class="card-title"><img class="proj-logo" src="assets/projects/logos/phc.png" alt=""><h3>PHC Commons</h3></div>
+                    <span class="badge">Hackathon</span>
+                </div>
                 <p>Full-stack, offline-first PWA for public health centres, government and private clinics. Container
                     app built during MasaiVerse × PlatformCommons.</p>
                 <div class="card-links">
                     <a href="https://phccommons.vercel.app/" target="_blank" rel="noopener">Live →</a>
                     <a href="https://github.com/p4r1ch4y/phc_hms_platformcommons" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">
+                    <div class="card-title"><img class="proj-logo" src="assets/projects/logos/lifeweeks.jpeg" alt=""><h3>LifeWeeks</h3></div>
+                </div>
+                <p>AI-powered interactive timeline that visualises your life week by week. Hackathon winner, Next.js
+                    with Hugging Face models.</p>
+                <div class="card-links">
+                    <a href="https://lifeweeks.vercel.app/" target="_blank" rel="noopener">Live →</a>
+                    <a href="https://github.com/p4r1ch4y/FunctionForce_LifeInWeeks" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
                 </div>
             </div>
         </section>
@@ -340,15 +385,21 @@
         <section>
             <div class="sec-title">Experience</div>
             <div class="exp">
-                <div class="who"><h3>Software Engineering Intern</h3><span>Confidential (under NDA)</span></div>
+                <div class="who"><span class="exp-logo ph"><i class="fas fa-building-lock"></i></span>
+                    <div><h3>Software Engineering Intern</h3><span>Confidential (under NDA)</span></div>
+                </div>
                 <div class="when">Jan 2026 to Present</div>
             </div>
             <div class="exp">
-                <div class="who"><h3>Web3 Project Administrator</h3><span>O3 Labs Inc.</span></div>
+                <div class="who"><img class="exp-logo" src="assets/projects/logos/O3Labs.png" alt="">
+                    <div><h3>Web3 Project Administrator</h3><span>O3 Labs Inc.</span></div>
+                </div>
                 <div class="when">2022 to 2024</div>
             </div>
             <div class="exp">
-                <div class="who"><h3>Web3 Administrator</h3><span>Theia Studios</span></div>
+                <div class="who"><img class="exp-logo" src="assets/projects/logos/theia.png" alt="">
+                    <div><h3>Web3 Administrator</h3><span>Theia Studios</span></div>
+                </div>
                 <div class="when">2022</div>
             </div>
         </section>
@@ -389,7 +440,9 @@
             <div class="sec-title">Connect with Me</div>
             <div class="connect">
                 <a href="https://github.com/p4r1ch4y" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://gitlab.com/p4r1ch4y" target="_blank" rel="noopener"><i class="fab fa-gitlab"></i> GitLab</a>
                 <a href="https://linkedin.com/in/iamcsubrata" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://peerlist.io/iamcsubrata" target="_blank" rel="noopener"><i class="fas fa-address-card"></i> Peerlist</a>
                 <a href="https://twitter.com/iamcsubrata" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> Twitter</a>
                 <a href="https://youtube.com/@p4r1ch4y" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> YouTube</a>
                 <a href="mailto:iamcsubrata@proton.me"><i class="fas fa-envelope"></i> Email</a>
@@ -411,7 +464,7 @@
     <script src="theme-switch.js"></script>
     <script>
         /* ---- embedded OpenForge daily activity (2026) ---- */
-        const OPENFORGE = {"2026-01-02":5,"2026-01-22":1,"2026-01-23":3,"2026-01-27":4,"2026-01-28":1,"2026-01-29":5,"2026-01-30":4,"2026-02-03":2,"2026-02-04":3,"2026-02-05":5,"2026-02-06":5,"2026-02-08":1,"2026-02-09":3,"2026-02-10":2,"2026-02-11":3,"2026-02-12":1,"2026-02-13":2,"2026-02-16":1,"2026-02-17":2,"2026-02-18":1,"2026-02-19":3,"2026-02-20":1,"2026-02-23":2,"2026-02-24":2,"2026-02-25":3,"2026-02-26":3,"2026-02-27":3,"2026-03-02":5,"2026-03-03":3,"2026-03-05":2,"2026-03-06":1,"2026-03-08":1,"2026-03-09":2,"2026-03-10":4,"2026-03-11":4,"2026-03-12":3,"2026-03-13":1,"2026-03-16":2,"2026-03-17":1,"2026-03-18":4,"2026-03-19":3,"2026-03-20":4,"2026-03-23":2,"2026-03-24":1,"2026-03-25":2,"2026-03-27":3,"2026-03-30":1,"2026-03-31":1,"2026-04-01":1,"2026-04-02":2,"2026-04-06":3,"2026-04-07":2,"2026-04-08":5,"2026-04-09":5,"2026-04-10":5,"2026-04-11":1,"2026-04-12":1,"2026-04-13":1,"2026-04-15":4,"2026-04-16":3,"2026-04-17":4,"2026-04-20":2,"2026-04-21":4,"2026-04-22":2,"2026-04-24":1,"2026-04-27":4,"2026-04-28":5,"2026-04-29":5,"2026-04-30":4,"2026-05-04":6,"2026-05-05":4,"2026-05-06":1,"2026-05-07":1,"2026-05-08":1,"2026-05-11":3,"2026-05-12":1,"2026-05-13":10,"2026-05-14":3,"2026-05-15":1,"2026-05-18":1,"2026-05-19":2,"2026-05-20":1,"2026-05-21":1,"2026-05-22":1,"2026-05-23":1,"2026-05-24":1,"2026-05-25":1,"2026-05-26":5,"2026-05-27":1,"2026-05-28":1,"2026-05-29":1,"2026-06-01":4,"2026-06-02":5,"2026-06-03":1,"2026-06-04":1,"2026-06-05":1,"2026-06-06":1,"2026-06-07":1,"2026-06-08":1,"2026-06-09":3,"2026-06-10":1,"2026-06-11":11,"2026-06-12":1,"2026-06-15":1,"2026-06-16":1,"2026-06-17":1,"2026-06-18":3,"2026-06-19":3,"2026-06-20":7,"2026-06-21":1,"2026-06-22":1,"2026-06-23":1,"2026-06-24":4,"2026-06-25":4,"2026-06-29":2,"2026-06-30":2,"2026-07-01":1,"2026-07-02":3,"2026-07-03":2,"2026-07-04":2,"2026-07-05":5,"2026-07-06":4,"2026-07-07":5,"2026-07-08":3,"2026-07-09":13,"2026-07-10":4,"2026-07-11":9,"2026-07-12":5,"2026-07-13":6,"2026-07-14":9,"2026-07-15":3,"2026-07-18":6,"2026-07-20":2,"2026-07-21":1,"2026-07-22":9,"2026-07-23":13};
+        const OPENFORGE = {"2026-01-02":5,"2026-01-22":1,"2026-01-23":3,"2026-01-27":4,"2026-01-28":1,"2026-01-29":5,"2026-01-30":4,"2026-02-03":2,"2026-02-04":3,"2026-02-05":5,"2026-02-06":5,"2026-02-08":1,"2026-02-09":3,"2026-02-10":2,"2026-02-11":3,"2026-02-12":1,"2026-02-13":2,"2026-02-16":1,"2026-02-17":2,"2026-02-18":1,"2026-02-19":3,"2026-02-20":1,"2026-02-23":2,"2026-02-24":2,"2026-02-25":3,"2026-02-26":3,"2026-02-27":3,"2026-03-02":5,"2026-03-03":3,"2026-03-05":2,"2026-03-06":1,"2026-03-08":1,"2026-03-09":2,"2026-03-10":4,"2026-03-11":4,"2026-03-12":3,"2026-03-13":1,"2026-03-16":2,"2026-03-17":1,"2026-03-18":4,"2026-03-19":3,"2026-03-20":4,"2026-03-23":2,"2026-03-24":1,"2026-03-25":2,"2026-03-27":3,"2026-03-30":1,"2026-03-31":1,"2026-04-01":1,"2026-04-02":2,"2026-04-06":3,"2026-04-07":2,"2026-04-08":5,"2026-04-09":5,"2026-04-10":5,"2026-04-11":1,"2026-04-12":1,"2026-04-13":1,"2026-04-15":4,"2026-04-16":3,"2026-04-17":4,"2026-04-20":2,"2026-04-21":4,"2026-04-22":2,"2026-04-24":1,"2026-04-27":4,"2026-04-28":5,"2026-04-29":5,"2026-04-30":4,"2026-05-04":6,"2026-05-05":4,"2026-05-06":1,"2026-05-07":1,"2026-05-08":1,"2026-05-11":3,"2026-05-12":1,"2026-05-13":10,"2026-05-14":3,"2026-05-15":1,"2026-05-18":1,"2026-05-19":2,"2026-05-20":1,"2026-05-21":1,"2026-05-22":1,"2026-05-23":1,"2026-05-24":1,"2026-05-25":1,"2026-05-26":5,"2026-05-27":1,"2026-05-28":1,"2026-05-29":1,"2026-06-01":4,"2026-06-02":5,"2026-06-03":1,"2026-06-04":1,"2026-06-05":1,"2026-06-06":1,"2026-06-07":1,"2026-06-08":1,"2026-06-09":3,"2026-06-10":1,"2026-06-11":11,"2026-06-12":1,"2026-06-15":1,"2026-06-16":1,"2026-06-17":1,"2026-06-18":3,"2026-06-19":3,"2026-06-20":7,"2026-06-21":1,"2026-06-22":1,"2026-06-23":1,"2026-06-24":4,"2026-06-25":4,"2026-06-29":2,"2026-06-30":2,"2026-07-01":1,"2026-07-02":3,"2026-07-03":2,"2026-07-04":2,"2026-07-05":5,"2026-07-06":4,"2026-07-07":5,"2026-07-08":3,"2026-07-09":13,"2026-07-10":4,"2026-07-11":9,"2026-07-12":5,"2026-07-13":6,"2026-07-14":9,"2026-07-15":3,"2026-07-18":6,"2026-07-20":2,"2026-07-21":1,"2026-07-22":9,"2026-07-23":13,"2026-07-24":7};
 
         const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
         const pad = n => String(n).padStart(2, '0');
