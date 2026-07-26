@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>(function () { document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark'); })();</script>
+
+    <title>SpendLens · Offline UPI &amp; Expense Tracker · Subrata Choudhury</title>
+    <meta name="description"
+        content="SpendLens is an offline-first Android expense tracker that turns UPI and bank notifications into a private, on-device spending ledger. Zero network permission, AES-256 encrypted, open source.">
+    <link rel="canonical" href="https://p4r1ch4y.github.io/SpendLens/">
+    <meta property="og:title" content="SpendLens · Offline UPI &amp; Expense Tracker">
+    <meta property="og:description"
+        content="The UPI tracker that can't leak your data, because it can't reach the internet. Offline-first, AES-256 encrypted, open source.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://p4r1ch4y.github.io/SpendLens/">
+
+    <link rel="icon" type="image/png" href="../assets/projects/logos/spendLens.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==================================================================
+           SpendLens project page. Uses the site design tokens (../style.css)
+           so it is theme-aware; adds project-page-specific layout here.
+           ================================================================== */
+        .proj-nav {
+            position: sticky; top: 0; z-index: 100;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 2rem; background: var(--bg-glass); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-glass);
+        }
+        .proj-nav a.back { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-secondary); font-weight: 500; }
+        .proj-nav a.back:hover { color: var(--primary-color); }
+        .proj-nav .right { display: flex; align-items: center; gap: 1.25rem; }
+        .proj-nav .right a { color: var(--text-secondary); }
+        .proj-nav .right a:hover { color: var(--primary-color); }
+        #theme-toggle { background: transparent; border: 1px solid var(--border-color); color: var(--text-secondary);
+            width: 38px; height: 38px; border-radius: 50%; cursor: pointer; font-size: 1rem; }
+        #theme-toggle:hover { color: var(--primary-color); border-color: var(--primary-color); }
+
+        .proj-wrap { max-width: 940px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+        /* hero */
+        .sl-hero { text-align: center; padding: 4rem 0 3rem; }
+        .sl-icon {
+            width: 96px; height: 96px; border-radius: 22px; object-fit: cover;
+            box-shadow: var(--shadow-lg); border: 1px solid var(--border-strong); background: var(--bg-card);
+            margin-bottom: 1.5rem;
+        }
+        .sl-hero h1 { font-size: var(--step-5); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+        .sl-tagline { font-size: var(--step-1); color: var(--text-secondary); max-width: 34ch; margin: 0 auto 1.5rem; line-height: 1.4; }
+        .sl-badges { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+        .sl-chip {
+            font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.03em; text-transform: uppercase;
+            color: var(--primary-color); background: var(--accent-soft); border: 1px solid var(--accent-line);
+            border-radius: var(--radius-full); padding: 0.3rem 0.8rem;
+        }
+        .sl-cta { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; }
+
+        /* privacy banner */
+        .sl-privacy {
+            display: flex; align-items: center; gap: 1rem; justify-content: center; flex-wrap: wrap;
+            background: var(--accent-soft); border: 1px solid var(--accent-line); border-radius: var(--radius-lg);
+            padding: 1.1rem 1.5rem; margin: 0 auto 3.5rem; max-width: 720px; text-align: center;
+        }
+        .sl-privacy i { color: var(--accent-color); font-size: 1.4rem; }
+        .sl-privacy b { color: var(--text-primary); }
+        .sl-privacy span { color: var(--text-secondary); font-size: 0.95rem; }
+
+        .sl-section { margin-bottom: 3.5rem; }
+        .sl-section > h2 {
+            font-size: var(--step-3); margin-bottom: 1.5rem; padding-bottom: 0.6rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .sl-section p.lead { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.75; max-width: 68ch; }
+
+        /* feature grid */
+        .sl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+        .sl-feat {
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg);
+            padding: 1.4rem; transition: var(--transition-base);
+        }
+        .sl-feat:hover { border-color: var(--accent-line); transform: translateY(-3px); box-shadow: var(--shadow-sm); }
+        .sl-feat i { color: var(--primary-color); font-size: 1.3rem; margin-bottom: 0.75rem; display: block; }
+        .sl-feat h3 { font-size: 1.05rem; font-family: var(--font-main); font-weight: 600; margin-bottom: 0.4rem; }
+        .sl-feat p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0; }
+
+        /* pipeline */
+        .sl-pipeline { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; font-family: var(--font-mono); }
+        .sl-step {
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-sm);
+            padding: 0.5rem 0.9rem; font-size: 0.85rem; color: var(--text-primary);
+        }
+        .sl-pipeline .arrow { color: var(--primary-color); }
+
+        /* screenshots */
+        .sl-shots { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 1rem; scroll-snap-type: x mandatory; }
+        .sl-shots img {
+            height: 460px; width: auto; border-radius: 24px; border: 1px solid var(--border-strong);
+            box-shadow: var(--shadow-lg); flex: 0 0 auto; scroll-snap-align: start; background: var(--bg-card);
+        }
+
+        /* tech + facts as tag rows */
+        .sl-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .sl-tags span {
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-sm);
+            padding: 0.4rem 0.85rem; font-size: 0.85rem; color: var(--text-secondary);
+        }
+
+        /* download cards */
+        .sl-dl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+        .sl-dl {
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg);
+            padding: 1.6rem; display: flex; flex-direction: column; gap: 0.6rem;
+        }
+        .sl-dl.rec { border-color: var(--accent-line); }
+        .sl-dl h3 { font-size: 1.15rem; font-family: var(--font-main); font-weight: 600; margin: 0; display: flex; align-items: center; gap: 0.6rem; }
+        .sl-dl .rec-tag { font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em;
+            color: var(--primary-color); border: 1px solid var(--accent-line); border-radius: var(--radius-full); padding: 2px 8px; }
+        .sl-dl p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0; flex: 1; }
+        .sl-dl .btn { margin-top: 0.5rem; }
+        .sl-dl .meta { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); }
+
+        .sl-note {
+            font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; margin-top: 1.25rem;
+            padding: 1rem 1.2rem; border-left: 3px solid var(--accent-line); background: var(--accent-soft);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+        }
+
+        .sl-foot { text-align: center; color: var(--text-muted); font-size: 0.85rem; padding-top: 2.5rem; border-top: 1px solid var(--border-color); }
+        .sl-foot a { color: var(--text-secondary); }
+        .sl-foot a:hover { color: var(--primary-color); }
+
+        :focus-visible { outline: 2px solid var(--primary-color); outline-offset: 3px; border-radius: 4px; }
+    </style>
+</head>
+
+<body>
+    <nav class="proj-nav">
+        <a class="back" href="../portfolio.html#projects"><i class="fas fa-arrow-left"></i> Back to portfolio</a>
+        <div class="right">
+            <a href="https://github.com/p4r1ch4y/upi-analyser" target="_blank" rel="noopener" title="Source on GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://gitlab.com/p4r1ch4y-group/SpendLens/-/releases" target="_blank" rel="noopener" title="Releases on GitLab"><i class="fab fa-gitlab"></i></a>
+            <button id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><i class="fas fa-moon"></i></button>
+        </div>
+    </nav>
+
+    <div class="proj-wrap">
+        <!-- Hero -->
+        <header class="sl-hero">
+            <img class="sl-icon" src="../assets/projects/logos/spendLens.png" alt="SpendLens app icon">
+            <h1>SpendLens</h1>
+            <p class="sl-tagline">The UPI tracker that can't leak your data, because it can't reach the internet.</p>
+            <div class="sl-badges">
+                <span class="sl-chip">Android</span>
+                <span class="sl-chip">Offline-first</span>
+                <span class="sl-chip">Open source</span>
+                <span class="sl-chip"><span class="rel-version">v0.1.1-alpha</span></span>
+            </div>
+            <div class="sl-cta">
+                <a class="btn btn--primary" href="#download"><i class="fas fa-download"></i> Download the app</a>
+                <a class="btn btn--outline" href="https://github.com/p4r1ch4y/upi-analyser" target="_blank" rel="noopener"><i class="fab fa-github"></i> View source</a>
+            </div>
+        </header>
+
+        <!-- Privacy highlight -->
+        <div class="sl-privacy">
+            <i class="fas fa-shield-halved"></i>
+            <span><b>Zero network permission.</b> SpendLens has no internet access at all, so your financial data
+                cannot leave your phone, by design and not just by promise.</span>
+        </div>
+
+        <!-- Overview -->
+        <section class="sl-section">
+            <h2>What it does</h2>
+            <p class="lead">SpendLens is an offline Android expense tracker that reads the payment notifications you
+                already get from UPI and banking apps and quietly turns them into a private spending ledger, stored
+                entirely on your device. No manual data entry, no logins, no cloud, no ads. It captures spends from 19+
+                UPI and bank apps, can recover months of history from your existing bank SMS, imports CSV statements,
+                and lets you split payments, tag trips, and see where your money actually goes.</p>
+        </section>
+
+        <!-- Features -->
+        <section class="sl-section">
+            <h2>Key features</h2>
+            <div class="sl-grid">
+                <div class="sl-feat"><i class="fas fa-bolt"></i><h3>Automatic capture</h3><p>Reads payment notifications
+                    from 19+ UPI and bank apps using grammatical shape-matching, not fragile app-specific parsing.</p></div>
+                <div class="sl-feat"><i class="fas fa-clock-rotate-left"></i><h3>Historical recovery</h3><p>Optionally
+                    reads existing bank SMS in your inbox to rebuild months or years of past spending.</p></div>
+                <div class="sl-feat"><i class="fas fa-file-csv"></i><h3>CSV import</h3><p>Bring in bank statements
+                    through a file picker for a complete, reconciled picture.</p></div>
+                <div class="sl-feat"><i class="fas fa-users"></i><h3>Split payments</h3><p>Split a bill among named
+                    people with repayment tracking, and amounts that always sum back exactly.</p></div>
+                <div class="sl-feat"><i class="fas fa-tags"></i><h3>Tags &amp; trips</h3><p>Group spends into tags and
+                    trips with date-aware journey progress indicators.</p></div>
+                <div class="sl-feat"><i class="fas fa-chart-column"></i><h3>Spending insights</h3><p>See spending across
+                    7, 30 and 90-day windows by day, merchant, tag, and payment rail.</p></div>
+            </div>
+        </section>
+
+        <!-- Screenshots -->
+        <section class="sl-section">
+            <h2>Screenshots</h2>
+            <div class="sl-shots">
+                <img src="../assets/projects/SpendLens_images/phoneScreenshots/1.png" alt="SpendLens screenshot" loading="lazy">
+                <img src="../assets/projects/SpendLens_images/phoneScreenshots/2.png" alt="SpendLens screenshot" loading="lazy">
+                <img src="../assets/projects/SpendLens_images/phoneScreenshots/3.png" alt="SpendLens screenshot" loading="lazy">
+                <img src="../assets/projects/SpendLens_images/phoneScreenshots/4.png" alt="SpendLens screenshot" loading="lazy">
+                <img src="../assets/projects/SpendLens_images/phoneScreenshots/5.png" alt="SpendLens screenshot" loading="lazy">
+                <img src="../assets/projects/SpendLens_images/phoneScreenshots/6.png" alt="SpendLens screenshot" loading="lazy">
+                <img src="../assets/projects/SpendLens_images/phoneScreenshots/7.png" alt="SpendLens screenshot" loading="lazy">
+            </div>
+        </section>
+
+        <!-- How it works -->
+        <section class="sl-section">
+            <h2>How it works</h2>
+            <p class="lead" style="margin-bottom:1.5rem;">Every notification and message flows through a small,
+                Android-independent core that reads structure rather than app identity, then dedupes the same payment
+                seen across multiple sources before it ever touches storage.</p>
+            <div class="sl-pipeline">
+                <span class="sl-step">parse</span><span class="arrow">→</span>
+                <span class="sl-step">dedupe</span><span class="arrow">→</span>
+                <span class="sl-step">fuse</span><span class="arrow">→</span>
+                <span class="sl-step">resolve merchant</span><span class="arrow">→</span>
+                <span class="sl-step">persist (encrypted)</span><span class="arrow">→</span>
+                <span class="sl-step">nudge</span>
+            </div>
+            <p class="lead" style="margin-top:1.5rem;">Merchants are identified through a six-rung resolution ladder
+                (explicit rules, captured name, VPA structure, directory, fuzzy match, then a safe fallback). Money is
+                stored as integer paise to avoid floating-point rounding, and split amounts are balanced to the last
+                paisa (₹1,000 three ways becomes 333.34 / 333.33 / 333.33).</p>
+        </section>
+
+        <!-- Tech -->
+        <section class="sl-section">
+            <h2>Built with</h2>
+            <div class="sl-tags">
+                <span>Kotlin</span><span>Jetpack Compose</span><span>SQLDelight</span>
+                <span>SQLCipher (AES-256)</span><span>Android Keystore</span><span>Gradle (Kotlin DSL)</span>
+                <span>JUnit (102+ tests)</span><span>JDK 21 · SDK 36</span>
+            </div>
+        </section>
+
+        <!-- Privacy details -->
+        <section class="sl-section">
+            <h2>Privacy &amp; security</h2>
+            <div class="sl-grid">
+                <div class="sl-feat"><i class="fas fa-wifi"></i><h3>No internet, at all</h3><p>The APK ships with no
+                    INTERNET permission, so there is no data-exfiltration path regardless of future code.</p></div>
+                <div class="sl-feat"><i class="fas fa-lock"></i><h3>Encrypted at rest</h3><p>The ledger lives in a
+                    SQLCipher database with AES-256, its key sealed by the Android Keystore.</p></div>
+                <div class="sl-feat"><i class="fas fa-ban"></i><h3>No SDKs, no tracking</h3><p>No analytics, crash
+                    reporting, advertising, accounts, or third-party services. Notification contents are never logged.</p></div>
+                <div class="sl-feat"><i class="fas fa-key"></i><h3>Six permissions</h3><p>The standard build requests
+                    only six permissions, none of them classified as dangerous by Android.</p></div>
+            </div>
+        </section>
+
+        <!-- Download -->
+        <section class="sl-section" id="download">
+            <h2>Download</h2>
+            <p class="lead" style="margin-bottom:1.5rem;">Two builds, both signed. Verify against
+                <span style="font-family:var(--font-mono)">SHA256SUMS.txt</span> from the release if you like.
+                Current release: <b class="rel-version">v0.1.1-alpha</b>.</p>
+            <div class="sl-dl-grid">
+                <div class="sl-dl rec">
+                    <h3>Standard build <span class="rec-tag">Recommended</span></h3>
+                    <p>Reads payment notifications only. The right choice for most people.</p>
+                    <span class="meta" id="std-meta">Android APK</span>
+                    <a class="btn btn--primary" id="dl-standard"
+                        href="https://github.com/p4r1ch4y/upi-analyser/releases/download/v0.1.1-alpha/SpendLens-v0.1.1-alpha-app-standard-release.apk">
+                        <i class="fas fa-download"></i> Download standard APK</a>
+                </div>
+                <div class="sl-dl">
+                    <h3>Full build</h3>
+                    <p>Adds SMS reading for historical recovery. Distributed as a direct APK due to SMS policy.</p>
+                    <span class="meta" id="full-meta">Android APK · includes READ_SMS</span>
+                    <a class="btn btn--outline" id="dl-full"
+                        href="https://github.com/p4r1ch4y/upi-analyser/releases/download/v0.1.1-alpha/SpendLens-v0.1.1-alpha-app-full-release.apk">
+                        <i class="fas fa-download"></i> Download full APK</a>
+                </div>
+            </div>
+            <p class="sl-note"><i class="fas fa-circle-info"></i> This is an alpha. On install, Google Play Protect may
+                warn about the notification-listener permission; that is expected for an app that reads notifications,
+                and you can approve it to continue. F-Droid submission is prepared and a Play listing (standard build)
+                is coming soon.</p>
+        </section>
+
+        <footer class="sl-foot">
+            <p>SpendLens is open source under GPL-3.0 ·
+                <a href="https://github.com/p4r1ch4y/upi-analyser" target="_blank" rel="noopener">GitHub</a> ·
+                <a href="https://gitlab.com/p4r1ch4y-group/SpendLens/-/releases" target="_blank" rel="noopener">GitLab releases</a> ·
+                <a href="../portfolio.html#projects">More projects</a></p>
+        </footer>
+    </div>
+
+    <script src="../theme-switch.js"></script>
+    <script>
+        /* Theme toggle (circular reveal via theme-switch.js) */
+        (function () {
+            var btn = document.getElementById('theme-toggle');
+            var icon = btn.querySelector('i');
+            function sync() { icon.className = document.documentElement.getAttribute('data-theme') === 'light' ? 'fas fa-sun' : 'fas fa-moon'; }
+            sync();
+            btn.addEventListener('click', function () {
+                var next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+                var apply = function () { document.documentElement.setAttribute('data-theme', next); localStorage.setItem('theme', next); sync(); };
+                if (window.themeSwitch) window.themeSwitch(btn, apply); else apply();
+            });
+        })();
+
+        /* Dynamic download: pull the latest release from the GitHub API and upgrade
+           the (already-working) fallback links + version labels. No-JS still works. */
+        (function () {
+            var REPO = 'p4r1ch4y/upi-analyser';
+            function fmtSize(bytes) { return bytes ? (bytes / 1048576).toFixed(1) + ' MB' : ''; }
+            fetch('https://api.github.com/repos/' + REPO + '/releases')
+                .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+                .then(function (rels) {
+                    if (!rels || !rels.length) return;
+                    var rel = rels[0];
+                    var apks = (rel.assets || []).filter(function (a) { return /\.apk$/i.test(a.name); });
+                    var std = apks.find(function (a) { return /standard/i.test(a.name); });
+                    var full = apks.find(function (a) { return /full/i.test(a.name); });
+                    if (std) { document.getElementById('dl-standard').href = std.browser_download_url; document.getElementById('std-meta').textContent = 'Android APK · ' + fmtSize(std.size); }
+                    if (full) { document.getElementById('dl-full').href = full.browser_download_url; document.getElementById('full-meta').textContent = 'Android APK · includes READ_SMS · ' + fmtSize(full.size); }
+                    if (rel.tag_name) {
+                        document.querySelectorAll('.rel-version').forEach(function (e) { e.textContent = rel.tag_name; });
+                    }
+                })
+                .catch(function () { /* keep the hardcoded fallback links */ });
+        })();
+    </script>
+</body>
+
+</html>
