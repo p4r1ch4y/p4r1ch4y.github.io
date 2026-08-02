@@ -1908,3 +1908,56 @@ textarea:focus-visible,
     font-size: 0.75rem;
     color: #ffd700;
 }
+/* ==========================================================================
+   Contribution heatmaps (GitHub + OpenForge) for the full portfolio.
+   Rendered by activity-graph.js (shared with the single-page card). The card carries its own
+   copy of these styles inline; here we use the site tokens.
+   ========================================================================== */
+:root {
+    --hm-0: rgba(240, 236, 228, 0.06);
+    --hm-1: rgba(224, 171, 79, 0.28);
+    --hm-2: rgba(224, 171, 79, 0.5);
+    --hm-3: rgba(224, 171, 79, 0.76);
+    --hm-4: #e6b45a;
+}
+[data-theme="light"] {
+    --hm-0: rgba(28, 25, 23, 0.06);
+    --hm-1: rgba(138, 90, 21, 0.22);
+    --hm-2: rgba(138, 90, 21, 0.45);
+    --hm-3: rgba(138, 90, 21, 0.7);
+    --hm-4: #8a5a15;
+}
+
+.activity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.hm-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+.hm-cap { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.75rem; gap: 1rem; }
+.hm-cap .count { color: var(--text-secondary); font-size: 0.95rem; }
+.hm-cap .count b { color: var(--primary-color); font-weight: 600; }
+.hm-src { color: var(--text-muted); font-size: 0.8rem; font-family: var(--font-mono); white-space: nowrap; }
+.hm-note { font-size: 0.8rem; color: var(--text-muted); margin: 0.75rem 0 0; line-height: 1.5; }
+.hm-scroll { overflow-x: auto; padding-bottom: 4px; }
+.hm-inner { display: inline-block; min-width: max-content; }
+.hm-months { display: flex; gap: 2px; margin-bottom: 4px; }
+.hm-mlabel { width: 10px; font-size: 9px; color: var(--text-muted); white-space: nowrap; overflow: visible; font-family: var(--font-mono); }
+.hm-grid { display: flex; gap: 2px; }
+.hm-col { display: flex; flex-direction: column; gap: 2px; }
+.hm-cell { width: 10px; height: 10px; border-radius: 2px; background: var(--hm-0); }
+.hm-cell[data-l="1"] { background: var(--hm-1); }
+.hm-cell[data-l="2"] { background: var(--hm-2); }
+.hm-cell[data-l="3"] { background: var(--hm-3); }
+.hm-cell[data-l="4"] { background: var(--hm-4); }
+.hm-legend { display: flex; align-items: center; gap: 5px; justify-content: flex-end; margin-top: 8px; font-size: 0.72rem; color: var(--text-muted); }
+.hm-legend .hm-cell { display: inline-block; }
+.hm-loading { color: var(--text-muted); font-size: 0.9rem; padding: 0.5rem 0; }

@@ -181,6 +181,28 @@
             </div>
         </section>
 
+        <!-- Contribution Activity -->
+        <section id="activity" class="activity">
+            <div class="container">
+                <span class="section-kicker">At a Glance</span>
+                <h2 class="section-title">Contribution Activity</h2>
+                <div class="activity-grid">
+                    <div class="hm-block" id="gh-block">
+                        <div class="hm-cap"><span class="count" id="gh-count">Loading…</span><span class="hm-src">@p4r1ch4y on GitHub</span></div>
+                        <div class="hm-scroll"><div class="hm-inner" id="gh-graph"><div class="hm-loading">Fetching contributions…</div></div></div>
+                        <div class="hm-legend" id="gh-legend"></div>
+                    </div>
+                    <div class="hm-block" id="of-block">
+                        <div class="hm-cap"><span class="count" id="of-count"></span><span class="hm-src">OpenForge · internship</span></div>
+                        <div class="hm-scroll"><div class="hm-inner" id="of-graph"></div></div>
+                        <div class="hm-legend" id="of-legend"></div>
+                        <p class="hm-note">Commits and daily activity from my internship work on OpenForge. Not all of
+                            it shows up on GitHub.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="about" class="about">
             <div class="container">
                 <span class="section-kicker">01 / Who I Am</span>
@@ -1216,6 +1238,7 @@
     <!-- Ensure app.js is loaded -->
     <script src="theme-switch.js"></script>
     <script src="app.js"></script>
+    <script src="activity-graph.js"></script>
     <script>
         // JS for the typewriter effect - UPDATED WITH NEW STRINGS
         document.addEventListener('DOMContentLoaded', function () {
