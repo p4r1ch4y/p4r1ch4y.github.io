@@ -250,8 +250,12 @@
         /* tech tags */
         .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
         .tags span {
+            display: inline-flex; align-items: center; gap: 0.5rem;
             font-size: 11.5px; color: var(--ink-soft);
-            border: 1px solid var(--line); border-radius: 6px; padding: 3px 9px;
+            border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px 4px 8px;
+        }
+        .tool-ico {
+            width: 14px; height: 14px; object-fit: contain; flex: 0 0 auto;
         }
 
         /* connect */
@@ -429,9 +433,19 @@
         <section>
             <div class="sec-title">Technology &amp; Tools I Use</div>
             <div class="tags">
-                <span>TypeScript</span><span>Node.js</span><span>React</span><span>Next.js</span><span>Prisma</span>
-                <span>PostgreSQL</span><span>Redis</span><span>Solana / Anchor</span><span>Rust</span>
-                <span>Python</span><span>BigQuery</span><span>Docker</span><span>Git</span>
+                <span><img class="tool-ico" src="assets/projects/logos/tools/typescript.svg" alt="" loading="lazy" onerror="this.remove()">TypeScript</span>
+                <span><img class="tool-ico" src="assets/projects/logos/tools/nodedotjs.svg" alt="" loading="lazy" onerror="this.remove()">Node.js</span>
+                <span><img class="tool-ico" src="assets/projects/logos/tools/react.svg" alt="" loading="lazy" onerror="this.remove()">React</span>
+                <span><img class="tool-ico" src="assets/projects/logos/tools/nextdotjs.svg" alt="" loading="lazy" onerror="this.remove()">Next.js</span>
+                <span><img class="tool-ico" src="assets/projects/logos/tools/prisma.svg" alt="" loading="lazy" onerror="this.remove()">Prisma</span>
+                <span><img class="tool-ico" src="assets/projects/logos/tools/postgresql.svg" alt="" loading="lazy" onerror="this.remove()">PostgreSQL</span>
+                <span><img class="tool-ico" src="assets/projects/logos/tools/redis.svg" alt="" loading="lazy" onerror="this.remove()">Redis</span>
+                <span><img class="tool-ico" src="assets/projects/logos/tools/solana.svg" alt="" loading="lazy" onerror="this.remove()">Solana / Anchor</span>
+                <span><img class="tool-ico" src="assets/projects/logos/tools/rust.svg" alt="" loading="lazy" onerror="this.remove()">Rust</span>
+                <span><img class="tool-ico" src="assets/projects/logos/tools/python.svg" alt="" loading="lazy" onerror="this.remove()">Python</span>
+                <span><img class="tool-ico" src="assets/projects/logos/tools/googlebigquery.svg" alt="" loading="lazy" onerror="this.remove()">BigQuery</span>
+                <span><img class="tool-ico" src="assets/projects/logos/tools/docker.svg" alt="" loading="lazy" onerror="this.remove()">Docker</span>
+                <span><img class="tool-ico" src="assets/projects/logos/tools/git.svg" alt="" loading="lazy" onerror="this.remove()">Git</span>
             </div>
         </section>
 

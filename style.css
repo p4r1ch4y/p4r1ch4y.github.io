@@ -425,12 +425,11 @@ section {
     font-weight: 700;
     letter-spacing: -0.02em;
     text-align: center;
-    margin-bottom: 3.25rem;
+    margin: 0 auto 3.25rem;
     position: relative;
-    display: inline-block;
-    left: 50%;
-    transform: translateX(-50%);
+    display: block;
     padding-bottom: 0.9rem;
+    overflow-wrap: break-word;
 }
 
 /* Editorial hairline under each section heading */
@@ -886,20 +885,23 @@ textarea:focus-visible,
     transition: var(--transition-base);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .nav-toggle {
         display: block;
     }
 
     .nav-menu {
         position: fixed;
-        top: 70px;
+        top: 66px;
         left: -100%;
         width: 100%;
-        height: calc(100vh - 70px);
+        height: calc(100vh - 66px);
         background: var(--bg-body);
         flex-direction: column;
+        justify-content: flex-start;
+        gap: 1.5rem;
         padding: 2rem;
+        overflow-y: auto;
         transition: var(--transition-base);
     }
 
@@ -1961,3 +1963,47 @@ textarea:focus-visible,
 .hm-legend { display: flex; align-items: center; gap: 5px; justify-content: flex-end; margin-top: 8px; font-size: 0.72rem; color: var(--text-muted); }
 .hm-legend .hm-cell { display: inline-block; }
 .hm-loading { color: var(--text-muted); font-size: 0.9rem; padding: 0.5rem 0; }
+
+/* ==========================================================================
+   Full-portfolio mobile optimisation (portfolio.html + blog.html).
+   Tightens spacing, wraps hero actions, stacks the activity graphs, and
+   prevents horizontal overflow on small screens.
+   ========================================================================== */
+@media (max-width: 768px) {
+    section { padding: 4rem 0; }
+    .container { padding: 0 1.25rem; }
+    .section-title { margin-bottom: 2.25rem; }
+
+    .hero { padding-top: 6rem; padding-bottom: 3rem; min-height: auto; }
+    .hero-title { font-size: clamp(2rem, 8vw, 2.6rem); overflow-wrap: anywhere; }
+    .hero-subtitle { font-size: 1.05rem; }
+    .hero-description { font-size: 0.97rem; }
+    .hero-buttons, .hero-socials, .hero-profiles { flex-wrap: wrap; }
+    .hero-profiles { gap: 0.75rem; }
+    .profile-btn { font-size: 0.85rem; }
+
+    /* projects grid lives outside .container; match the tighter gutter */
+    .projects-grid { padding: 0 1.25rem; gap: 1.75rem; }
+
+    .activity-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .hm-block { padding: 1.1rem; }
+    .hm-cap { flex-wrap: wrap; row-gap: 0.25rem; }
+
+    .about-stats { grid-template-columns: repeat(2, 1fr) !important; gap: 1rem !important; }
+
+    /* timeline: keep the rail tight to the edge on small screens */
+    .timeline::before { left: 8px; }
+    .timeline-dot { left: -1px; }
+    .timeline-item { padding-left: 34px; margin-bottom: 2.5rem; }
+
+    .footer-content { gap: 0.5rem; }
+}
+
+@media (max-width: 480px) {
+    section { padding: 3.25rem 0; }
+    .section-title { font-size: 1.9rem; }
+    .hero-buttons .btn, .hero-profiles .btn { width: 100%; }
+    .about-stats { grid-template-columns: 1fr !important; }
+    .filter-container { gap: 0.5rem; }
+    .filter-btn { padding: 0.5rem 1rem; font-size: 0.85rem; }
+}
