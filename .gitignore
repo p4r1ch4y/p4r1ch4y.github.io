@@ -10,3 +10,6 @@
 # OS / editor cruft
 .DS_Store
 Thumbs.db
+
+# Reference recordings (not site assets)
+*.webm

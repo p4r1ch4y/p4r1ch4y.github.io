@@ -425,12 +425,11 @@ section {
     font-weight: 700;
     letter-spacing: -0.02em;
     text-align: center;
-    margin-bottom: 3.25rem;
+    margin: 0 auto 3.25rem;
     position: relative;
-    display: inline-block;
-    left: 50%;
-    transform: translateX(-50%);
+    display: block;
     padding-bottom: 0.9rem;
+    overflow-wrap: break-word;
 }
 
 /* Editorial hairline under each section heading */
@@ -886,20 +885,23 @@ textarea:focus-visible,
     transition: var(--transition-base);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .nav-toggle {
         display: block;
     }
 
     .nav-menu {
         position: fixed;
-        top: 70px;
+        top: 66px;
         left: -100%;
         width: 100%;
-        height: calc(100vh - 70px);
+        height: calc(100vh - 66px);
         background: var(--bg-body);
         flex-direction: column;
+        justify-content: flex-start;
+        gap: 1.5rem;
         padding: 2rem;
+        overflow-y: auto;
         transition: var(--transition-base);
     }
 
@@ -1907,4 +1909,101 @@ textarea:focus-visible,
 .featured-badge i {
     font-size: 0.75rem;
     color: #ffd700;
+}
+/* ==========================================================================
+   Contribution heatmaps (GitHub + OpenForge) for the full portfolio.
+   Rendered by activity-graph.js (shared with the single-page card). The card carries its own
+   copy of these styles inline; here we use the site tokens.
+   ========================================================================== */
+:root {
+    --hm-0: rgba(240, 236, 228, 0.06);
+    --hm-1: rgba(224, 171, 79, 0.28);
+    --hm-2: rgba(224, 171, 79, 0.5);
+    --hm-3: rgba(224, 171, 79, 0.76);
+    --hm-4: #e6b45a;
+}
+[data-theme="light"] {
+    --hm-0: rgba(28, 25, 23, 0.06);
+    --hm-1: rgba(138, 90, 21, 0.22);
+    --hm-2: rgba(138, 90, 21, 0.45);
+    --hm-3: rgba(138, 90, 21, 0.7);
+    --hm-4: #8a5a15;
+}
+
+.activity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.hm-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+.hm-cap { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.75rem; gap: 1rem; }
+.hm-cap .count { color: var(--text-secondary); font-size: 0.95rem; }
+.hm-cap .count b { color: var(--primary-color); font-weight: 600; }
+.hm-src { color: var(--text-muted); font-size: 0.8rem; font-family: var(--font-mono); white-space: nowrap; }
+.hm-note { font-size: 0.8rem; color: var(--text-muted); margin: 0.75rem 0 0; line-height: 1.5; }
+.hm-scroll { overflow-x: auto; padding-bottom: 4px; }
+.hm-inner { display: inline-block; min-width: max-content; }
+.hm-months { display: flex; gap: 2px; margin-bottom: 4px; }
+.hm-mlabel { width: 10px; font-size: 9px; color: var(--text-muted); white-space: nowrap; overflow: visible; font-family: var(--font-mono); }
+.hm-grid { display: flex; gap: 2px; }
+.hm-col { display: flex; flex-direction: column; gap: 2px; }
+.hm-cell { width: 10px; height: 10px; border-radius: 2px; background: var(--hm-0); }
+.hm-cell[data-l="1"] { background: var(--hm-1); }
+.hm-cell[data-l="2"] { background: var(--hm-2); }
+.hm-cell[data-l="3"] { background: var(--hm-3); }
+.hm-cell[data-l="4"] { background: var(--hm-4); }
+.hm-legend { display: flex; align-items: center; gap: 5px; justify-content: flex-end; margin-top: 8px; font-size: 0.72rem; color: var(--text-muted); }
+.hm-legend .hm-cell { display: inline-block; }
+.hm-loading { color: var(--text-muted); font-size: 0.9rem; padding: 0.5rem 0; }
+
+/* ==========================================================================
+   Full-portfolio mobile optimisation (portfolio.html + blog.html).
+   Tightens spacing, wraps hero actions, stacks the activity graphs, and
+   prevents horizontal overflow on small screens.
+   ========================================================================== */
+@media (max-width: 768px) {
+    section { padding: 4rem 0; }
+    .container { padding: 0 1.25rem; }
+    .section-title { margin-bottom: 2.25rem; }
+
+    .hero { padding-top: 6rem; padding-bottom: 3rem; min-height: auto; }
+    .hero-title { font-size: clamp(2rem, 8vw, 2.6rem); overflow-wrap: anywhere; }
+    .hero-subtitle { font-size: 1.05rem; }
+    .hero-description { font-size: 0.97rem; }
+    .hero-buttons, .hero-socials, .hero-profiles { flex-wrap: wrap; }
+    .hero-profiles { gap: 0.75rem; }
+    .profile-btn { font-size: 0.85rem; }
+
+    /* projects grid lives outside .container; match the tighter gutter */
+    .projects-grid { padding: 0 1.25rem; gap: 1.75rem; }
+
+    .activity-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .hm-block { padding: 1.1rem; }
+    .hm-cap { flex-wrap: wrap; row-gap: 0.25rem; }
+
+    .about-stats { grid-template-columns: repeat(2, 1fr) !important; gap: 1rem !important; }
+
+    /* timeline: keep the rail tight to the edge on small screens */
+    .timeline::before { left: 8px; }
+    .timeline-dot { left: -1px; }
+    .timeline-item { padding-left: 34px; margin-bottom: 2.5rem; }
+
+    .footer-content { gap: 0.5rem; }
+}
+
+@media (max-width: 480px) {
+    section { padding: 3.25rem 0; }
+    .section-title { font-size: 1.9rem; }
+    .hero-buttons .btn, .hero-profiles .btn { width: 100%; }
+    .about-stats { grid-template-columns: 1fr !important; }
+    .filter-container { gap: 0.5rem; }
+    .filter-btn { padding: 0.5rem 1rem; font-size: 0.85rem; }
 }
