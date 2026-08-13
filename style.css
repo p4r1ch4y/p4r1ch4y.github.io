@@ -1440,6 +1440,21 @@ textarea:focus-visible,
     align-items: start;
 }
 
+/* Let every grid child shrink below its intrinsic width so the form and the
+   giscus iframe can't push the page wider than the viewport on mobile. */
+.contact-content > * {
+    min-width: 0;
+}
+
+/* Giscus injects an iframe with an intrinsic min-width; keep it fluid site-wide
+   (contact guestbook, blog, and post comment threads). */
+.giscus,
+.giscus-frame,
+.giscus iframe {
+    width: 100% !important;
+    max-width: 100%;
+}
+
 .contact-info {
     background: var(--bg-card);
     padding: 2.5rem;
@@ -1943,6 +1958,10 @@ textarea:focus-visible,
     border-radius: var(--radius-lg);
     padding: 1.5rem;
     box-shadow: var(--shadow-sm);
+    /* Grid/flex item must be allowed to shrink below the heatmap's intrinsic
+       width, otherwise the wide grid forces horizontal overflow and the whole
+       mobile page zooms out. Pairs with .hm-scroll's overflow-x: auto. */
+    min-width: 0;
 }
 .hm-cap { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.75rem; gap: 1rem; }
 .hm-cap .count { color: var(--text-secondary); font-size: 0.95rem; }
@@ -1985,7 +2004,7 @@ textarea:focus-visible,
     /* projects grid lives outside .container; match the tighter gutter */
     .projects-grid { padding: 0 1.25rem; gap: 1.75rem; }
 
-    .activity-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .activity-grid { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
     .hm-block { padding: 1.1rem; }
     .hm-cap { flex-wrap: wrap; row-gap: 0.25rem; }
 

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://p4r1ch4y.github.io/sitemap.xml
