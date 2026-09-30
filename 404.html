@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',t==='light'?'#f7fafd':'#000000')})();</script>
     <title>404 - Page Not Found | Subrata Choudhury</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -97,6 +99,7 @@
             background: var(--bg-glass);
         }
     </style>
+    <link rel="stylesheet" href="winter.css">
 </head>
 
 <body>
@@ -122,6 +125,7 @@
         </div>
     </div>
 
+    <script src="theme-switch.js"></script>
     <!-- Particle Background -->
     <div id="particles-container"></div>
 
@@ -169,6 +173,7 @@
             setTimeout(() => createParticle(), i * 100);
         }
     </script>
+    <script src="winter.js" defer></script>
 </body>
 
 </html>

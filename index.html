@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>(function () { document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark'); })();</script>
+    <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',t==='light'?'#f8f9fb':'#000000')})();</script>
 
     <title>Subrata Choudhury · Software Engineer</title>
     <meta name="description"
@@ -30,7 +30,7 @@
     <meta name="twitter:image:alt" content="Subrata Choudhury — Software Engineer">
     <meta name="author" content="Subrata Choudhury">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#12100d">
+    <meta name="theme-color" content="#000000">
 
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -167,9 +167,13 @@
         /* hero */
         .orb {
             width: 60px; height: 60px; border-radius: 50%;
-            background: radial-gradient(circle at 32% 28%, #ffe3ad, var(--accent) 55%, #9a6a1c 100%);
-            box-shadow: 0 0 32px -6px var(--accent);
+            background: radial-gradient(circle at 35% 30%, #ffffff, #c9cde0 45%, #2a2f6b 100%);
+            box-shadow: 0 0 32px -6px rgba(40, 48, 170, 0.6);
             margin-bottom: 1.5rem;
+        }
+        :root[data-theme="light"] .orb {
+            background: radial-gradient(circle at 35% 30%, #ffffff, #c5cae8 50%, #000080 110%);
+            box-shadow: 0 0 32px -8px rgba(0, 0, 128, 0.35);
         }
         h1 {
             font-family: var(--mono);
@@ -300,6 +304,7 @@
             .wrap::before, .wrap::after { display: none; }
         }
     </style>
+    <link rel="stylesheet" href="winter.css">
 </head>
 
 <body>
@@ -310,6 +315,7 @@
             <span>Subrata&nbsp;Choudhury</span>
             <span class="right">
                 <span id="clock">--:--:--</span>
+                <button id="snow-toggle" class="icon-btn" type="button" aria-label="Toggle snowfall" aria-pressed="true" title="Snow (S)"><i class="fas fa-snowflake" aria-hidden="true"></i></button>
                 <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><i class="fas fa-moon"></i></button>
             </span>
         </div>
@@ -521,7 +527,7 @@
             const btn = document.getElementById('theme-toggle');
             const icon = btn.querySelector('i');
             const sync = () => {
-                const dark = document.documentElement.getAttribute('data-theme') !== 'light';
+                const dark = document.documentElement.getAttribute('data-theme') !== 'light'; // head guard is source of truth
                 icon.className = dark ? 'fas fa-moon' : 'fas fa-sun';
             };
             sync();
@@ -538,6 +544,7 @@
         })();
     </script>
     <script src="external-link-modal.js"></script>
+    <script src="winter.js" defer></script>
 </body>
 
 </html>

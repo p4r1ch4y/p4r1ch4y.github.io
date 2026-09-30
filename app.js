@@ -1,6 +1,7 @@
 // Global variables
-let particles = [];
-let particleContainer;
+const REDUCE_MOTION = !!window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Under reduced motion anime.js runs effectively instantly (loops below are skipped)
+if (REDUCE_MOTION && window.anime) window.anime.speed = 1000;
 let isLoaded = false;
 let animatedElements = new Set();
 
@@ -318,7 +319,6 @@ function initializeApp() {
     // Initialize components with proper timing
     setTimeout(() => {
         initializeTheme(); // Initialize theme first
-        initializeParticles();
         initializeNavigation();
         initializeTypewriter();
         initializeSkillBars();
@@ -342,10 +342,8 @@ function initializeApp() {
 // Theme Management
 function initializeTheme() {
     const themeToggle = document.getElementById('theme-toggle');
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-
-    // Apply saved theme
-    document.documentElement.setAttribute('data-theme', savedTheme);
+    // The head guard already resolved stored / prefers-color-scheme; data-theme is the source of truth
+    const savedTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
     updateThemeIcon(savedTheme);
 
     if (themeToggle) {
@@ -355,7 +353,7 @@ function initializeTheme() {
 
             const apply = () => {
                 document.documentElement.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
+                try { localStorage.setItem('theme', newTheme); } catch (e) { /* storage blocked */ }
                 updateThemeIcon(newTheme);
             };
 
@@ -389,7 +387,7 @@ function showLoadingScreen() {
             duration: 2000
         });
     }
-    if (loadingText) {
+    if (loadingText && !REDUCE_MOTION) {
         anime({
             targets: loadingText,
             opacity: [0.5, 1],
@@ -399,7 +397,7 @@ function showLoadingScreen() {
             duration: 800
         });
     }
-    if (loadingLogo) {
+    if (loadingLogo && !REDUCE_MOTION) {
         anime({
             targets: loadingLogo,
             scale: [0.9, 1.1],
@@ -433,92 +431,6 @@ function hideLoadingScreen() {
                 easing: 'easeOutSine'
             }, '-=200');
     }
-}
-
-// Particle System
-function initializeParticles() {
-    particleContainer = document.getElementById('particles-container');
-    if (!particleContainer) return;
-
-    // Create initial particles
-    for (let i = 0; i < 30; i++) {
-        createParticle();
-    }
-
-    // Animate particles
-    animateParticles();
-
-    // Add mouse interaction
-    document.addEventListener('mousemove', handleMouseMove);
-}
-
-function createParticle() {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-
-    const size = Math.random() * 3 + 1;
-    particle.style.width = size + 'px';
-    particle.style.height = size + 'px';
-    particle.style.left = Math.random() * window.innerWidth + 'px';
-    particle.style.top = Math.random() * window.innerHeight + 'px';
-    particle.style.opacity = Math.random() * 0.4 + 0.1;
-
-    // Theme-aware colors could be implemented here
-    const colors = ['#89b4fa', '#cba6f7', '#94e2d5'];
-    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-
-    particle.velocity = {
-        x: (Math.random() - 0.5) * 1,
-        y: (Math.random() - 0.5) * 1
-    };
-
-    particles.push(particle);
-    particleContainer.appendChild(particle);
-}
-
-function animateParticles() {
-    particles.forEach((particle) => {
-        // Soft, soothing floating effect
-        anime({
-            targets: particle,
-            translateX: () => anime.random(-150, 150),
-            translateY: () => anime.random(-150, 150),
-            scale: () => anime.random(0.8, 1.5),
-            opacity: [0.1, () => anime.random(0.3, 0.6)],
-            easing: 'easeInOutSine',
-            duration: () => anime.random(4000, 10000),
-            direction: 'alternate',
-            loop: true
-        });
-    });
-}
-
-function handleMouseMove(e) {
-    if (!isLoaded || Math.random() > 0.05) return;
-
-    // Create trail effect
-    const trail = document.createElement('div');
-    trail.style.position = 'fixed';
-    trail.style.left = e.clientX + 'px';
-    trail.style.top = e.clientY + 'px';
-    trail.style.width = '2px';
-    trail.style.height = '2px';
-    trail.style.background = '#89b4fa';
-    trail.style.borderRadius = '50%';
-    trail.style.pointerEvents = 'none';
-    trail.style.zIndex = '1';
-    trail.style.opacity = '0.6';
-    trail.style.transition = 'all 0.5s ease-out';
-
-    particleContainer.appendChild(trail);
-
-    setTimeout(() => {
-        trail.style.opacity = '0';
-        trail.style.transform = 'scale(0)';
-        setTimeout(() => {
-            if (trail.parentNode) trail.remove();
-        }, 500);
-    }, 100);
 }
 
 // Navigation with smooth scrolling
@@ -937,7 +849,7 @@ function initializeHoverAnimations() {
 // Hero Animations - Floating Profile
 function initializeHeroAnimations() {
     const profile = document.querySelector('.profile-circle');
-    if (profile) {
+    if (profile && !REDUCE_MOTION) {
         anime({
             targets: profile,
             translateY: [-15, 15],
@@ -1112,24 +1024,6 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
-
-// Window resize handler
-window.addEventListener('resize', debounce(() => {
-    // Recreate particles for new screen size
-    if (particleContainer && particles.length > 0) {
-        particles.forEach(particle => {
-            if (particle.parentNode) {
-                particle.remove();
-            }
-        });
-        particles = [];
-
-        // Create new particles for new screen size
-        for (let i = 0; i < 30; i++) {
-            createParticle();
-        }
-    }
-}, 250));
 
 // Initialize on page load
 window.addEventListener('load', () => {

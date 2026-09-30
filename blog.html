@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>(function () { document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark'); })();</script>
+    <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',t==='light'?'#f7fafd':'#000000')})();</script>
     <title>Blog - Subrata Choudhury</title>
     <meta name="description"
         content="Technical blog by Subrata Choudhury covering Web3, Developer Relations, and Software Engineering.">
     <meta name="author" content="Subrata Choudhury">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://p4r1ch4y.github.io/blog.html">
-    <meta name="theme-color" content="#12100d">
+    <meta name="theme-color" content="#000000">
     <meta property="og:title" content="Technical Blog · Subrata Choudhury">
     <meta property="og:description"
         content="Field notes on public-interest tech, backend and security, Web3, and developer relations.">
@@ -19,6 +19,7 @@
     <meta property="og:url" content="https://p4r1ch4y.github.io/blog.html">
     <meta property="og:image" content="https://p4r1ch4y.github.io/assets/portfolio-preview.jpg">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="winter.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <style>
@@ -121,7 +122,8 @@
                 <li><a href="portfolio.html#projects" class="nav-link">Projects</a></li>
                 <li><a href="blog.html" class="nav-link active">Blog</a></li>
                 <li><a href="portfolio.html#contact" class="nav-link">Contact</a></li>
-                <li>
+                <li class="nav-toggles">
+                    <button id="snow-toggle" class="theme-toggle" type="button" aria-label="Toggle snowfall" aria-pressed="true" title="Snow (S)"><i class="fas fa-snowflake" aria-hidden="true"></i></button>
                     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
                         <i class="fas fa-moon"></i>
                     </button>
@@ -233,6 +235,7 @@
     <script src="theme-switch.js"></script>
     <script src="app.js"></script>
     <script src="external-link-modal.js"></script>
+    <script src="winter.js" defer></script>
 </body>
 
 </html>
