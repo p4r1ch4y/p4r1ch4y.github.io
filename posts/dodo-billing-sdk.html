@@ -4,8 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>(function(){document.documentElement.setAttribute('data-theme',localStorage.getItem('theme')||'dark');})();</script>
+    <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t='dark'}document.documentElement.setAttribute('data-theme',t)})();</script>
     <title>Using Dodo's Adapter to Handle Payments in Your AI SaaS - Subrata Choudhury</title>
+    <meta name="description" content="How to use Dodo Payments&#x27; billing adapter to handle subscriptions and payments in an AI SaaS product, with a practical integration walkthrough.">
+    <link rel="canonical" href="https://p4r1ch4y.github.io/posts/dodo-billing-sdk.html">
+    <meta property="og:title" content="Using Dodo&#x27;s Adapter to Handle Payments in Your AI SaaS">
+    <meta property="og:description" content="How to use Dodo Payments&#x27; billing adapter to handle subscriptions and payments in an AI SaaS product, with a practical integration walkthrough.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://p4r1ch4y.github.io/posts/dodo-billing-sdk.html">
+    <meta property="og:image" content="https://p4r1ch4y.github.io/assets/portfolio-preview.jpg">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link
@@ -23,7 +31,7 @@
             }
         </script>
         <script type="text/javascript"
-            src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+            src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
 
         <div class="paper-content">
             <a href="../blog.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog</a>

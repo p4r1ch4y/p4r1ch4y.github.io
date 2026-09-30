@@ -1,0 +1,273 @@
+/* ==========================================================================
+   Winter theme — AMOLED dark + snow light. Loaded AFTER style.css / inline CSS.
+   Tokens for both naming schemes (style.css + index.html), aurora, canvases,
+   frost cards, theme-switch rim, blog-note re-skin.
+   ========================================================================== */
+
+/* ---------- Tokens: dark (AMOLED, navy #000080 as glow/fill, not text) ---------- */
+:root,
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    /* style.css names */
+    --bg-body: #000000;
+    --bg-card: #06070d;
+    --bg-raised: #0c0e18;
+    --bg-glass: rgba(0, 0, 0, 0.74);
+    --text-primary: #eceef5;
+    --text-secondary: #aab0c4;
+    --text-muted: #7a8198;
+    --primary-color: #c3c9f2;
+    --secondary-color: #e6e8f5;
+    --accent-color: #b9bfd4;
+    --on-accent: #ffffff;
+    --accent-soft: rgba(40, 48, 170, 0.20);
+    --accent-line: rgba(160, 168, 235, 0.30);
+    --border-color: rgba(255, 255, 255, 0.07);
+    --border-glass: rgba(255, 255, 255, 0.06);
+    --border-strong: rgba(255, 255, 255, 0.14);
+    --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(40, 48, 170, 0.06);
+    --shadow-md: 0 8px 26px rgba(0, 0, 0, 0.75), 0 0 18px -8px rgba(40, 48, 170, 0.25);
+    --shadow-lg: 0 16px 46px rgba(0, 0, 0, 0.85), 0 0 30px -10px rgba(40, 48, 170, 0.32);
+    --gradient-primary: linear-gradient(135deg, #000080, #1c22a8);
+    --gradient-bg: #000000;
+    /* index.html names */
+    --bg: #000000;
+    --ink: #eceef5;
+    --ink-soft: #aab0c4;
+    --ink-muted: #7a8198;
+    --accent: #c3c9f2;
+    --line: rgba(255, 255, 255, 0.07);
+    --line-strong: rgba(255, 255, 255, 0.14);
+    /* heatmap */
+    --hm-0: #0b0c14; --hm-1: #161b52; --hm-2: #232d8a; --hm-3: #4250b8; --hm-4: #9aa3e6;
+    /* winter */
+    --snow-color: rgba(236, 238, 245, 0.80);
+    --frag-color: #e8ebf7;
+    --frag-glow: rgba(70, 80, 200, 0.40);
+    --aurora-a: rgba(0, 0, 128, 0.55);
+    --aurora-b: rgba(28, 34, 168, 0.28);
+    --aurora-c: rgba(140, 140, 175, 0.10);
+    --frost-edge: rgba(195, 201, 242, 0.25);
+    --focus-ring: #c3c9f2;
+    --sheen-a: rgba(255, 255, 255, 0.10);
+    --sheen-b: rgba(195, 201, 242, 0.16);
+    --btn-rim: rgba(170, 178, 240, 0.35);
+}
+
+/* ---------- Tokens: light (snow, navy ink) ---------- */
+:root[data-theme="light"] {
+    color-scheme: light;
+    --bg-body: #f8f9fb;
+    --bg-card: #ffffff;
+    --bg-raised: #f0f2f6;
+    --bg-glass: rgba(255, 255, 255, 0.80);
+    --text-primary: #0b0f2a;
+    --text-secondary: #3e4458;
+    --text-muted: #5d6377;
+    --primary-color: #000080;
+    --secondary-color: #00005c;
+    --accent-color: #34398a;
+    --on-accent: #ffffff;
+    --accent-soft: rgba(0, 0, 128, 0.07);
+    --accent-line: rgba(0, 0, 128, 0.22);
+    --border-color: rgba(11, 15, 42, 0.08);
+    --border-glass: rgba(11, 15, 42, 0.07);
+    --border-strong: rgba(11, 15, 42, 0.15);
+    --shadow-sm: 0 2px 8px rgba(11, 15, 42, 0.06);
+    --shadow-md: 0 8px 24px rgba(11, 15, 42, 0.09);
+    --shadow-lg: 0 16px 42px rgba(11, 15, 42, 0.13);
+    --gradient-primary: linear-gradient(135deg, #000080, #1a1f9c);
+    --gradient-bg: #f8f9fb;
+    --bg: #f8f9fb;
+    --ink: #0b0f2a;
+    --ink-soft: #3e4458;
+    --ink-muted: #5d6377;
+    --accent: #000080;
+    --line: rgba(11, 15, 42, 0.08);
+    --line-strong: rgba(11, 15, 42, 0.15);
+    --hm-0: #eceef4; --hm-1: #c5cae8; --hm-2: #8c95d4; --hm-3: #3d48a8; --hm-4: #000080;
+    --snow-color: rgba(110, 118, 160, 0.40);
+    --frag-color: #1f2690;
+    --frag-glow: rgba(0, 0, 128, 0.18);
+    --aurora-a: rgba(0, 0, 128, 0.07);
+    --aurora-b: rgba(150, 160, 210, 0.16);
+    --aurora-c: rgba(205, 210, 228, 0.30);
+    --frost-edge: rgba(0, 0, 128, 0.14);
+    --focus-ring: #000080;
+    --sheen-a: rgba(255, 255, 255, 0.55);
+    --sheen-b: rgba(197, 202, 232, 0.50);
+    --btn-rim: transparent;
+}
+
+/* ---------- Base ---------- */
+/* html carries the solid ground; body is transparent so the negative-z aurora + snow layers show through */
+html { background: var(--bg-body); transition: background-color 0.35s ease; }
+body {
+    background: transparent;
+    color: var(--text-primary);
+    transition: color 0.35s ease;
+}
+html.winter-switching, html:active-view-transition,
+html.winter-switching body, html:active-view-transition body { transition: none; }
+
+::selection { background: var(--accent-line); color: var(--text-primary); }
+:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; border-radius: 4px; }
+html { scrollbar-width: thin; scrollbar-color: var(--accent-line) transparent; }
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--accent-line); border-radius: 8px; border: 2px solid transparent; background-clip: padding-box; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-color); background-clip: padding-box; }
+
+a { transition: color 0.2s ease, text-decoration-color 0.25s ease; text-decoration-color: transparent; }
+a:hover { text-decoration-color: currentColor; }
+
+/* ---------- Aurora + canvases ---------- */
+.winter-aurora {
+    position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden;
+    background: transparent;
+}
+.winter-aurora::before,
+.winter-aurora::after {
+    content: ''; position: absolute; pointer-events: none;
+    width: 90vmax; height: 70vmax; border-radius: 50%;
+    filter: blur(70px);
+    will-change: transform;
+}
+.winter-aurora::before {
+    top: -42vmax; left: -22vmax;
+    background:
+        radial-gradient(closest-side, var(--aurora-a), transparent 70%),
+        radial-gradient(closest-side at 70% 60%, var(--aurora-c), transparent 70%);
+    animation: winter-drift-a 52s ease-in-out infinite alternate;
+}
+.winter-aurora::after {
+    top: -48vmax; right: -30vmax;
+    background:
+        radial-gradient(closest-side, var(--aurora-b), transparent 70%),
+        radial-gradient(closest-side at 30% 70%, var(--aurora-a), transparent 72%);
+    animation: winter-drift-b 44s ease-in-out infinite alternate;
+}
+@keyframes winter-drift-a {
+    from { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+    to   { transform: translate3d(14vmax, 6vmax, 0) rotate(14deg) scale(1.15); }
+}
+@keyframes winter-drift-b {
+    from { transform: translate3d(0, 0, 0) rotate(0deg) scale(1.1); }
+    to   { transform: translate3d(-16vmax, 8vmax, 0) rotate(-12deg) scale(0.95); }
+}
+.winter-snow, .winter-fx {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; height: 100dvh;
+    pointer-events: none;
+}
+.winter-snow { z-index: -1; }
+.winter-fx { z-index: 9998; view-transition-name: winter-fx; }
+
+/* Keep the fx canvas live above the theme reveal so the frost wave is never hidden by the old snapshot */
+::view-transition-group(winter-fx) { animation: none; z-index: 2; }
+::view-transition-old(winter-fx) { display: none; }
+::view-transition-new(winter-fx) { animation: none; }
+
+/* Navbar: snow + theme toggles side by side */
+.nav-toggles { display: flex; align-items: center; gap: 0.5rem; }
+
+/* ---------- Frost cards ---------- */
+.project-card, .blog-card, .academic-card, .education-card, .interest-card,
+.achievement-card, .cert-card, .stat-item, .contact-item, .blog-redirect-card, .card {
+    position: relative;
+    border-color: var(--border-strong);
+    background-color: var(--bg-card);
+}
+.project-card:hover, .blog-card:hover, .academic-card:hover, .education-card:hover,
+.interest-card:hover, .achievement-card:hover, .cert-card:hover, .contact-item:hover, .card:hover {
+    border-color: var(--accent-line);
+    box-shadow: 0 0 0 1px var(--accent-line), 0 10px 40px -12px var(--frag-glow);
+}
+.project-card::after, .academic-card::after, .education-card::after, .interest-card::after,
+.achievement-card::after, .cert-card::after, .contact-item::after, .blog-redirect-card::after, .card::after {
+    content: ''; position: absolute; inset: 0; border-radius: inherit;
+    pointer-events: none; z-index: 2; opacity: 0;
+    background: linear-gradient(115deg, transparent 35%, var(--sheen-a) 47%, var(--sheen-b) 50%, var(--sheen-a) 53%, transparent 65%);
+    background-size: 250% 100%;
+    background-position: 130% 0;
+    transition: opacity 0.2s ease;
+}
+:root[data-theme="light"] .project-card::after, :root[data-theme="light"] .academic-card::after,
+:root[data-theme="light"] .education-card::after, :root[data-theme="light"] .interest-card::after,
+:root[data-theme="light"] .achievement-card::after, :root[data-theme="light"] .cert-card::after,
+:root[data-theme="light"] .contact-item::after, :root[data-theme="light"] .blog-redirect-card::after,
+:root[data-theme="light"] .card::after {
+    background-image: linear-gradient(115deg, transparent 35%, var(--sheen-a) 47%, var(--sheen-b) 50%, var(--sheen-a) 53%, transparent 65%);
+}
+.project-card:hover::after, .academic-card:hover::after, .education-card:hover::after,
+.interest-card:hover::after, .achievement-card:hover::after, .cert-card:hover::after,
+.contact-item:hover::after, .blog-redirect-card:hover::after, .card:hover::after {
+    opacity: 1;
+    animation: winter-sheen 0.9s ease-out 1 forwards;
+}
+@keyframes winter-sheen {
+    from { background-position: 130% 0; }
+    to   { background-position: -30% 0; }
+}
+
+/* ---------- Snow toggle (optional button) ---------- */
+#snow-toggle { cursor: pointer; }
+#snow-toggle i { transition: opacity 0.2s ease; }
+#snow-toggle[aria-pressed="false"] i { opacity: 0.4; }
+
+/* ---------- Featured badge ---------- */
+.featured-badge i { color: var(--on-accent); }
+
+/* ---------- Dark: navy fills (white text) + rim; navy never used as text ---------- */
+[data-theme="dark"] .btn--primary,
+[data-theme="dark"] .back-to-top,
+[data-theme="dark"] .filter-btn:hover,
+[data-theme="dark"] .filter-btn.active,
+[data-theme="dark"] .featured-badge,
+[data-theme="dark"] .contact-socials .social-link:hover {
+    background: var(--gradient-primary);
+    color: #ffffff;
+    border: 1px solid var(--btn-rim);
+}
+[data-theme="dark"] .profile-circle { border: 1px solid var(--btn-rim); }
+/* text-clip gradients + thin accents: navy vanishes on black, use a light ramp */
+[data-theme="dark"] .logo-text,
+[data-theme="dark"] .loading-logo,
+[data-theme="dark"] .blog-intro h3 {
+    background-image: linear-gradient(135deg, #e6e8f5, #a8b0ea);
+}
+[data-theme="dark"] .nav-link::after,
+[data-theme="dark"] .section-title::after,
+[data-theme="dark"] .loading-progress,
+[data-theme="dark"] .blog-redirect-card::before {
+    background: linear-gradient(90deg, #4250b8, #c3c9f2);
+}
+
+/* ---------- Blog listing notes (AMOLED re-skin; NOT body.blog-post-page) ---------- */
+[data-theme="dark"] .blog-card,
+[data-theme="dark"] #blog .blog-card {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-strong);
+    box-shadow: var(--shadow-sm);
+}
+[data-theme="dark"] .blog-card::before {
+    border-color: rgba(160, 168, 235, 0.10) #000;
+}
+
+/* ---------- Theme switch: frosted circle reveal ---------- */
+::view-transition-group(root) { animation-duration: 0.7s; }
+::view-transition-new(root) {
+    animation: theme-circle 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .winter-aurora::before, .winter-aurora::after { animation: none; }
+    .winter-snow { display: none; }
+    .project-card:hover::after, .academic-card:hover::after, .education-card:hover::after,
+    .interest-card:hover::after, .achievement-card:hover::after, .cert-card:hover::after,
+    .contact-item:hover::after, .blog-redirect-card:hover::after, .card:hover::after {
+        animation: none; opacity: 0;
+    }
+    html, body { transition: none; }
+}

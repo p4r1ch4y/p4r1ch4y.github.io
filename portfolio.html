@@ -2,13 +2,16 @@
 <html lang="en">
 
 <head>
+    <meta name="theme-color" content="#000000">
+    <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',t==='light'?'#f8f9fb':'#000000')})();</script>
+    <noscript><style>#loading-screen{display:none!important}</style></noscript>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary Meta Tags -->
     <title>Subrata Choudhury · Software Engineer</title>
     <meta name="description"
-        content="Software engineer building reliable systems for real people: public platforms, healthcare tech, and AI-powered tools. Full-stack, with a background in electrical engineering and a focus on clean, dependable software.">
+        content="Software engineer building reliable systems for real people: public platforms, healthcare tech, AI tools. Full-stack, with an electrical engineering background.">
     <meta name="keywords"
         content="Subrata Choudhury, Software Engineer, Full Stack Engineer, Healthcare Tech, Public Interest Technology, Node.js, TypeScript, Web3, Solana, Developer Relations">
     <meta name="author" content="Subrata Choudhury">
@@ -37,7 +40,6 @@
         content="Building practical software for healthcare, public systems, and AI tools. Full-stack, simple, and dependable.">
     <meta name="twitter:image" content="https://p4r1ch4y.github.io/assets/portfolio-preview.jpg">
     <meta name="twitter:image:alt" content="Subrata Choudhury — Software Engineer portfolio">
-    <meta name="theme-color" content="#12100d">
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
@@ -46,11 +48,13 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="winter.css">
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
     <!-- Preload Critical Resources -->
     <link rel="preload" href="style.css" as="style">
@@ -109,8 +113,6 @@
         </div>
     </div>
 
-    <!-- Particle Background (Unchanged) -->
-    <div id="particles-container"></div>
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
@@ -127,7 +129,8 @@
                 <li><a href="blog.html" class="nav-link">Blog</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
                 <li><a href="index.html" class="nav-link" title="One-page card view"><i class="fas fa-id-badge"></i> Card</a></li>
-                <li>
+                <li class="nav-toggles">
+                    <button id="snow-toggle" class="theme-toggle" type="button" aria-label="Toggle snowfall" aria-pressed="true" title="Snow (S)"><i class="fas fa-snowflake" aria-hidden="true"></i></button>
                     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
                         <i class="fas fa-moon"></i>
                     </button>
@@ -253,19 +256,19 @@
                     <div class="about-right">
                         <div class="about-stats">
                             <div class="stat-item">
-                                <div class="stat-number" data-target="17+">0</div>
+                                <div class="stat-number" data-target="17+">17+</div>
                                 <div class="stat-label">Projects Built</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-number" data-target="9+">0</div>
+                                <div class="stat-number" data-target="9+">9+</div>
                                 <div class="stat-label">Hackathons</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-number" data-target="12+">0</div>
+                                <div class="stat-number" data-target="12+">12+</div>
                                 <div class="stat-label">Certifications</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-number" data-target="15+">0</div>
+                                <div class="stat-number" data-target="15+">15+</div>
                                 <div class="stat-label">Technical Blogs</div>
                             </div>
                         </div>
@@ -408,7 +411,7 @@
                         <div class="featured-badge">
                             <i class="fas fa-star"></i> Featured
                         </div>
-                        <img src="assets/projects/logos/spendLens.png" alt="SpendLens"
+                        <img width="512" height="512" loading="lazy" decoding="async" src="assets/projects/logos/spendLens.png" alt="SpendLens"
                             style="width:92px;height:92px;object-fit:contain;">
                         <div class="project-overlay">
                             <a class="btn btn--primary" href="SpendLens/">View Details</a>
@@ -429,7 +432,7 @@
                                 <i class="fas fa-circle-info"></i> Details
                             </a>
                             <a href="https://github.com/p4r1ch4y/upi-analyser" class="project-link" target="_blank"
-                                rel="noopener">
+                                rel="noopener noreferrer">
                                 <i class="fab fa-github"></i> GitHub
                             </a>
                         </div>
@@ -442,7 +445,7 @@
                         <div class="featured-badge">
                             <i class="fas fa-star"></i> Featured
                         </div>
-                        <img src="assets/projects/logos/superfind.png" alt="SuperFind"
+                        <img width="512" height="512" loading="lazy" decoding="async" src="assets/projects/logos/superfind.png" alt="SuperFind"
                             style="width:96px;height:96px;object-fit:contain;border-radius:18px;">
                         <div class="project-overlay">
                             <a class="btn btn--primary" href="SuperFind/">View Details</a>
@@ -464,7 +467,7 @@
                                 <i class="fas fa-circle-info"></i> Details
                             </a>
                             <a href="https://github.com/p4r1ch4y/superfind" class="project-link" target="_blank"
-                                rel="noopener">
+                                rel="noopener noreferrer">
                                 <i class="fab fa-github"></i> GitHub
                             </a>
                         </div>
@@ -476,9 +479,8 @@
                         <div class="featured-badge">
                             <i class="fas fa-star"></i> Featured
                         </div>
-                        <img src="/assets/projects/CIVIC_Extension_SC.webp"
-                            alt="CIVIC AI Guardian"
-                            onerror="this.src='https://via.placeholder.com/400x250/2a2a2a/ffffff?text=CIVIC'">
+                        <img width="394" height="547" loading="lazy" decoding="async" src="/assets/projects/CIVIC_Extension_SC.webp"
+                            alt="CIVIC AI Guardian" onerror="this.onerror=null;this.src='assets/portfolio-preview.jpg'">
                         <div class="project-overlay">
                             <button class="btn btn--primary project-details-btn" data-project="16">View
                                 Details</button>
@@ -510,8 +512,7 @@
                         <div class="featured-badge">
                             <i class="fas fa-star"></i> Featured
                         </div>
-                        <img src="assets/projects/geminiPlanner.webp" alt="Gemini Adaptive Planner"
-                            onerror="this.src='https://via.placeholder.com/400x250/4285f4/fff?text=Gemini+Planner'">
+                        <img width="804" height="682" loading="lazy" decoding="async" src="assets/projects/geminiPlanner.webp" alt="Gemini Adaptive Planner" onerror="this.onerror=null;this.src='assets/portfolio-preview.jpg'">
                         <div class="project-overlay">
                             <button class="btn btn--primary project-details-btn" data-project="15">View
                                 Details</button>
@@ -529,11 +530,11 @@
                         </div>
                         <div class="project-links">
                             <a href="https://aistudio.google.com/apps/drive/1QytT4J2naFCihfKo5N5C_kn_bOptsnfB?showPreview=true&showAssistant=true&fullscreenApplet=true"
-                                class="project-link" target="_blank">
+                                class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
                             <a href="https://www.kaggle.com/competitions/gemini-3/writeups/gemini-adaptive-planner-adaptive-learning-planne#3374407"
-                                class="project-link" target="_blank">
+                                class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-kaggle"></i> Kaggle
                             </a>
                         </div>
@@ -545,8 +546,7 @@
                         <div class="featured-badge">
                             <i class="fas fa-star"></i> Featured
                         </div>
-                        <img src="assets/projects/smartCityOS.webp" alt="Smart City OS"
-                            onerror="this.src='https://via.placeholder.com/400x250/0f3460/eee?text=Smart+City+OS'">
+                        <img width="1763" height="973" loading="lazy" decoding="async" src="assets/projects/smartCityOS.webp" alt="Smart City OS" onerror="this.onerror=null;this.src='assets/portfolio-preview.jpg'">
                         <div class="project-overlay">
                             <button class="btn btn--primary project-details-btn" data-project="5">View
                                 Details</button>
@@ -563,10 +563,10 @@
                             <span class="tech-tag">IoT</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://smartcityos.vercel.app/" class="project-link" target="_blank">
+                            <a href="https://smartcityos.vercel.app/" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
-                            <a href="https://github.com/p4r1ch4y/smart_city_os" class="project-link" target="_blank">
+                            <a href="https://github.com/p4r1ch4y/smart_city_os" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i> GitHub
                             </a>
                         </div>
@@ -579,8 +579,7 @@
                         <div class="featured-badge">
                             <i class="fas fa-star"></i> Featured
                         </div>
-                        <img src="assets/projects/phc.webp" alt="PHC Commons"
-                            onerror="this.src='https://via.placeholder.com/400x250/0f3460/eee?text=PHC+Commons'">
+                        <img width="1604" height="1004" loading="lazy" decoding="async" src="assets/projects/phc.webp" alt="PHC Commons" onerror="this.onerror=null;this.src='assets/portfolio-preview.jpg'">
                         <div class="project-overlay">
                             <button class="btn btn--primary project-details-btn" data-project="0">View
                                 Details</button>
@@ -596,11 +595,11 @@
                             <span class="tech-tag">Hackathon</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://phccommons.vercel.app/" class="project-link" target="_blank">
+                            <a href="https://phccommons.vercel.app/" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
                             <a href="https://github.com/p4r1ch4y/phc_hms_platformcommons" class="project-link"
-                                target="_blank">
+                                target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i> GitHub
                             </a>
                         </div>
@@ -613,8 +612,7 @@
                         <div class="featured-badge">
                             <i class="fas fa-star"></i> Featured
                         </div>
-                        <img src="assets/projects/lifeWeeks.webp" alt="LifeWeeks AI Timeline App"
-                            onerror="this.src='https://via.placeholder.com/400x250/0f3460/eee?text=LifeWeeks'">
+                        <img width="1614" height="997" loading="lazy" decoding="async" src="assets/projects/lifeWeeks.webp" alt="LifeWeeks AI Timeline App" onerror="this.onerror=null;this.src='assets/portfolio-preview.jpg'">
                         <div class="project-overlay">
                             <button class="btn btn--primary project-details-btn" data-project="9">View
                                 Details</button>
@@ -631,11 +629,11 @@
                             <span class="tech-tag">Hugging Face</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://lifeweeks.vercel.app/" class="project-link" target="_blank">
+                            <a href="https://lifeweeks.vercel.app/" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
                             <a href="https://github.com/p4r1ch4y/FunctionForce_LifeInWeeks" class="project-link"
-                                target="_blank">
+                                target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i> GitHub
                             </a>
                         </div>
@@ -648,8 +646,7 @@
                         <div class="featured-badge">
                             <i class="fas fa-star"></i> Featured
                         </div>
-                        <img src="assets/projects/dailySpark.webp" alt="Daily Spark Solana"
-                            onerror="this.src='https://via.placeholder.com/400x250/1a1a2e/eee?text=Daily+Spark'">
+                        <img width="1763" height="973" loading="lazy" decoding="async" src="assets/projects/dailySpark.webp" alt="Daily Spark Solana" onerror="this.onerror=null;this.src='assets/portfolio-preview.jpg'">
                         <div class="project-overlay">
                             <button class="btn btn--primary project-details-btn" data-project="6">View
                                 Details</button>
@@ -666,10 +663,10 @@
                             <span class="tech-tag">Frontend Development</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://dailysparksolana.vercel.app/" class="project-link" target="_blank">
+                            <a href="https://dailysparksolana.vercel.app/" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
-                            <a href="#" class="project-link" target="_blank">
+                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i> GitHub
                             </a>
                         </div>
@@ -679,8 +676,7 @@
                 <!-- LogisTech -->
                 <div class="project-card" data-category="backend">
                     <div class="project-image">
-                        <img src="assets/projects/logistech.webp" alt="LogisTech"
-                            onerror="this.src='https://via.placeholder.com/400x250/1a1a2e/eee?text=LogisTech'">
+                        <img width="595" height="444" loading="lazy" decoding="async" src="assets/projects/logistech.webp" alt="LogisTech" onerror="this.onerror=null;this.src='assets/portfolio-preview.jpg'">
                         <div class="project-overlay">
                             <button class="btn btn--primary project-details-btn" data-project="1">View
                                 Details</button>
@@ -696,10 +692,10 @@
                             <span class="tech-tag">Warehouse</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://logistech-78pt.onrender.com/" class="project-link" target="_blank">
+                            <a href="https://logistech-78pt.onrender.com/" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
-                            <a href="https://github.com/p4r1ch4y/logisTech" class="project-link" target="_blank">
+                            <a href="https://github.com/p4r1ch4y/logisTech" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i> GitHub
                             </a>
                         </div>
@@ -709,8 +705,7 @@
                 <!-- Smart CRM -->
                 <div class="project-card" data-category="fullstack">
                     <div class="project-image">
-                        <img src="assets/projects/crm.webp" alt="Smart CRM System"
-                            onerror="this.src='https://via.placeholder.com/400x250/16213e/eee?text=Smart+CRM'">
+                        <img width="1822" height="968" loading="lazy" decoding="async" src="assets/projects/crm.webp" alt="Smart CRM System" onerror="this.onerror=null;this.src='assets/portfolio-preview.jpg'">
                         <div class="project-overlay">
                             <button class="btn btn--primary project-details-btn" data-project="2">View
                                 Details</button>
@@ -726,10 +721,10 @@
                             <span class="tech-tag">Business Tool</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://smartcrmsystem.vercel.app/" class="project-link" target="_blank">
+                            <a href="https://smartcrmsystem.vercel.app/" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
-                            <a href="https://github.com/p4r1ch4y/crm-system" class="project-link" target="_blank">
+                            <a href="https://github.com/p4r1ch4y/crm-system" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i> GitHub
                             </a>
                         </div>
@@ -739,8 +734,7 @@
                 <!-- Xporter -->
                 <div class="project-card" data-category="devrel_web3">
                     <div class="project-image">
-                        <img src="assets/projects/xporter.webp" alt="Xporter"
-                            onerror="this.src='https://via.placeholder.com/400x250/533483/eee?text=Xporter'">
+                        <img width="1426" height="832" loading="lazy" decoding="async" src="assets/projects/xporter.webp" alt="Xporter" onerror="this.onerror=null;this.src='assets/portfolio-preview.jpg'">
                         <div class="project-overlay">
                             <button class="btn btn--primary project-details-btn" data-project="3">View
                                 Details</button>
@@ -757,10 +751,10 @@
                             <span class="tech-tag">x402</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-link" target="_blank">
+                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
-                            <a href="https://github.com/p4r1ch4y/xporter" class="project-link" target="_blank">
+                            <a href="https://github.com/p4r1ch4y/xporter" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i> GitHub
                             </a>
                         </div>
@@ -770,8 +764,7 @@
                 <!-- Hangoutly -->
                 <div class="project-card" data-category="fullstack">
                     <div class="project-image">
-                        <img src="assets/projects/hangoutly.webp" alt="Hangoutly"
-                            onerror="this.src='https://via.placeholder.com/400x250/ff6600/fff?text=Hangoutly'">
+                        <img width="1570" height="954" loading="lazy" decoding="async" src="assets/projects/hangoutly.webp" alt="Hangoutly" onerror="this.onerror=null;this.src='assets/portfolio-preview.jpg'">
                         <div class="project-overlay">
                             <button class="btn btn--primary project-details-btn" data-project="4">View
                                 Details</button>
@@ -787,11 +780,11 @@
                             <span class="tech-tag">Social</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://hangoutly.pages.dev/" class="project-link" target="_blank">
+                            <a href="https://hangoutly.pages.dev/" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
                             <a href="https://github.com/p4r1ch4y/hangoutly_aryatechies" class="project-link"
-                                target="_blank">
+                                target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i> GitHub
                             </a>
                         </div>
@@ -801,8 +794,7 @@
                 <!-- Stylus SDK -->
                 <div class="project-card" data-category="devrel_web3">
                     <div class="project-image">
-                        <img src="assets/projects/stylus.webp" alt="Stylus SDK Technical Articles"
-                            onerror="this.src='https://via.placeholder.com/400x250/1a1a2e/eee?text=Stylus+SDK'">
+                        <img width="1763" height="973" loading="lazy" decoding="async" src="assets/projects/stylus.webp" alt="Stylus SDK Technical Articles" onerror="this.onerror=null;this.src='assets/portfolio-preview.jpg'">
                         <div class="project-overlay">
                             <button class="btn btn--primary project-details-btn" data-project="7">View
                                 Details</button>
@@ -819,10 +811,10 @@
                             <span class="tech-tag">Developer Relations</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://bento.me/stylus" class="project-link" target="_blank">
+                            <a href="https://bento.me/stylus" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-external-link-alt"></i> Portfolio
                             </a>
-                            <a href="#" class="project-link" target="_blank">
+                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i> Documentation
                             </a>
                         </div>
@@ -832,8 +824,7 @@
                 <!-- Job Portal -->
                 <div class="project-card" data-category="fullstack">
                     <div class="project-image">
-                        <img src="assets/projects/jobPortal.webp" alt="Job Portal Full Stack Application"
-                            onerror="this.src='https://via.placeholder.com/400x250/16213e/eee?text=Job+Portal'">
+                        <img width="1763" height="973" loading="lazy" decoding="async" src="assets/projects/jobPortal.webp" alt="Job Portal Full Stack Application" onerror="this.onerror=null;this.src='assets/portfolio-preview.jpg'">
                         <div class="project-overlay">
                             <button class="btn btn--primary project-details-btn" data-project="8">View
                                 Details</button>
@@ -851,10 +842,10 @@
                         </div>
                         <div class="project-links">
                             <a href="https://job-portal-frontend-parichay.vercel.app/" class="project-link"
-                                target="_blank">
+                                target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
-                            <a href="https://github.com/p4r1ch4y/job-portal" class="project-link" target="_blank">
+                            <a href="https://github.com/p4r1ch4y/job-portal" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i> GitHub
                             </a>
                         </div>
@@ -864,8 +855,7 @@
                 <!-- SkillSync -->
                 <div class="project-card" data-category="fullstack">
                     <div class="project-image">
-                        <img src="assets/projects/skillSync.webp" alt="SkillSync Matching Platform"
-                            onerror="this.src='https://via.placeholder.com/400x250/533483/eee?text=SkillSync'">
+                        <img width="1763" height="973" loading="lazy" decoding="async" src="assets/projects/skillSync.webp" alt="SkillSync Matching Platform" onerror="this.onerror=null;this.src='assets/portfolio-preview.jpg'">
                         <div class="project-overlay">
                             <button class="btn btn--primary project-details-btn" data-project="10">View
                                 Details</button>
@@ -882,10 +872,10 @@
                             <span class="tech-tag">Team Leadership</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://skillsynced.vercel.app/" class="project-link" target="_blank">
+                            <a href="https://skillsynced.vercel.app/" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
-                            <a href="https://github.com/p4r1ch4y/skillsync" class="project-link" target="_blank">
+                            <a href="https://github.com/p4r1ch4y/skillsync" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i> GitHub
                             </a>
                         </div>
@@ -895,8 +885,7 @@
                 <!-- XDA -->
                 <div class="project-card" data-category="devrel_web3">
                     <div class="project-image">
-                        <img src="assets/projects/xdaProfile.webp" alt="XDA Developers Technical Articles"
-                            onerror="this.src='https://via.placeholder.com/400x250/ff6600/fff?text=XDA+Articles'">
+                        <img width="800" height="800" loading="lazy" decoding="async" src="assets/projects/xdaProfile.webp" alt="XDA Developers Technical Articles" onerror="this.onerror=null;this.src='assets/portfolio-preview.jpg'">
                         <div class="project-overlay">
                             <button class="btn btn--primary project-details-btn" data-project="14">View
                                 Details</button>
@@ -913,10 +902,10 @@
                             <span class="tech-tag">System Modification</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-link" target="_blank">
+                            <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-external-link-alt"></i> XDA Profile
                             </a>
-                            <a href="https://bento.me/parichay" class="project-link" target="_blank">
+                            <a href="https://bento.me/parichay" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-user"></i> Portfolio
                             </a>
                         </div>
@@ -1180,28 +1169,28 @@
                         </div>
 
                         <div class="contact-socials">
-                            <a href="https://github.com/p4r1ch4y" target="_blank" class="social-link">
+                            <a href="https://github.com/p4r1ch4y" target="_blank" rel="noopener noreferrer" class="social-link">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="https://gitlab.com/p4r1ch4y" target="_blank" rel="noopener" class="social-link">
+                            <a href="https://gitlab.com/p4r1ch4y" target="_blank" rel="noopener noreferrer" class="social-link">
                                 <i class="fab fa-gitlab"></i>
                             </a>
-                            <a href="https://linkedin.com/in/iamcsubrata" target="_blank" class="social-link">
+                            <a href="https://linkedin.com/in/iamcsubrata" target="_blank" rel="noopener noreferrer" class="social-link">
                                 <i class="fab fa-linkedin"></i>
                             </a>
-                            <a href="https://peerlist.io/iamcsubrata" target="_blank" rel="noopener" class="social-link">
+                            <a href="https://peerlist.io/iamcsubrata" target="_blank" rel="noopener noreferrer" class="social-link">
                                 <i class="fas fa-address-card"></i>
                             </a>
-                            <a href="https://twitter.com/iamcsubrata" target="_blank" class="social-link">
+                            <a href="https://twitter.com/iamcsubrata" target="_blank" rel="noopener noreferrer" class="social-link">
                                 <i class="fab fa-twitter"></i>
                             </a>
-                            <a href="https://bento.me/parichay" target="_blank" class="social-link">
+                            <a href="https://bento.me/parichay" target="_blank" rel="noopener noreferrer" class="social-link">
                                 <i class="fas fa-user"></i>
                             </a>
-                            <a href="https://youtube.com/@p4r1ch4y" target="_blank" class="social-link">
+                            <a href="https://youtube.com/@p4r1ch4y" target="_blank" rel="noopener noreferrer" class="social-link">
                                 <i class="fab fa-youtube"></i>
                             </a>
-                            <a href="https://www.kaggle.com/subratachoudhury" target="_blank" class="social-link">
+                            <a href="https://www.kaggle.com/subratachoudhury" target="_blank" rel="noopener noreferrer" class="social-link">
                                 <i class="fab fa-kaggle"></i>
                             </a>
 
@@ -1256,8 +1245,8 @@
                 </a>
                 <p>&copy; 2026 Subrata Choudhury. Built with care, and a lot of coffee.</p>
                 <div class="footer-links">
-                    <a href="https://github.com/p4r1ch4y" target="_blank" rel="noopener">GitHub</a>
-                    <a href="https://linkedin.com/in/iamcsubrata" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="https://github.com/p4r1ch4y" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com/in/iamcsubrata" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                     <a href="mailto:iamcsubrata@gmail.com">Email</a>
                 </div>
             </div>
@@ -1270,7 +1259,7 @@
     <!-- Project Modal -->
     <div id="project-modal" class="modal">
         <div class="modal-content">
-            <span class="modal-close">&times;</span>
+            <button type="button" class="modal-close" aria-label="Close">&times;</button>
             <div id="modal-body"></div>
         </div>
     </div>
@@ -1291,7 +1280,17 @@
                 let charIndex = 0;
                 let isDeleting = false;
 
+                const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                if (reduceMotion) {
+                    typewriterElement.textContent = words[0];
+                    return;
+                }
+
                 function type() {
+                    if (document.hidden) {
+                        setTimeout(type, 500); // paused while tab is hidden
+                        return;
+                    }
                     const currentWord = words[wordIndex];
                     let displayText = '';
 
@@ -1325,6 +1324,7 @@
     <script src="certifications.js"></script>
     <!-- Theme toggle removed per request -->
     <script src="external-link-modal.js"></script>
+    <script src="winter.js" defer></script>
 </body>
 
 </html>

@@ -38,6 +38,25 @@
     ].join('');
 
     var overlay, urlBox, continueLink, lastFocus;
+    var inertSet = [];
+
+    function bareHost(h) { return String(h || '').toLowerCase().replace(/^www\./, ''); }
+
+    function setBackgroundInert(on) {
+        if (!on) {
+            inertSet.forEach(function (el) { try { el.inert = false; } catch (e) { /* ignore */ } });
+            inertSet = [];
+            return;
+        }
+        if (!('inert' in HTMLElement.prototype)) return;
+        Array.prototype.forEach.call(document.body.children, function (el) {
+            if (el === overlay || el.inert) return;
+            var t = el.tagName;
+            if (t === 'SCRIPT' || t === 'STYLE' || t === 'LINK') return;
+            el.inert = true;
+            inertSet.push(el);
+        });
+    }
 
     function build() {
         if (overlay) return;
@@ -89,18 +108,20 @@
         continueLink.href = url;
         lastFocus = document.activeElement;
         overlay.classList.add('open');
+        setBackgroundInert(true);
         continueLink.focus();
     }
     function hide() {
         if (!overlay) return;
         overlay.classList.remove('open');
+        setBackgroundInert(false);
         if (lastFocus && lastFocus.focus) { try { lastFocus.focus(); } catch (e) { /* ignore */ } }
     }
 
     function isExternal(a) {
         if (!a || !a.getAttribute('href')) return false;
         if (a.protocol !== 'http:' && a.protocol !== 'https:') return false; // skip mailto:, tel:, #anchors, javascript:
-        if (a.hostname === location.hostname || a.hostname === '') return false;
+        if (a.hostname === '' || bareHost(a.hostname) === bareHost(location.hostname)) return false;
         if (a.hasAttribute('data-no-external-warning')) return false;
         return true;
     }

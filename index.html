@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>(function () { document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark'); })();</script>
+    <meta name="theme-color" content="#000000">
+    <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',t==='light'?'#f8f9fb':'#000000')})();</script>
 
     <title>Subrata Choudhury · Software Engineer</title>
     <meta name="description"
@@ -30,7 +31,6 @@
     <meta name="twitter:image:alt" content="Subrata Choudhury — Software Engineer">
     <meta name="author" content="Subrata Choudhury">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#12100d">
 
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +38,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
     <style>
         /* ==================================================================
@@ -167,9 +168,13 @@
         /* hero */
         .orb {
             width: 60px; height: 60px; border-radius: 50%;
-            background: radial-gradient(circle at 32% 28%, #ffe3ad, var(--accent) 55%, #9a6a1c 100%);
-            box-shadow: 0 0 32px -6px var(--accent);
+            background: radial-gradient(circle at 35% 30%, #ffffff, #c9cde0 45%, #2a2f6b 100%);
+            box-shadow: 0 0 32px -6px rgba(40, 48, 170, 0.6);
             margin-bottom: 1.5rem;
+        }
+        :root[data-theme="light"] .orb {
+            background: radial-gradient(circle at 35% 30%, #ffffff, #c5cae8 50%, #000080 110%);
+            box-shadow: 0 0 32px -8px rgba(0, 0, 128, 0.35);
         }
         h1 {
             font-family: var(--mono);
@@ -294,15 +299,19 @@
         .credit a { color: var(--ink-soft); border-bottom: 1px dashed var(--line-strong); }
         .credit a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
+        .skip-link { position: absolute; left: -9999px; top: 0; z-index: 1000; padding: .5rem .9rem; background: #000; color: #fff; border: 2px solid var(--accent); border-radius: 6px; text-decoration: none; }
+        .skip-link:focus { left: .75rem; top: .75rem; }
         :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
         @media (max-width: 640px) {
             .wrap::before, .wrap::after { display: none; }
         }
     </style>
+    <link rel="stylesheet" href="winter.css">
 </head>
 
 <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="wrap">
         <div class="dots"></div>
 
@@ -310,10 +319,12 @@
             <span>Subrata&nbsp;Choudhury</span>
             <span class="right">
                 <span id="clock">--:--:--</span>
-                <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><i class="fas fa-moon"></i></button>
+                <button id="snow-toggle" class="icon-btn" type="button" aria-label="Toggle snowfall" aria-pressed="true" title="Snow (S)"><i class="fas fa-snowflake" aria-hidden="true"></i></button>
+                <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><i class="fas fa-moon" aria-hidden="true"></i></button>
             </span>
         </div>
 
+        <main id="main-content">
         <!-- Hero -->
         <div class="orb" aria-hidden="true"></div>
         <h1>Subrata Choudhury</h1>
@@ -329,11 +340,11 @@
         </div>
 
         <!-- Projects -->
-        <section>
+        <section id="projects">
             <div class="sec-title">Projects I've Built</div>
             <div class="card">
                 <div class="card-head">
-                    <div class="card-title"><img class="proj-logo" src="assets/projects/logos/spendLens.png" alt=""><h3>SpendLens</h3></div>
+                    <div class="card-title"><img loading="lazy" decoding="async" class="proj-logo" src="assets/projects/logos/spendLens.png" alt=""><h3>SpendLens</h3></div>
                     <span class="badge">Featured</span>
                 </div>
                 <p>Offline-first Android expense tracker that turns UPI and bank notifications into a private, on-device
@@ -345,7 +356,7 @@
             </div>
             <div class="card">
                 <div class="card-head">
-                    <div class="card-title"><img class="proj-logo" src="assets/projects/logos/superfind.png" alt=""><h3>SuperFind</h3></div>
+                    <div class="card-title"><img loading="lazy" decoding="async" class="proj-logo" src="assets/projects/logos/superfind.png" alt=""><h3>SuperFind</h3></div>
                     <span class="badge">Featured</span>
                 </div>
                 <p>Find a Bluetooth device by its radio. A Rust particle-filter fusion core powering a Linux CLI and an
@@ -380,7 +391,7 @@
             </div>
             <div class="card">
                 <div class="card-head">
-                    <div class="card-title"><img class="proj-logo" src="assets/projects/logos/daily-spark.png" alt=""><h3>Daily Spark: Solana dApp</h3></div>
+                    <div class="card-title"><img loading="lazy" decoding="async" class="proj-logo" src="assets/projects/logos/daily-spark.png" alt=""><h3>Daily Spark: Solana dApp</h3></div>
                 </div>
                 <p>An interactive Web3 app on Solana Devnet with a working frontend and Anchor programs deployed
                     on-chain.</p>
@@ -390,7 +401,7 @@
             </div>
             <div class="card">
                 <div class="card-head">
-                    <div class="card-title"><img class="proj-logo" src="assets/projects/logos/phc.png" alt=""><h3>PHC Commons</h3></div>
+                    <div class="card-title"><img loading="lazy" decoding="async" class="proj-logo" src="assets/projects/logos/phc.png" alt=""><h3>PHC Commons</h3></div>
                     <span class="badge">Hackathon</span>
                 </div>
                 <p>Full-stack, offline-first PWA for public health centres, government and private clinics. Container
@@ -402,7 +413,7 @@
             </div>
             <div class="card">
                 <div class="card-head">
-                    <div class="card-title"><img class="proj-logo" src="assets/projects/logos/lifeweeks.jpeg" alt=""><h3>LifeWeeks</h3></div>
+                    <div class="card-title"><img loading="lazy" decoding="async" class="proj-logo" src="assets/projects/logos/lifeweeks.jpeg" alt=""><h3>LifeWeeks</h3></div>
                 </div>
                 <p>AI-powered interactive timeline that visualises your life week by week. Hackathon winner, Next.js
                     with Hugging Face models.</p>
@@ -423,13 +434,13 @@
                 <div class="when">Jan 2026 to Present</div>
             </div>
             <div class="exp">
-                <div class="who"><img class="exp-logo" src="assets/projects/logos/O3Labs.png" alt="">
+                <div class="who"><img loading="lazy" decoding="async" class="exp-logo" src="assets/projects/logos/O3Labs.png" alt="">
                     <div><h3>Web3 Project Administrator</h3><span>O3 Labs Inc.</span></div>
                 </div>
                 <div class="when">2022 to 2024</div>
             </div>
             <div class="exp">
-                <div class="who"><img class="exp-logo" src="assets/projects/logos/theia.png" alt="">
+                <div class="who"><img loading="lazy" decoding="async" class="exp-logo" src="assets/projects/logos/theia.png" alt="">
                     <div><h3>Web3 Administrator</h3><span>Theia Studios</span></div>
                 </div>
                 <div class="when">2022</div>
@@ -478,7 +489,7 @@
         </section>
 
         <!-- Connect -->
-        <section>
+        <section id="contact">
             <div class="sec-title">Connect with Me</div>
             <div class="connect">
                 <a href="https://github.com/p4r1ch4y" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
@@ -491,6 +502,8 @@
                 <a href="blog.html"><i class="fas fa-feather-pointed"></i> Blog</a>
             </div>
         </section>
+
+        </main>
 
         <!-- Footer / switch to full portfolio -->
         <div class="foot">
@@ -521,15 +534,16 @@
             const btn = document.getElementById('theme-toggle');
             const icon = btn.querySelector('i');
             const sync = () => {
-                const dark = document.documentElement.getAttribute('data-theme') !== 'light';
+                const dark = document.documentElement.getAttribute('data-theme') !== 'light'; // head guard is source of truth
                 icon.className = dark ? 'fas fa-moon' : 'fas fa-sun';
+                icon.setAttribute('aria-hidden', 'true');
             };
             sync();
             btn.addEventListener('click', () => {
                 const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
                 const apply = () => {
                     document.documentElement.setAttribute('data-theme', next);
-                    localStorage.setItem('theme', next);
+                    try { localStorage.setItem('theme', next); } catch (e) {}
                     sync();
                 };
                 if (window.themeSwitch) window.themeSwitch(btn, apply);
@@ -538,6 +552,7 @@
         })();
     </script>
     <script src="external-link-modal.js"></script>
+    <script src="winter.js" defer></script>
 </body>
 
 </html>
