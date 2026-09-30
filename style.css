@@ -686,6 +686,9 @@ section {
     font-family: var(--font-mono);
 }
 
+.timeline-content p + p { margin-top: 0.75rem; }
+.timeline-content p + .timeline-tech { margin-top: 1rem; }
+
 /* Contact & Guestbook */
 .contact-content {
     display: grid;
