@@ -910,22 +910,24 @@ textarea:focus-visible,
     }
 }
 
-/* Particles */
-#particles-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-}
+/* Section anchors clear the fixed navbar */
+section[id], [id].section { scroll-margin-top: 76px; }
 
-.particle {
+/* Skip link: off-screen until focused */
+.skip-link, .skip-to-content {
     position: absolute;
-    border-radius: 50%;
-    background: var(--primary-color);
+    left: 8px;
+    top: -60px;
+    z-index: 10001;
+    padding: 10px 16px;
+    border-radius: 6px;
+    background: var(--primary-color, #4d5bff);
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: top 0.15s ease;
 }
+.skip-link:focus, .skip-to-content:focus { top: 8px; outline: 2px solid #fff; outline-offset: 2px; }
 
 /* Loading Screen */
 #loading-screen {

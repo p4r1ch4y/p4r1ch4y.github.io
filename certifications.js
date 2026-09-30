@@ -50,19 +50,37 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         }
 
+        // "Show more" stays disabled until the data is available
+        if (btn) btn.disabled = true;
+
+        function showLoadError() {
+            if (featuredContainer && featuredContainer.innerHTML.indexOf('cert-card') === -1) {
+                featuredContainer.innerHTML = '<p class="muted">Failed to load certificates.</p>';
+            }
+            if (more) {
+                more.innerHTML = '<p class="muted">Failed to load certificates.</p>';
+                more.hidden = false;
+            }
+            if (btn) btn.hidden = true;
+        }
+
         // Fetch and load featured
         fetch('data/certifications.json')
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+                return response.json();
+            })
             .then(data => {
+                if (!Array.isArray(data)) throw new Error('Invalid data');
                 itemsCache = data;
                 if (featuredContainer && featuredContainer.innerHTML.indexOf('cert-card') === -1) {
                     const featured = data.filter(i => i.featured).slice(0, 6);
                     if (featured.length) featuredContainer.innerHTML = featured.map(createCertCard).join('');
                 }
+                if (btn) btn.disabled = false;
             })
-            .catch(err => {
-                console.error('Error loading certifications:', err);
-                if (featuredContainer) featuredContainer.innerHTML = '<p class="muted">Failed to load certificates.</p>';
+            .catch(() => {
+                showLoadError();
             });
 
         if (btn && more) {

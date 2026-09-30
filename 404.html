@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#000000">
-    <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',t==='light'?'#f7fafd':'#000000')})();</script>
+    <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',t==='light'?'#f8f9fb':'#000000')})();</script>
+    <meta name="robots" content="noindex">
     <title>404 - Page Not Found | Subrata Choudhury</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -103,7 +104,7 @@
 </head>
 
 <body>
-    <div class="error-container">
+    <main class="error-container" id="main-content">
         <div class="error-content">
             <div class="error-code">404</div>
             <h1 class="error-message">Page Not Found</h1>
@@ -123,7 +124,7 @@
                 </a>
             </div>
         </div>
-    </div>
+    </main>
 
     <script src="theme-switch.js"></script>
     <!-- Particle Background -->

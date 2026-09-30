@@ -28,7 +28,6 @@ const projects = [
             "Report Generation"
         ],
         challenges: "Completing core modules within a 2-day hackathon timeline while ensuring robust functionality.",
-        challenges: "Completing core modules within a 2-day hackathon timeline while ensuring robust functionality.",
         keyLearnings: "Hosting a monorepo on Azure, Docker Networking, Healthcare Data Management, Schema Design",
         liveUrl: "https://phccommons.vercel.app/",
         githubUrl: "https://github.com/p4r1ch4y/phc_hms_platformcommons",
@@ -142,7 +141,6 @@ const projects = [
             "Developer onboarding materials"
         ],
         challenges: "Breaking down complex blockchain concepts into accessible documentation.",
-        challenges: "Breaking down complex blockchain concepts into accessible documentation.",
         keyLearnings: "Stylus SDK, Smart Contracts, Technical Writing, Web3, Blockchain",
         liveUrl: "https://bento.me/parichay",
         githubUrl: "#",
@@ -158,7 +156,6 @@ const projects = [
             "Application tracking system",
             "Real-time notifications"
         ],
-        challenges: "Implementing efficient database queries with Mongoose ODM and creating a seamless user experience.",
         challenges: "Implementing efficient database queries with Mongoose ODM and creating a seamless user experience.",
         keyLearnings: "Mongoose, MongoDB, Node.js, Express.js, JWT, Bcrypt, MVC Architecture",
         liveUrl: "https://job-portal-frontend-parichay.vercel.app/",
@@ -176,7 +173,6 @@ const projects = [
             "World events integration"
         ],
         challenges: "Integrating AI APIs for meaningful life insights while maintaining performance.",
-        challenges: "Integrating AI APIs for meaningful life insights while maintaining performance.",
         keyLearnings: "Smart Visualization, Data Visualization, Huggingface ML response, DBMS, Wikipedia and History API, Calendar API",
         liveUrl: "https://lifeweeks.vercel.app/",
         githubUrl: "https://github.com/p4r1ch4y/FunctionForce_LifeInWeeks",
@@ -192,7 +188,6 @@ const projects = [
             "Real-time communication platform",
             "Analytics dashboard"
         ],
-        challenges: "Developing effective matching algorithms within hackathon time constraints.",
         challenges: "Developing effective matching algorithms within hackathon time constraints.",
         keyLearnings: "ORMs, Frontend and web app development, JWT",
         liveUrl: "https://skillsynced.vercel.app/",
@@ -210,7 +205,6 @@ const projects = [
             "Spectral analysis and visualization"
         ],
         challenges: "Implementing real-time processing with minimal latency.",
-        challenges: "Implementing real-time processing with minimal latency.",
         keyLearnings: "Signal Processing Algorithms, MATLAB/Python Integration, Real-time Analysis",
         liveUrl: "#",
         githubUrl: "#",
@@ -226,7 +220,6 @@ const projects = [
             "Circuit optimization",
             "Safety implementation"
         ],
-        challenges: "Designing efficient power conversion circuits while ensuring safety standards.",
         challenges: "Designing efficient power conversion circuits while ensuring safety standards.",
         keyLearnings: "Power Electronics, Circuit Design, Safety Protocols",
         liveUrl: "#",
@@ -244,7 +237,6 @@ const projects = [
             "Reliable relay switching"
         ],
         challenges: "Achieving precise timing accuracy with IC555 while integrating microcontroller functionality.",
-        challenges: "Achieving precise timing accuracy with IC555 while integrating microcontroller functionality.",
         keyLearnings: "IC555 Timer Applications, Microcontroller Integration, Precision Timing",
         liveUrl: "#",
         githubUrl: "#",
@@ -260,7 +252,6 @@ const projects = [
             "Kernel development articles",
             "Community support and engagement"
         ],
-        challenges: "Creating comprehensive guides for complex technical procedures.",
         challenges: "Creating comprehensive guides for complex technical procedures.",
         keyLearnings: "Android System Architecture, Kernel Development, Community Documentation",
         liveUrl: "#",
@@ -301,42 +292,52 @@ const projects = [
     }
 ];
 
+// Helpers
+function canAnimate() {
+    return !!window.anime && !REDUCE_MOTION;
+}
+
+function escapeHTML(value) {
+    return String(value == null ? '' : value).replace(/[&<>"']/g, function (ch) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
+    });
+}
+
+function isRealUrl(url) {
+    return typeof url === 'string' && url.trim() !== '' && url.trim() !== '#';
+}
+
+function getNavOffset() {
+    return (navbar ? navbar.offsetHeight : 68) + 12;
+}
+
 // Initialize application
 document.addEventListener('DOMContentLoaded', function () {
     initializeApp();
 });
 
 function initializeApp() {
-    // Force show loading screen
-    if (loadingScreen) {
-        loadingScreen.style.display = 'flex';
-        loadingScreen.style.opacity = '1';
-    }
+    // The loader is purely cosmetic: every component initialises immediately
+    // and one failing init never blocks the others (or the loader).
+    try { setupLoader(); } catch (e) { hideLoadingScreenNow(); }
 
-    // Show loading screen with progress
-    showLoadingScreen();
+    [
+        initializeTheme,
+        initializeNavigation,
+        initializeSkillBars,
+        initializeProjectFilters,
+        initializeContactForm,
+        initializeBackToTop,
+        initializeStatsCounter,
+        initializeModalFunctionality,
+        initializeScrollAnimations,
+        initializeHoverAnimations,
+        initializeHeroAnimations
+    ].forEach(function (init) {
+        try { init(); } catch (e) { /* keep going */ }
+    });
 
-    // Initialize components with proper timing
-    setTimeout(() => {
-        initializeTheme(); // Initialize theme first
-        initializeNavigation();
-        initializeTypewriter();
-        initializeSkillBars();
-        initializeProjectFilters();
-        initializeContactForm();
-        initializeBackToTop();
-        initializeStatsCounter();
-        initializeModalFunctionality();
-        initializeScrollAnimations();
-        initializeHoverAnimations();
-        initializeHeroAnimations();
-
-        // Hide loading screen after everything is initialized
-        setTimeout(() => {
-            hideLoadingScreen();
-            isLoaded = true;
-        }, 500);
-    }, 2500);
+    isLoaded = true;
 }
 
 // Theme Management
@@ -373,18 +374,57 @@ function updateThemeIcon(theme) {
     }
 }
 
-// Loading Screen
+// Loading Screen (cosmetic: min 400ms, capped at 1200ms, once per session)
+const LOADER_MIN_MS = 400;
+const LOADER_CAP_MS = 1200;
+let loaderFinished = false;
+
+function setupLoader() {
+    if (!loadingScreen) return;
+
+    let seen = false;
+    try { seen = sessionStorage.getItem('loaderSeen') === '1'; } catch (e) { /* storage blocked */ }
+    if (seen) {
+        hideLoadingScreenNow();
+        return;
+    }
+    try { sessionStorage.setItem('loaderSeen', '1'); } catch (e) { /* storage blocked */ }
+
+    loadingScreen.style.display = 'flex';
+    loadingScreen.style.opacity = '1';
+
+    const start = performance.now();
+    const finish = () => {
+        if (loaderFinished) return;
+        loaderFinished = true;
+        hideLoadingScreen();
+    };
+
+    // Hide-timers are registered before anything that could throw
+    setTimeout(finish, LOADER_CAP_MS);
+    const onLoaded = () => setTimeout(finish, Math.max(0, LOADER_MIN_MS - (performance.now() - start)));
+    if (document.readyState === 'complete') onLoaded();
+    else window.addEventListener('load', onLoaded, { once: true });
+
+    try { showLoadingScreen(); } catch (e) { /* decorative only */ }
+}
+
 function showLoadingScreen() {
     const progressBar = document.querySelector('.loading-progress');
     const loadingText = document.querySelector('.loading-text');
     const loadingLogo = document.querySelector('.loading-logo');
+
+    if (!window.anime) {
+        if (progressBar) progressBar.style.width = '100%';
+        return;
+    }
 
     if (progressBar) {
         anime({
             targets: progressBar,
             width: ['0%', '100%'],
             easing: 'easeInOutQuad',
-            duration: 2000
+            duration: LOADER_CAP_MS
         });
     }
     if (loadingText && !REDUCE_MOTION) {
@@ -409,8 +449,20 @@ function showLoadingScreen() {
     }
 }
 
-function hideLoadingScreen() {
+function hideLoadingScreenNow() {
     if (loadingScreen) {
+        loadingScreen.style.display = 'none';
+        loadingScreen.style.opacity = '0';
+    }
+}
+
+function hideLoadingScreen() {
+    if (!loadingScreen) return;
+    if (!canAnimate()) {
+        hideLoadingScreenNow();
+        return;
+    }
+    try {
         anime.timeline({
             complete: function () {
                 loadingScreen.style.display = 'none';
@@ -430,17 +482,28 @@ function hideLoadingScreen() {
                 duration: 500,
                 easing: 'easeOutSine'
             }, '-=200');
+        // Safety net: never leave the overlay up if the animation stalls
+        setTimeout(hideLoadingScreenNow, 1800);
+    } catch (e) {
+        hideLoadingScreenNow();
     }
 }
 
 // Navigation with smooth scrolling
+function setMobileMenu(open) {
+    if (navMenu) navMenu.classList.toggle('active', open);
+    if (navToggle) {
+        navToggle.classList.toggle('active', open);
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+}
+
 function initializeNavigation() {
     // Mobile menu toggle
     if (navToggle && navMenu) {
         navToggle.addEventListener('click', (e) => {
             e.preventDefault();
-            navMenu.classList.toggle('active');
-            navToggle.classList.toggle('active');
+            setMobileMenu(!navMenu.classList.contains('active'));
         });
     }
 
@@ -448,20 +511,17 @@ function initializeNavigation() {
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            // Only prevent default for hash links
-            if (link.getAttribute('href').startsWith('#')) {
+            const href = link.getAttribute('href') || '';
+            // Only prevent default for in-page hash links
+            if (href.length > 1 && href.startsWith('#')) {
+                let targetSection = null;
+                try { targetSection = document.querySelector(href); } catch (err) { /* invalid selector */ }
+                if (!targetSection) return;
+
                 e.preventDefault();
-                const targetId = link.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-
-                if (targetSection) {
-                    const offsetTop = targetSection.offsetTop - 80;
-                    smoothScrollTo(offsetTop, 800);
-                }
-
-                // Close mobile menu
-                navMenu.classList.remove('active');
-                navToggle.classList.remove('active');
+                const offsetTop = targetSection.getBoundingClientRect().top + window.pageYOffset - getNavOffset();
+                smoothScrollTo(offsetTop, 800);
+                setMobileMenu(false);
             }
         });
     });
@@ -470,16 +530,23 @@ function initializeNavigation() {
     window.addEventListener('scroll', updateActiveNavLink);
 
     // Navbar scroll effect
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    }
 }
 
 function smoothScrollTo(targetPosition, duration) {
+    if (REDUCE_MOTION) {
+        window.scrollTo(0, targetPosition);
+        return;
+    }
+
     const startPosition = window.pageYOffset;
     const distance = targetPosition - startPosition;
     let startTime = null;
@@ -503,45 +570,25 @@ function smoothScrollTo(targetPosition, duration) {
 }
 
 function updateActiveNavLink() {
-    const sections = document.querySelectorAll('section');
+    const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
+    const offset = getNavOffset();
 
     let currentSection = '';
     sections.forEach(section => {
-        const sectionTop = section.offsetTop - 120;
-        const sectionHeight = section.offsetHeight;
-
-        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+        const rect = section.getBoundingClientRect();
+        // Section is current once its top has reached the navbar offset
+        if (rect.top <= offset + 2 && rect.bottom > offset + 2) {
             currentSection = section.getAttribute('id');
         }
     });
 
     navLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + currentSection) {
+        if (currentSection && link.getAttribute('href') === '#' + currentSection) {
             link.classList.add('active');
         }
     });
-}
-
-// Typewriter Effect
-function initializeTypewriter() {
-    if (!typewriter) return;
-
-    const text = "Subrata Choudhury";
-    // Wrap each character in a span for stagger animation
-    typewriter.innerHTML = text.replace(/\S/g, "<span class='letter' style='display:inline-block;'>$&</span>");
-
-    anime.timeline({ loop: false })
-        .add({
-            targets: '#typewriter .letter',
-            scale: [1.5, 1],
-            opacity: [0, 1],
-            translateZ: 0,
-            easing: "easeOutQuart",
-            duration: 1200,
-            delay: anime.stagger(80)
-        });
 }
 
 // Skills Animation - Enhanced
@@ -569,6 +616,10 @@ function animateSkillBars(container) {
         const fillDiv = bar.querySelector('.skill-fill');
 
         if (fillDiv) {
+            if (!canAnimate()) {
+                fillDiv.style.width = level + '%';
+                return;
+            }
             anime({
                 targets: fillDiv,
                 width: ['0%', level + '%'],
@@ -582,57 +633,77 @@ function animateSkillBars(container) {
 
 // Scroll Animations - Enhanced
 function initializeScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px'
+    const elementsToAnimate = document.querySelectorAll('.skill-category, .project-card, .timeline-item, .about-info, .about-interests, .about-stats');
+    const animate = canAnimate();
+    const hiddenByUs = new Set();
+
+    const trigger = (el) => {
+        if (el.classList.contains('skill-category')) {
+            setTimeout(() => animateSkillBars(el), 150);
+        }
+        if (el.classList.contains('about-stats')) {
+            setTimeout(() => animateStatsCounter(), 150);
+        }
+        if (el.classList.contains('timeline-item')) {
+            const dot = el.querySelector('.timeline-dot');
+            if (dot) {
+                if (animate) {
+                    anime({
+                        targets: dot,
+                        scale: [0, 1],
+                        opacity: [0, 1],
+                        easing: 'easeOutQuart',
+                        duration: 1200,
+                        delay: 300
+                    });
+                }
+                dot.classList.add('active');
+            }
+        }
     };
 
-    const elementsToAnimate = document.querySelectorAll('.skill-category, .project-card, .timeline-item, .about-info, .about-interests, .about-stats');
+    // Without IntersectionObserver just show/run everything
+    if (!('IntersectionObserver' in window)) {
+        elementsToAnimate.forEach(trigger);
+        return;
+    }
 
-    // Set initial opacity so Anime.js can fade them in
-    elementsToAnimate.forEach(el => {
-        el.style.opacity = '0';
-    });
+    // Hide only what is currently below the fold, so Anime.js can fade it in
+    if (animate) {
+        elementsToAnimate.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top > window.innerHeight) {
+                el.style.opacity = '0';
+                hiddenByUs.add(el);
+            }
+        });
+    }
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                const el = entry.target;
                 // Soft gliding animation for revealing elements
-                anime({
-                    targets: entry.target,
-                    translateY: [40, 0],
-                    opacity: [0, 1],
-                    easing: 'easeOutQuart',
-                    duration: 1500
-                });
+                if (animate && hiddenByUs.has(el)) {
+                    anime({
+                        targets: el,
+                        translateY: [40, 0],
+                        opacity: [0, 1],
+                        easing: 'easeOutQuart',
+                        duration: 1500
+                    });
+                }
 
-                // Trigger specific animations
-                if (entry.target.classList.contains('skill-category')) {
-                    setTimeout(() => animateSkillBars(entry.target), 150);
-                }
-                if (entry.target.classList.contains('about-stats')) {
-                    setTimeout(() => animateStatsCounter(), 150);
-                }
-                if (entry.target.classList.contains('timeline-item')) {
-                    const dot = entry.target.querySelector('.timeline-dot');
-                    if (dot) {
-                        anime({
-                            targets: dot,
-                            scale: [0, 1],
-                            opacity: [0, 1],
-                            easing: 'easeOutQuart',
-                            duration: 1200,
-                            delay: 300
-                        });
-                        dot.classList.add('active');
-                    }
-                }
+                trigger(el);
 
                 // Stop observing once animated
-                observer.unobserve(entry.target);
+                observer.unobserve(el);
             }
         });
-    }, observerOptions);
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+    });
 
     // Observe elements
     elementsToAnimate.forEach(el => observer.observe(el));
@@ -642,67 +713,103 @@ function initializeScrollAnimations() {
 function initializeProjectFilters() {
     const filterBtns = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
+    if (!filterBtns.length) return;
+
+    let pendingTimers = [];
+
+    filterBtns.forEach(b => b.setAttribute('aria-pressed', b.classList.contains('active') ? 'true' : 'false'));
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
 
             // Remove active class from all buttons
-            filterBtns.forEach(b => b.classList.remove('active'));
+            filterBtns.forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-pressed', 'false');
+            });
             btn.classList.add('active');
+            btn.setAttribute('aria-pressed', 'true');
 
             const filter = btn.getAttribute('data-filter');
+
+            // Rapid clicks: drop timers from the previous filter
+            pendingTimers.forEach(clearTimeout);
+            pendingTimers = [];
 
             projectCards.forEach((card, index) => {
                 const category = card.getAttribute('data-category');
 
-                setTimeout(() => {
+                pendingTimers.push(setTimeout(() => {
                     if (filter === 'all' || category === filter) {
                         card.classList.remove('hidden');
                         card.style.display = 'block';
                     } else {
                         card.classList.add('hidden');
-                        setTimeout(() => {
+                        pendingTimers.push(setTimeout(() => {
                             if (card.classList.contains('hidden')) {
                                 card.style.display = 'none';
                             }
-                        }, 300);
+                        }, 300));
                     }
-                }, index * 50);
+                }, index * 50));
             });
         });
     });
 }
 
 // Stats Counter - Enhanced
+let statsAnimated = false;
+
 function initializeStatsCounter() {
     // This will be triggered by intersection observer
 }
 
 function animateStatsCounter() {
+    if (statsAnimated) return;
+    statsAnimated = true;
+
     const statNumbers = document.querySelectorAll('.stat-number');
 
     statNumbers.forEach((stat, index) => {
-        const target = parseInt(stat.getAttribute('data-target'));
+        const targetText = (stat.getAttribute('data-target') || stat.textContent || '').trim();
+        const match = targetText.match(/^(\d+)(.*)$/);
+
+        if (!match || REDUCE_MOTION) {
+            stat.textContent = targetText;
+            return;
+        }
+
+        const target = parseInt(match[1], 10);
+        const suffix = match[2];
         let current = 0;
-        const increment = Math.ceil(target / 60);
+        const increment = Math.max(1, Math.ceil(target / 60));
 
         setTimeout(() => {
             const timer = setInterval(() => {
                 current += increment;
                 if (current >= target) {
-                    current = target;
                     clearInterval(timer);
+                    stat.textContent = targetText;
+                    return;
                 }
-                stat.textContent = current;
+                stat.textContent = current + suffix;
             }, 30);
         }, index * 200);
     });
 }
 
 // Contact Form - Enhanced
+let formMessageTimer = null;
+
 function initializeContactForm() {
     if (!contactForm) return;
+
+    const messageDiv = document.getElementById('form-message');
+    if (messageDiv) {
+        messageDiv.setAttribute('role', 'status');
+        messageDiv.setAttribute('aria-live', 'polite');
+    }
 
     contactForm.addEventListener('submit', handleFormSubmit);
 
@@ -738,6 +845,14 @@ function isValidEmail(email) {
 function handleFormSubmit(e) {
     e.preventDefault();
 
+    // Honeypot: bots fill hidden "botcheck"; pretend success and send nothing
+    const honeypot = contactForm.querySelector('[name="botcheck"]');
+    if (honeypot && (honeypot.type === 'checkbox' ? honeypot.checked : honeypot.value)) {
+        showFormMessage('Thank you for your message! I\'ll get back to you soon.', 'success');
+        contactForm.reset();
+        return;
+    }
+
     // Validate all required fields
     const requiredFields = contactForm.querySelectorAll('[required]');
     let isValid = true;
@@ -756,9 +871,11 @@ function handleFormSubmit(e) {
 
     // Submit form via Web3Forms API
     const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = 'Sending...';
-    submitBtn.disabled = true;
+    const originalText = submitBtn ? submitBtn.textContent : '';
+    if (submitBtn) {
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+    }
 
     const formData = new FormData(contactForm);
 
@@ -772,17 +889,17 @@ function handleFormSubmit(e) {
             showFormMessage('Thank you for your message! I\'ll get back to you soon.', 'success');
             contactForm.reset();
         } else {
-            console.log(response);
             showFormMessage(json.message || 'Something went wrong!', 'error');
         }
     })
-    .catch((error) => {
-        console.log(error);
+    .catch(() => {
         showFormMessage('Something went wrong! Please try again.', 'error');
     })
     .finally(() => {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
+        if (submitBtn) {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
     });
 }
 
@@ -793,7 +910,8 @@ function showFormMessage(message, type) {
         messageDiv.className = `form-message ${type}`;
         messageDiv.textContent = message;
 
-        setTimeout(() => {
+        clearTimeout(formMessageTimer);
+        formMessageTimer = setTimeout(() => {
             messageDiv.style.display = 'none';
         }, 5000);
     }
@@ -819,10 +937,13 @@ function initializeBackToTop() {
 
 // Hover Animations - Anime.js Physics
 function initializeHoverAnimations() {
+    if (!canAnimate()) return;
+
     const interactables = document.querySelectorAll('.project-card, .btn, .nav-link, .timeline-item');
 
     interactables.forEach(el => {
         el.addEventListener('mouseenter', () => {
+            if (!window.anime) return;
             anime.remove(el);
             anime({
                 targets: el,
@@ -834,6 +955,7 @@ function initializeHoverAnimations() {
         });
 
         el.addEventListener('mouseleave', () => {
+            if (!window.anime) return;
             anime.remove(el);
             anime({
                 targets: el,
@@ -849,7 +971,7 @@ function initializeHoverAnimations() {
 // Hero Animations - Floating Profile
 function initializeHeroAnimations() {
     const profile = document.querySelector('.profile-circle');
-    if (profile && !REDUCE_MOTION) {
+    if (profile && canAnimate()) {
         anime({
             targets: profile,
             translateY: [-15, 15],
@@ -862,6 +984,14 @@ function initializeHeroAnimations() {
 }
 
 // Modal Functionality - Enhanced
+let modalLastFocus = null;
+let modalPrevOverflow = '';
+let modalCloseTimer = null;
+
+function isModalOpen() {
+    return !!projectModal && projectModal.style.display === 'block';
+}
+
 function initializeModalFunctionality() {
     const detailsBtns = document.querySelectorAll('.project-details-btn');
     const modalClose = document.querySelector('.modal-close');
@@ -872,15 +1002,27 @@ function initializeModalFunctionality() {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            const projectIndex = parseInt(btn.getAttribute('data-project'));
+            const projectIndex = parseInt(btn.getAttribute('data-project'), 10);
             if (projects[projectIndex]) {
-                showProjectModal(projects[projectIndex]);
+                showProjectModal(projects[projectIndex], btn);
             }
         });
     });
 
     // Modal close functionality
     if (modalClose) {
+        if (modalClose.tagName !== 'BUTTON') {
+            // Fallback while the markup is still a non-interactive element
+            modalClose.setAttribute('role', 'button');
+            modalClose.setAttribute('tabindex', '0');
+            modalClose.setAttribute('aria-label', 'Close');
+            modalClose.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    closeModal();
+                }
+            });
+        }
         modalClose.addEventListener('click', (e) => {
             e.preventDefault();
             closeModal();
@@ -888,6 +1030,10 @@ function initializeModalFunctionality() {
     }
 
     if (projectModal) {
+        projectModal.setAttribute('role', 'dialog');
+        projectModal.setAttribute('aria-modal', 'true');
+        projectModal.setAttribute('aria-labelledby', 'modal-title');
+
         projectModal.addEventListener('click', (e) => {
             if (e.target === projectModal) {
                 closeModal();
@@ -897,46 +1043,92 @@ function initializeModalFunctionality() {
 
     // Resume download - Simple direct link approach
     if (downloadResumeBtn) {
-        downloadResumeBtn.addEventListener('click', (e) => {
+        downloadResumeBtn.addEventListener('click', () => {
             // Let the browser handle the direct link download
-            showNotification('Resume download started!', 'success');
+            const href = downloadResumeBtn.getAttribute('href');
+            if (href && href !== '#') {
+                showNotification('Resume download started!', 'success');
+            }
         });
     }
 
-    // Close modal with Escape key
+    // Single keyboard handler: Escape closes, Tab is trapped inside the dialog
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && projectModal && projectModal.style.display === 'block') {
+        if (!isModalOpen()) return;
+        // The external-link confirmation sits above this modal and owns the keys while open
+        if (document.querySelector('.elm-overlay.open')) return;
+
+        if (e.key === 'Escape') {
             closeModal();
+        } else if (e.key === 'Tab') {
+            trapModalFocus(e);
         }
     });
 }
 
-function showProjectModal(project) {
+function getModalFocusables() {
+    return Array.prototype.filter.call(
+        projectModal.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'),
+        el => el.offsetParent !== null
+    );
+}
+
+function trapModalFocus(e) {
+    const focusables = getModalFocusables();
+    if (!focusables.length) {
+        e.preventDefault();
+        return;
+    }
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (!projectModal.contains(document.activeElement)) {
+        e.preventDefault();
+        first.focus();
+    } else if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+    }
+}
+
+function projectLinkButton(url, cls, icon, label) {
+    if (!isRealUrl(url)) return '';
+    return `
+            <a href="${escapeHTML(url)}" class="btn ${cls}" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+                <i class="${icon}" aria-hidden="true"></i> ${label}
+            </a>`;
+}
+
+function showProjectModal(project, opener) {
     if (!projectModal) return;
 
     const modalBody = document.getElementById('modal-body');
     if (!modalBody) return;
 
+    clearTimeout(modalCloseTimer);
+
     modalBody.innerHTML = `
-        <h2 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.5rem;">${project.title}</h2>
-        <p style="color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.6;">${project.description}</p>
+        <h2 id="modal-title" style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.5rem;">${escapeHTML(project.title)}</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.6;">${escapeHTML(project.description)}</p>
         
         <h3 style="color: var(--text-primary); margin-bottom: 1rem; font-size: 1.2rem;">Technologies Used</h3>
         <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem;">
-            ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+            ${project.technologies.map(tech => `<span class="tech-tag">${escapeHTML(tech)}</span>`).join('')}
         </div>
         
         <h3 style="color: var(--text-primary); margin-bottom: 1rem; font-size: 1.2rem;">Key Features</h3>
         <ul style="color: var(--text-secondary); margin-bottom: 2rem; padding-left: 1.5rem; line-height: 1.6;">
-            ${project.features.map(feature => `<li style="margin-bottom: 0.5rem;">${feature}</li>`).join('')}
+            ${project.features.map(feature => `<li style="margin-bottom: 0.5rem;">${escapeHTML(feature)}</li>`).join('')}
         </ul>
         
         <h3 style="color: var(--text-primary); margin-bottom: 1rem; font-size: 1.2rem;">Challenges & Solutions</h3>
-        <p style="color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.6;">${project.challenges}</p>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.6;">${escapeHTML(project.challenges)}</p>
         
         ${project.keyLearnings ? `
         <h3 style="color: var(--text-primary); margin-bottom: 1rem; font-size: 1.2rem;">Key Learnings</h3>
-        <p style="color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.6; font-style: italic; border-left: 3px solid var(--primary-color); padding-left: 1rem;">${project.keyLearnings}</p>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.6; font-style: italic; border-left: 3px solid var(--primary-color); padding-left: 1rem;">${escapeHTML(project.keyLearnings)}</p>
         ` : ''}
 
         ${project.youtubeEmbed ? `
@@ -946,16 +1138,14 @@ function showProjectModal(project) {
         </div>
         ` : ''}
 
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-            <a href="${project.liveUrl}" class="btn btn--primary" target="_blank" style="text-decoration: none;">
-                <i class="fas fa-external-link-alt"></i> Live Demo
-            </a>
-            <a href="${project.githubUrl}" class="btn btn--outline" target="_blank" style="text-decoration: none;">
-                <i class="fab fa-github"></i> View Code
-            </a>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">${projectLinkButton(project.liveUrl, 'btn--primary', 'fas fa-external-link-alt', 'Live Demo')}${projectLinkButton(project.githubUrl, 'btn--outline', 'fab fa-github', 'View Code')}
         </div>
     `;
 
+    if (!isModalOpen()) {
+        modalPrevOverflow = document.body.style.overflow;
+        modalLastFocus = opener || document.activeElement;
+    }
     projectModal.style.display = 'block';
     document.body.style.overflow = 'hidden';
 
@@ -967,10 +1157,14 @@ function showProjectModal(project) {
             modalContent.style.opacity = '1';
         }
     }, 10);
+
+    // Move focus into the dialog: the close control
+    const closeBtn = projectModal.querySelector('.modal-close');
+    if (closeBtn) closeBtn.focus();
 }
 
 function closeModal() {
-    if (!projectModal) return;
+    if (!projectModal || !isModalOpen()) return;
 
     const modalContent = projectModal.querySelector('.modal-content');
     if (modalContent) {
@@ -978,20 +1172,28 @@ function closeModal() {
         modalContent.style.opacity = '0';
     }
 
-    setTimeout(() => {
+    clearTimeout(modalCloseTimer);
+    modalCloseTimer = setTimeout(() => {
         projectModal.style.display = 'none';
-        document.body.style.overflow = 'auto';
+        document.body.style.overflow = modalPrevOverflow;
 
         // Clear modal content to stop video playback
         const modalBody = document.getElementById('modal-body');
         if (modalBody) modalBody.innerHTML = '';
     }, 200);
+
+    // Return focus to whatever opened the dialog
+    if (modalLastFocus && typeof modalLastFocus.focus === 'function' && document.contains(modalLastFocus)) {
+        modalLastFocus.focus();
+    }
+    modalLastFocus = null;
 }
 
 function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.className = `form-message ${type}`;
     notification.textContent = message;
+    notification.setAttribute('role', 'status');
     notification.style.position = 'fixed';
     notification.style.top = '20px';
     notification.style.right = '20px';
@@ -1025,39 +1227,8 @@ function debounce(func, wait) {
     };
 }
 
-// Initialize on page load
-window.addEventListener('load', () => {
-    // Performance monitoring
-    if ('performance' in window && performance.mark) {
-        performance.mark('portfolio-loaded');
-
-        // Use modern Performance Observer API
-        if ('PerformanceObserver' in window) {
-            const observer = new PerformanceObserver((list) => {
-                const entries = list.getEntries();
-                entries.forEach((entry) => {
-                    if (entry.entryType === 'navigation') {
-                        console.log(`Portfolio loaded in ${entry.loadEventEnd - entry.fetchStart}ms`);
-                    }
-                });
-            });
-            observer.observe({ entryTypes: ['navigation'] });
-        }
-    }
-
-    console.log('Portfolio website loaded successfully!');
-});
-
 // Accessibility improvements
 document.addEventListener('keydown', (e) => {
-    // Escape key closes modals
-    if (e.key === 'Escape') {
-        const modal = document.getElementById('project-modal');
-        if (modal && modal.style.display === 'block') {
-            closeModal();
-        }
-    }
-
     // Tab navigation improvements
     if (e.key === 'Tab') {
         document.body.classList.add('keyboard-navigation');

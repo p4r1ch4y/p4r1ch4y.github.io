@@ -10,13 +10,16 @@
    404.html and every blog post page — call window.themeSwitch(button, applyFn).
    ========================================================================== */
 (function () {
-    var COLORS = { dark: '#000000', light: '#f7fafd' };
+    var COLORS = { dark: '#000000', light: '#f8f9fb' };
 
     function finish(root) {
         root.classList.remove('winter-switching');
         var theme = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
-        var meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.setAttribute('content', COLORS[theme]);
+        if (window.winter && window.winter.syncMeta) window.winter.syncMeta();
+        else {
+            var meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.setAttribute('content', COLORS[theme]);
+        }
         document.dispatchEvent(new CustomEvent('winter:themechange', { detail: { theme: theme } }));
     }
 

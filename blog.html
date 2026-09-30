@@ -4,25 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',t==='light'?'#f7fafd':'#000000')})();</script>
+    <meta name="theme-color" content="#000000">
+    <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',t==='light'?'#f8f9fb':'#000000')})();</script>
     <title>Blog - Subrata Choudhury</title>
-    <meta name="description"
-        content="Technical blog by Subrata Choudhury covering Web3, Developer Relations, and Software Engineering.">
+    <meta name="description" content="Technical blog by Subrata Choudhury: field notes on public-interest tech, backend and security engineering, Web3, and developer relations.">
     <meta name="author" content="Subrata Choudhury">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://p4r1ch4y.github.io/blog.html">
-    <meta name="theme-color" content="#000000">
     <meta property="og:title" content="Technical Blog · Subrata Choudhury">
     <meta property="og:description"
         content="Field notes on public-interest tech, backend and security, Web3, and developer relations.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://p4r1ch4y.github.io/blog.html">
     <meta property="og:image" content="https://p4r1ch4y.github.io/assets/portfolio-preview.jpg">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="winter.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <style>
+        .skip-to-content { position: absolute; left: -9999px; top: 0; z-index: 10000; padding: 8px 16px; background: var(--primary-color, #7B1D1D); color: #fff; }
+        .skip-to-content:focus { left: 8px; top: 8px; }
         .blog-container {
             padding-top: 120px;
             min-height: 100vh;
@@ -112,6 +114,7 @@
 </head>
 
 <body>
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -137,7 +140,7 @@
         </div>
     </nav>
 
-    <div class="container blog-container">
+    <main id="main-content" class="container blog-container">
         <div class="blog-header">
             <h1 class="section-title">Technical Blog</h1>
             <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
@@ -211,7 +214,7 @@
                 async>
                 </script>
         </div>
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -229,7 +232,7 @@
         }
     </script>
     <script type="text/javascript"
-        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
 
     <!-- App Logic -->
     <script src="theme-switch.js"></script>
