@@ -130,7 +130,8 @@ a:hover { text-decoration-color: currentColor; }
 .winter-aurora::after {
     content: ''; position: absolute; pointer-events: none;
     width: 90vmax; height: 70vmax; border-radius: 50%;
-    filter: blur(70px);
+    /* No filter: blur() — the radial gradients already fade out, and a huge blur
+       layer re-rasterises on every theme change, stalling the switch animation. */
     will-change: transform;
 }
 .winter-aurora::before {

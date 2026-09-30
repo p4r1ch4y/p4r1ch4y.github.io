@@ -166,15 +166,55 @@
         .icon-btn:hover { color: var(--accent); }
 
         /* hero */
-        .orb {
-            width: 60px; height: 60px; border-radius: 50%;
-            background: radial-gradient(circle at 35% 30%, #ffffff, #c9cde0 45%, #2a2f6b 100%);
-            box-shadow: 0 0 32px -6px rgba(40, 48, 170, 0.6);
-            margin-bottom: 1.5rem;
+        .orb { position: relative; isolation: isolate; width: 60px; height: 60px; margin-bottom: 1.5rem; }
+        .orb-moon, .orb-sun {
+            position: absolute; inset: 0; border-radius: 50%;
+            transition: opacity 0.6s ease, transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
-        :root[data-theme="light"] .orb {
-            background: radial-gradient(circle at 35% 30%, #ffffff, #c5cae8 50%, #000080 110%);
-            box-shadow: 0 0 32px -8px rgba(0, 0, 128, 0.35);
+        /* moon (dark) */
+        .orb-moon {
+            background:
+                radial-gradient(circle at 62% 38%, rgba(110, 116, 158, 0.5) 0 6%, transparent 7.5%),
+                radial-gradient(circle at 30% 60%, rgba(110, 116, 158, 0.45) 0 8%, rgba(255, 255, 255, 0.25) 9% 10%, transparent 11.5%),
+                radial-gradient(circle at 56% 72%, rgba(110, 116, 158, 0.4) 0 4.5%, transparent 6%),
+                radial-gradient(circle at 74% 62%, rgba(110, 116, 158, 0.4) 0 3%, transparent 4.5%),
+                radial-gradient(circle at 42% 22%, rgba(110, 116, 158, 0.35) 0 3.5%, transparent 5%),
+                radial-gradient(circle at 34% 30%, #ffffff 0%, #eceef6 22%, #c9cde0 55%, #8d93b5 85%, #5c6290 100%);
+            box-shadow: inset -9px -7px 16px rgba(20, 24, 70, 0.55), inset 3px 3px 8px rgba(255, 255, 255, 0.35),
+                0 0 28px -4px rgba(170, 178, 240, 0.45), 0 0 60px -10px rgba(40, 48, 170, 0.55);
+            opacity: 1; transform: none;
+        }
+        .orb-moon::after {
+            content: ""; position: absolute; inset: 0; border-radius: 50%;
+            box-shadow: 0 0 22px 4px rgba(170, 178, 240, 0.5), 0 0 56px 8px rgba(60, 70, 200, 0.35);
+            opacity: 0.35; z-index: -1;
+            animation: orb-breathe 6s ease-in-out infinite alternate;
+            transition: transform 0.4s ease;
+        }
+        .orb:hover .orb-moon::after { transform: scale(1.12); }
+        @keyframes orb-breathe { from { opacity: 0.25; } to { opacity: 0.85; } }
+        /* sun (light) */
+        .orb-sun { opacity: 0; transform: scale(0.6) rotate(-90deg); }
+        .orb-sun::before {
+            content: ""; position: absolute; inset: -14px; border-radius: 50%;
+            background: repeating-conic-gradient(from 0deg, rgba(255, 184, 40, 0.55) 0deg 6deg, transparent 6deg 30deg);
+            -webkit-mask: radial-gradient(circle, transparent 0 55%, #000 56% 70%, transparent 72%);
+            mask: radial-gradient(circle, transparent 0 55%, #000 56% 70%, transparent 72%);
+            animation: orb-rays 60s linear infinite, orb-ray-pulse 4s ease-in-out infinite alternate;
+        }
+        .orb-sun::after {
+            content: ""; position: absolute; inset: 0; border-radius: 50%;
+            background: radial-gradient(circle at 40% 36%, #fffbe6 0%, #ffe38a 30%, #ffc23d 62%, #f59e0b 100%);
+            box-shadow: 0 0 0 4px rgba(255, 194, 61, 0.18), 0 0 28px 4px rgba(255, 170, 40, 0.45), 0 0 70px 6px rgba(255, 200, 90, 0.25);
+        }
+        .orb:hover .orb-sun::before { scale: 1.08; }
+        .orb-sun::before { transition: scale 0.4s ease; }
+        @keyframes orb-rays { to { transform: rotate(360deg); } }
+        @keyframes orb-ray-pulse { from { opacity: 0.6; } to { opacity: 1; } }
+        :root[data-theme="light"] .orb-moon { opacity: 0; transform: scale(0.6) rotate(90deg); }
+        :root[data-theme="light"] .orb-sun { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) {
+            .orb-moon, .orb-sun, .orb-moon::after, .orb-sun::before { animation: none !important; transition: none !important; }
         }
         h1 {
             font-family: var(--mono);
@@ -326,7 +366,7 @@
 
         <main id="main-content">
         <!-- Hero -->
-        <div class="orb" aria-hidden="true"></div>
+        <div class="orb" aria-hidden="true"><span class="orb-moon"></span><span class="orb-sun"></span></div>
         <h1>Subrata Choudhury</h1>
         <p class="role">Software Engineer</p>
         <div class="intro">
