@@ -16,12 +16,12 @@
     --text-primary: #eceef5;
     --text-secondary: #aab0c4;
     --text-muted: #7a8198;
-    --primary-color: #c3c9f2;
-    --secondary-color: #e6e8f5;
+    --primary-color: #e2c275;
+    --secondary-color: #f3dfa6;
     --accent-color: #b9bfd4;
     --on-accent: #ffffff;
     --accent-soft: rgba(40, 48, 170, 0.20);
-    --accent-line: rgba(160, 168, 235, 0.30);
+    --accent-line: rgba(226, 194, 117, 0.32);
     --border-color: rgba(255, 255, 255, 0.07);
     --border-glass: rgba(255, 255, 255, 0.06);
     --border-strong: rgba(255, 255, 255, 0.14);
@@ -35,7 +35,7 @@
     --ink: #eceef5;
     --ink-soft: #aab0c4;
     --ink-muted: #7a8198;
-    --accent: #c3c9f2;
+    --accent: #e2c275;
     --line: rgba(255, 255, 255, 0.07);
     --line-strong: rgba(255, 255, 255, 0.14);
     /* heatmap */
@@ -48,10 +48,10 @@
     --aurora-b: rgba(28, 34, 168, 0.28);
     --aurora-c: rgba(140, 140, 175, 0.10);
     --frost-edge: rgba(195, 201, 242, 0.25);
-    --focus-ring: #c3c9f2;
+    --focus-ring: #e2c275;
     --sheen-a: rgba(255, 255, 255, 0.10);
     --sheen-b: rgba(195, 201, 242, 0.16);
-    --btn-rim: rgba(170, 178, 240, 0.35);
+    --btn-rim: rgba(226, 194, 117, 0.45);
 }
 
 /* ---------- Tokens: light (snow, navy ink) ---------- */
@@ -218,7 +218,7 @@ a:hover { text-decoration-color: currentColor; }
 /* ---------- Featured badge ---------- */
 .featured-badge i { color: var(--on-accent); }
 
-/* ---------- Dark: navy fills (white text) + rim; navy never used as text ---------- */
+/* ---------- Dark: navy fills (white text) + gold rim; navy never used as text ---------- */
 [data-theme="dark"] .btn--primary,
 [data-theme="dark"] .back-to-top,
 [data-theme="dark"] .filter-btn:hover,
@@ -230,17 +230,17 @@ a:hover { text-decoration-color: currentColor; }
     border: 1px solid var(--btn-rim);
 }
 [data-theme="dark"] .profile-circle { border: 1px solid var(--btn-rim); }
-/* text-clip gradients + thin accents: navy vanishes on black, use a light ramp */
+/* text-clip gradients + thin accents: gold on black (navy vanishes there) */
 [data-theme="dark"] .logo-text,
 [data-theme="dark"] .loading-logo,
 [data-theme="dark"] .blog-intro h3 {
-    background-image: linear-gradient(135deg, #e6e8f5, #a8b0ea);
+    background-image: linear-gradient(135deg, #f6e7b8, #d4a94f);
 }
 [data-theme="dark"] .nav-link::after,
 [data-theme="dark"] .section-title::after,
 [data-theme="dark"] .loading-progress,
 [data-theme="dark"] .blog-redirect-card::before {
-    background: linear-gradient(90deg, #4250b8, #c3c9f2);
+    background: linear-gradient(90deg, #b8893a, #e2c275);
 }
 
 /* ---------- Blog listing notes (AMOLED re-skin; NOT body.blog-post-page) ---------- */

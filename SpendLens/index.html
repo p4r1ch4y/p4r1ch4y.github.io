@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>(function () { var t = null; try { t = localStorage.getItem('theme'); } catch (e) { } if (t !== 'light' && t !== 'dark') { t = 'dark'; } document.documentElement.setAttribute('data-theme', t); })();</script>
+    <meta name="theme-color" content="#000000">
+    <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',t==='light'?'#f8f9fb':'#000000')})();</script>
 
     <title>SpendLens · Offline UPI &amp; Expense Tracker · Subrata Choudhury</title>
     <meta name="description"
@@ -43,9 +44,9 @@
         .proj-nav .right { display: flex; align-items: center; gap: 1.25rem; }
         .proj-nav .right a { color: var(--text-secondary); }
         .proj-nav .right a:hover { color: var(--primary-color); }
-        #theme-toggle { background: transparent; border: 1px solid var(--border-color); color: var(--text-secondary);
+        #theme-toggle, #snow-toggle { background: transparent; border: 1px solid var(--border-color); color: var(--text-secondary);
             width: 38px; height: 38px; border-radius: 50%; cursor: pointer; font-size: 1rem; }
-        #theme-toggle:hover { color: var(--primary-color); border-color: var(--primary-color); }
+        #theme-toggle:hover, #snow-toggle:hover { color: var(--primary-color); border-color: var(--primary-color); }
 
         .proj-wrap { max-width: 940px; margin: 0 auto; padding: 0 1.5rem 5rem; }
 
@@ -142,6 +143,7 @@
 
         :focus-visible { outline: 2px solid var(--primary-color); outline-offset: 3px; border-radius: 4px; }
     </style>
+    <link rel="stylesheet" href="../winter.css">
 </head>
 
 <body>
@@ -150,7 +152,8 @@
         <div class="right">
             <a href="https://github.com/p4r1ch4y/upi-analyser" target="_blank" rel="noopener" title="Source on GitHub"><i class="fab fa-github"></i></a>
             <a href="https://gitlab.com/p4r1ch4y-group/SpendLens/-/releases" target="_blank" rel="noopener" title="Releases on GitLab"><i class="fab fa-gitlab"></i></a>
-            <button id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><i class="fas fa-moon"></i></button>
+            <button id="snow-toggle" type="button" aria-label="Toggle snowfall" aria-pressed="true" title="Snow (S)"><i class="fas fa-snowflake" aria-hidden="true"></i></button>
+            <button id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><i class="fas fa-moon" aria-hidden="true"></i></button>
         </div>
     </nav>
 
@@ -337,7 +340,7 @@
             sync();
             btn.addEventListener('click', function () {
                 var next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-                var apply = function () { document.documentElement.setAttribute('data-theme', next); localStorage.setItem('theme', next); sync(); };
+                var apply = function () { document.documentElement.setAttribute('data-theme', next); try { localStorage.setItem('theme', next); } catch (e) { } sync(); };
                 if (window.themeSwitch) window.themeSwitch(btn, apply); else apply();
             });
         })();
@@ -365,6 +368,21 @@
         })();
     </script>
     <script src="../external-link-modal.js"></script>
+    <script src="../winter.js" defer></script>
+    <script>
+        /* Keep the giscus iframe theme in sync with the site theme */
+        (function () {
+            function cur() { return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark'; }
+            function push() {
+                var f = document.querySelector('iframe.giscus-frame');
+                if (!f || !f.contentWindow) return;
+                f.contentWindow.postMessage({ giscus: { setConfig: { theme: cur() } } }, 'https://giscus.app');
+            }
+            document.addEventListener('winter:themechange', push);
+            window.addEventListener('message', function (e) { if (e.origin === 'https://giscus.app') push(); });
+            window.addEventListener('load', push);
+        })();
+    </script>
 </body>
 
 </html>
