@@ -1431,6 +1431,32 @@ section[id], [id].section { scroll-margin-top: 76px; }
     box-shadow: var(--shadow-sm);
 }
 
+.timeline-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-left: 2.5rem;
+    padding: 0.85rem 1rem;
+    background: var(--bg-card);
+    border: 1px dashed var(--border-strong);
+    border-radius: var(--radius-base);
+    box-shadow: var(--shadow-sm);
+}
+
+.timeline-note i {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.15rem;
+    flex-shrink: 0;
+}
+
+.timeline-note p {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
 /* Contact Section Spacing & Styling */
 .contact {
     padding: 6rem 0;
