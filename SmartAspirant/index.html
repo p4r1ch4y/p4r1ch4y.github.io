@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',t==='light'?'#f8f9fb':'#000000')})();</script>
+
+    <title>Smart Aspirant · Subrata Choudhury</title>
+    <meta name="description"
+        content="Smart Aspirant is a study companion for Indian government exam aspirants that pairs proven study techniques and an adaptive planner with a privacy-first, transparent design.">
+    <link rel="canonical" href="https://p4r1ch4y.github.io/SmartAspirant/">
+    <meta property="og:title" content="Smart Aspirant · Subrata Choudhury">
+    <meta property="og:description"
+        content="Building tomorrow's officers in a smart, modern way. Adaptive planner, syllabus from official notices, private by design.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://p4r1ch4y.github.io/SmartAspirant/">
+    <meta property="og:image" content="https://p4r1ch4y.github.io/assets/projects/SmartAspirant_images/today-desktop.webp">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==================================================================
+           Smart Aspirant project page. Uses the site design tokens (../style.css)
+           so it is theme-aware; adds project-page-specific layout here.
+           ================================================================== */
+        .proj-nav {
+            position: sticky; top: 0; z-index: 100;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 2rem; background: var(--bg-glass); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-glass);
+        }
+        .proj-nav a.back { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-secondary); font-weight: 500; }
+        .proj-nav a.back:hover { color: var(--primary-color); }
+        .proj-nav .right { display: flex; align-items: center; gap: 1.25rem; }
+        .proj-nav .right a { color: var(--text-secondary); }
+        .proj-nav .right a:hover { color: var(--primary-color); }
+        #theme-toggle, #snow-toggle { background: transparent; border: 1px solid var(--border-color); color: var(--text-secondary);
+            width: 38px; height: 38px; border-radius: 50%; cursor: pointer; font-size: 1rem; }
+        #theme-toggle:hover, #snow-toggle:hover { color: var(--primary-color); border-color: var(--primary-color); }
+
+        .proj-wrap { max-width: 940px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+        /* hero */
+        .sl-hero { text-align: center; padding: 4rem 0 3rem; }
+        .sl-icon {
+            width: 96px; height: 96px; border-radius: 22px; object-fit: cover;
+            box-shadow: var(--shadow-lg); border: 1px solid var(--border-strong); background: var(--bg-card);
+            margin-bottom: 1.5rem;
+        }
+        .sl-hero h1 { font-size: var(--step-5); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+        .sl-tagline { font-size: var(--step-1); color: var(--text-secondary); max-width: 34ch; margin: 0 auto 1.5rem; line-height: 1.4; }
+        .sl-badges { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+        .sl-chip {
+            font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.03em; text-transform: uppercase;
+            color: var(--primary-color); background: var(--accent-soft); border: 1px solid var(--accent-line);
+            border-radius: var(--radius-full); padding: 0.3rem 0.8rem;
+        }
+        .sl-cta { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; }
+
+        /* privacy banner */
+        .sl-privacy {
+            display: flex; align-items: center; gap: 1rem; justify-content: center; flex-wrap: wrap;
+            background: var(--accent-soft); border: 1px solid var(--accent-line); border-radius: var(--radius-lg);
+            padding: 1.1rem 1.5rem; margin: 0 auto 3.5rem; max-width: 720px; text-align: center;
+        }
+        .sl-privacy i { color: var(--accent-color); font-size: 1.4rem; }
+        .sl-privacy b { color: var(--text-primary); }
+        .sl-privacy span { color: var(--text-secondary); font-size: 0.95rem; }
+
+        .sl-section { margin-bottom: 3.5rem; }
+        .sl-section > h2 {
+            font-size: var(--step-3); margin-bottom: 1.5rem; padding-bottom: 0.6rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .sl-section p.lead { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.75; max-width: 68ch; }
+
+        /* feature grid */
+        .sl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+        .sl-feat {
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg);
+            padding: 1.4rem; transition: var(--transition-base);
+        }
+        .sl-feat:hover { border-color: var(--accent-line); transform: translateY(-3px); box-shadow: var(--shadow-sm); }
+        .sl-feat i { color: var(--primary-color); font-size: 1.3rem; margin-bottom: 0.75rem; display: block; }
+        .sl-feat h3 { font-size: 1.05rem; font-family: var(--font-main); font-weight: 600; margin-bottom: 0.4rem; }
+        .sl-feat p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0; }
+
+        /* pipeline */
+        .sl-pipeline { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; font-family: var(--font-mono); }
+        .sl-step {
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-sm);
+            padding: 0.5rem 0.9rem; font-size: 0.85rem; color: var(--text-primary);
+        }
+        .sl-pipeline .arrow { color: var(--primary-color); }
+
+        /* screenshots */
+        .sl-shots { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 1rem; scroll-snap-type: x mandatory; }
+        .sl-shots img {
+            height: 460px; width: auto; border-radius: 24px; border: 1px solid var(--border-strong);
+            box-shadow: var(--shadow-lg); flex: 0 0 auto; scroll-snap-align: start; background: var(--bg-card);
+        }
+
+        /* tech + facts as tag rows */
+        .sl-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .sl-tags span {
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-sm);
+            padding: 0.4rem 0.85rem; font-size: 0.85rem; color: var(--text-secondary);
+        }
+
+        /* download cards */
+        .sl-dl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+        .sl-dl {
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg);
+            padding: 1.6rem; display: flex; flex-direction: column; gap: 0.6rem;
+        }
+        .sl-dl.rec { border-color: var(--accent-line); }
+        .sl-dl h3 { font-size: 1.15rem; font-family: var(--font-main); font-weight: 600; margin: 0; display: flex; align-items: center; gap: 0.6rem; }
+        .sl-dl .rec-tag { font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em;
+            color: var(--primary-color); border: 1px solid var(--accent-line); border-radius: var(--radius-full); padding: 2px 8px; }
+        .sl-dl p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0; flex: 1; }
+        .sl-dl .btn { margin-top: 0.5rem; }
+        .sl-dl .meta { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); }
+
+        .sl-note {
+            font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; margin-top: 1.25rem;
+            padding: 1rem 1.2rem; border-left: 3px solid var(--accent-line); background: var(--accent-soft);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+        }
+
+        .sl-foot { text-align: center; color: var(--text-muted); font-size: 0.85rem; padding-top: 2.5rem; border-top: 1px solid var(--border-color); }
+        .sl-foot a { color: var(--text-secondary); }
+        .sl-foot a:hover { color: var(--primary-color); }
+
+
+        .sa-shots { display: flex; flex-wrap: wrap; gap: 1.25rem; align-items: flex-start; }
+        .sa-shots figure { margin: 0; }
+        .sa-shots img { display: block; max-width: 100%; height: auto; border-radius: 16px; border: 1px solid var(--border-strong); box-shadow: var(--shadow-lg); background: var(--bg-card); }
+        .sa-shots .wide { flex: 1 1 380px; }
+        .sa-shots .phone { flex: 0 1 220px; }
+        .sa-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.7rem; }
+        .sa-list li { color: var(--text-secondary); line-height: 1.6; padding-left: 1.6rem; position: relative; }
+        .sa-list li::before { content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; color: var(--primary-color); }
+        .sa-timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.8rem; }
+        .sa-timeline li { color: var(--text-secondary); line-height: 1.6; }
+        .sa-timeline b { color: var(--text-primary); }
+        .sa-note { border: 1px solid var(--accent-line); border-left-width: 4px; background: var(--accent-soft); border-radius: var(--radius-lg); padding: 1.2rem 1.4rem; margin-bottom: 3.5rem; }
+        .sa-note h2 { font-size: 1.1rem; margin: 0 0 0.5rem; }
+        .sa-note p { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.7; margin: 0; }
+
+        :focus-visible { outline: 2px solid var(--primary-color); outline-offset: 3px; border-radius: 4px; }
+    </style>
+    <link rel="stylesheet" href="../winter.css">
+</head>
+
+<body>
+    <nav class="proj-nav">
+        <a class="back" href="../portfolio.html#projects"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to portfolio</a>
+        <div class="right">
+            <a href="https://github.com/p4r1ch4y/smart-aspirant" target="_blank" rel="noopener noreferrer" title="Source on GitHub" aria-label="Source on GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+            <button id="snow-toggle" type="button" aria-label="Toggle snowfall" aria-pressed="true" title="Snow (S)"><i class="fas fa-snowflake" aria-hidden="true"></i></button>
+            <button id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><i class="fas fa-moon" aria-hidden="true"></i></button>
+        </div>
+    </nav>
+
+    <main class="proj-wrap">
+        <header class="sl-hero">
+            <h1>Smart Aspirant</h1>
+            <p class="sl-tagline">Building tomorrow's officers in a smart, modern way.</p>
+            <p class="lead" style="color:var(--text-secondary);max-width:60ch;margin:0 auto 1.5rem;line-height:1.7;">A study companion for Indian government exam aspirants that pairs proven study techniques and an adaptive planner with a privacy-first, transparent design.</p>
+            <div class="sl-badges">
+                <span class="sl-chip">Major project</span>
+                <span class="sl-chip">Hobby project</span>
+                <span class="sl-chip">Since December 2025</span>
+            </div>
+            <div class="sl-cta">
+                <a class="btn btn--primary" href="https://smartaspirant.vercel.app" target="_blank" rel="noopener noreferrer"><i class="fas fa-up-right-from-square" aria-hidden="true"></i> Open the app</a>
+                <a class="btn btn--outline" href="https://github.com/p4r1ch4y/smart-aspirant" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
+            </div>
+        </header>
+
+        <section class="sl-section">
+            <h2>The goal</h2>
+            <p class="lead">Smart Aspirant's goal is to help build tomorrow's officers in a smart, modern way. It assists preparation with smart study techniques and modern methods, through a smart, adaptive planner, while keeping the aspirant's data private and being transparent about how everything works.</p>
+        </section>
+
+        <section class="sl-section">
+            <h2>What it does</h2>
+            <div class="sl-grid">
+                <div class="sl-feat"><i class="fas fa-bullseye" aria-hidden="true"></i><h3>Multi-exam targets</h3><p>Prepare for several exams at once (UPSC, SSC, IBPS, SBI, LIC, RRB and more), each with a countdown to its official exam date.</p></div>
+                <div class="sl-feat"><i class="fas fa-file-lines" aria-hidden="true"></i><h3>Syllabus from official notices</h3><p>Exam patterns and syllabi come only from the exam bodies' own notices, with sources cited and anything a notice does not state left blank.</p></div>
+                <div class="sl-feat"><i class="fas fa-calendar-check" aria-hidden="true"></i><h3>Adaptive planner</h3><p>An AI plan when you add your own Gemini key, or a starter plan built from the official syllabus when you do not.</p></div>
+                <div class="sl-feat"><i class="fas fa-hourglass-half" aria-hidden="true"></i><h3>Focus and wellness</h3><p>A focus timer, plus gentle nudges for the 20-20-20 eye rule, water, breaks and study methods like Pomodoro and Lozanov.</p></div>
+                <div class="sl-feat"><i class="fas fa-link" aria-hidden="true"></i><h3>Quick links to free resources</h3><p>Over 80 verified free resources, from official sites and NCERT books to educators' own YouTube and Telegram channels.</p></div>
+                <div class="sl-feat"><i class="fas fa-handshake" aria-hidden="true"></i><h3>Hand-off, not competition</h3><p>Topics open in free tools such as Gemini Guided Learning and NotebookLM instead of rebuilding them.</p></div>
+            </div>
+        </section>
+
+        <section class="sl-section">
+            <h2>Privacy and transparency</h2>
+            <ul class="sa-list">
+                <li>No account needed: plans and progress stay on your device.</li>
+                <li>Your AI key stays in your browser and goes straight to Google, never to a server of ours.</li>
+                <li>Every exam fact links to its official source.</li>
+                <li>Works on phone, tablet and desktop, in light or dark mode.</li>
+            </ul>
+        </section>
+
+        <section class="sl-section">
+            <h2>Screenshots</h2>
+            <div class="sa-shots">
+                <figure class="wide"><img src="../assets/projects/SmartAspirant_images/today-desktop.webp" width="1280" height="800" alt="Smart Aspirant Today dashboard on desktop" loading="lazy" decoding="async"></figure>
+                <figure class="wide"><img src="../assets/projects/SmartAspirant_images/syllabus-desktop.webp" width="1280" height="800" alt="Syllabus tracker with official UPSC topics" loading="lazy" decoding="async"></figure>
+                <figure class="phone"><img src="../assets/projects/SmartAspirant_images/today-phone.webp" width="780" height="1688" alt="Today screen on a phone" loading="lazy" decoding="async"></figure>
+            </div>
+        </section>
+
+        <section class="sl-section">
+            <h2>Built with</h2>
+            <div class="sl-tags">
+                <span>Next.js 16</span><span>React 19</span><span>TypeScript</span><span>Tailwind CSS v4</span>
+                <span>IndexedDB (Dexie)</span><span>Zod</span><span>Gemini API</span><span>Vitest</span><span>Vercel</span>
+            </div>
+            <p class="sl-note">Next: end-to-end encrypted sync on a self-hosted server.</p>
+        </section>
+
+        <section class="sl-section">
+            <h2>Timeline</h2>
+            <ul class="sa-timeline">
+                <li><b>December 2025:</b> started as the Gemini Adaptive Planner.</li>
+                <li><b>November 2026:</b> rebuilt as Smart Aspirant with multi-exam support and a new responsive design.</li>
+            </ul>
+        </section>
+
+        <section class="sl-section">
+            <h2>Thanks</h2>
+            <p class="lead">Thanks to mentors in public policy and education whose input shaped this project.</p>
+        </section>
+
+        <aside class="sa-note" aria-labelledby="sa-note-title">
+            <h2 id="sa-note-title"><i class="fas fa-circle-info" aria-hidden="true"></i> Note</h2>
+            <p>Smart Aspirant is a hobby project to assist students and aspirants. I am not authorised by any exam conducting body or publisher and the project is not affiliated with them. It does not host or distribute any study material. Any book or publication it references points to resources that are freely and publicly available on the internet, open source, or free to access.</p>
+        </aside>
+
+        <footer class="sl-foot">
+            <p><a href="https://github.com/p4r1ch4y/smart-aspirant" target="_blank" rel="noopener noreferrer">GitHub</a> ·
+                <a href="https://smartaspirant.vercel.app" target="_blank" rel="noopener noreferrer">Live app</a> ·
+                <a href="../portfolio.html#projects">More projects</a></p>
+        </footer>
+    </main>
+
+    <script src="../theme-switch.js"></script>
+    <script>
+        (function () {
+            var btn = document.getElementById('theme-toggle');
+            var icon = btn.querySelector('i');
+            function sync() { icon.className = document.documentElement.getAttribute('data-theme') === 'light' ? 'fas fa-sun' : 'fas fa-moon'; }
+            sync();
+            btn.addEventListener('click', function () {
+                var next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+                var apply = function () { document.documentElement.setAttribute('data-theme', next); try { localStorage.setItem('theme', next); } catch (e) { } sync(); };
+                if (window.themeSwitch) window.themeSwitch(btn, apply); else apply();
+            });
+        })();
+    </script>
+    <script src="../external-link-modal.js"></script>
+    <script src="../winter.js" defer></script>
+</body>
+
+</html>
